@@ -17,6 +17,7 @@ namespace ZipClass.Help
 		{
 			ZipEntry nextEntry;
 			Secret secret = new Secret();
+
 			//string str = secret.MD5Decrypt("TURNTECH", ConfigurationManager.AppSettings["Syncdown"]);
             string str = "downfile";
             Guid guid = Guid.NewGuid();
