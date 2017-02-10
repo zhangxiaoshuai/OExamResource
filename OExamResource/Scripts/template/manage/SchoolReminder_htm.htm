@@ -1,0 +1,44 @@
+﻿{#template MAIN}
+<div class="mydiv" align="center">
+    <table width="99%" class="mytable" >
+        <tr>
+            <td align="center">
+            起始时间:<input type="text" onclick="WdatePicker()" name="txt_startme" id="txt_startime" value="" />
+            结束时间：<input type="text" onclick="WdatePicker()" name="txt_endtime" id="txt_endtime" value="" />
+               <select id="Select_trialTag">
+                    <option value="" selected="selected">-全部-</option>
+                    <option value="0">试用用户</option>
+                    <option value="1">镜像用户</option> 
+                </select>
+                <select id="Reminder_tier">
+                    <option value="" selected="selected">-全部-</option>
+                    <option value="0">已过期</option>
+                    <option value="1">即将到期</option> 
+                </select>
+                <input type="button" name="btnSearchReminder" id="btnSearchReminder" value="搜索" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="ReminderList">
+                </div>
+            </td>
+        </tr>
+
+          <tr>
+            <td align="center" >
+                <div id="divBar">
+                </div>
+            </td>
+        </tr>
+            <tr>
+            <td width="20%" align="center">
+                <input type="checkbox" name="ckAll_school" id="ckAll_school" /><label for="ckAll">全选</label>
+                 <input type="radio" checked="checked" name="groupAff" value="0" id="rd_Enabled" /><label for="rd_Enabled">启用</label>
+                <input type="radio" name="groupAff" value="1" id="rd_Disabled" /><label for="rd_Disabled">停用</label>
+                <input type="button" name="btn_confirm" id="btn_confirm" value="确认操作" class="btn" />
+            </td>
+           </tr>
+    </table>
+</div>
+{#/template MAIN} 

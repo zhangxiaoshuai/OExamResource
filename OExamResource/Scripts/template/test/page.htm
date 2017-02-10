@@ -1,0 +1,31 @@
+﻿{#template MAIN} {#foreach $T.List as u}
+<div class="zyk_content_08">
+    <div class="exampaper">
+        {#if $T.u.T.IsTop>0}
+        <a style="color: blue;" href="/Test/Online/{$T.u.T.Id}" target="_blank">
+            <div style="height: 28px; margin: 15px auto auto auto; text-align: center;">
+                {$T.u.T.Name}</div>
+            <img src="/Images/test/k4/base/{$T.u.T.Flag}.png" alt="{$T.u.T.Name}" height="42px"
+                width="116px" />
+            <div style="color: #777; line-height: 18px; text-align: center;">
+                {$T.u.TestSize} &nbsp; {$T.u.T.ItemCount}题
+                <br />
+                {$T.u.T.ClickCount}次
+            </div>
+        </a>
+        {#else} 
+        <a style="color: Gray;" id="A1" href="#">
+            <div style="height: 28px; margin: 15px auto auto auto; text-align: center;">
+                {$T.u.T.Name}</div>
+            <img src="/Images/test/k4/base/{$T.u.T.Flag}.png" alt="{$T.u.T.Name}" height="42px"
+                width="116px" />
+            <div style="color: #777; line-height: 18px; text-align: center;">
+                {$T.u.TestSize} &nbsp; {$T.u.T.ItemCount}题
+                <br />
+                {$T.u.T.ClickCount}次
+            </div>
+        </a>
+        {#/if}
+    </div>
+</div>
+{#/for} {#/template MAIN} 

@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Sync.Models.UserIdentity
+<script type="text/javascript">
+    $.ajaxSetup({
+        cache: false,
+        beforeSend: function () {
+            $("#fsTitle").siblings("img").show();
+        },
+        complete: function () {
+            $("#fsTitle").siblings("img").hide();
+        },
+        error: function (x, e, s) {
+            document.write(x.responseText);
+        }
+    });
+    $(function () {
+        var _hashnames = ["#AccInfo", "#EditPwd", "#Course", "#Resource", "#Collect"];
+        var _hashname = (location.hash || "#AccInfo");
+        $(".menuitem").click(function () {
+            $(this).find("img").attr("src", "/Content/image/24-settings.png");
+            $(this).siblings().find("img").attr("src", "/Content/image/24-settings-blue.png");
+            $("#divload").load("/Account/" + $(this).attr("id"), null, function () { $("#fsTitle").siblings("img").hide(); });
+            $("#fsTitle").text($(this).text());
+        });
+        for (var _item in _hashnames) {
+            if (_hashnames[_item] == _hashname) {
+                $(_hashname).click();
+                return false;
+            }
+        }
+        $(".menuitem:eq(0)").click();
+    });
+</script>
+<style type="text/css">
+    .btimg
+    {
+        vertical-align: middle;
+        border: none;
+    }
+</style>
+<div id="change">
+    <div style="width: 960px; margin: auto;">
+        <table width="100%">
+            <tr valign="top">
+                <td style="color: #A2671E; width: 120px; font-size: 14px; padding-top: 30px; line-height: 60px;">
+                    <div style="cursor: pointer;" class="menuitem" id="AccInfo">
+                        <img src="/Content/image/24-settings-blue.png" class="btimg" /><span class="btimg">账号信息</span></div>
+                    <hr />
+                    <div style="cursor: pointer;" class="menuitem" id="EditPwd">
+                        <img src="/Content/image/24-settings-blue.png" class="btimg" /><span class="btimg">修改密码</span></div>
+                    <hr />
+                    @if (Model.Type == 0)
+                    {
+                        if (Model.Modules.Contains("lan"))
+                        {
+                        <div style="cursor: pointer;" class="menuitem" id="Course">
+                            <img src="/Content/image/24-settings-blue.png" class="btimg" /><span class="btimg">我的课程</span></div>
+                        <hr />
+                        <div style="cursor: pointer;" class="menuitem" id="Resource">
+                            <img src="/Content/image/24-settings-blue.png" class="btimg" /><span class="btimg">我的资源</span></div>
+                        <hr />
+                        }
+                    }
+                    <div style="cursor: pointer;" class="menuitem" id="Collect">
+                        <img src="/Content/image/24-settings-blue.png" class="btimg" /><span class="btimg">我的收藏</span></div>
+                    <hr />
+                </td>
+                <td width="40px">
+                </td>
+                <td style="padding-top: 50px;">
+                    <h2 style="background: url(/Content/image/24-tool-a.png) no-repeat left center; padding-left: 24px;">
+                        <span id="fsTitle"></span>
+                        <img src="/Content/image/loading.gif" style="display: none;" />
+                    </h2>
+                    <div style="border: 1px solid #B0B8E6">
+                        <div id="divload" style="width: 820px; background-color: #B0B8E6; padding: 10px;
+                            border: 1px solid #fff;">@*F5FAC1*@
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

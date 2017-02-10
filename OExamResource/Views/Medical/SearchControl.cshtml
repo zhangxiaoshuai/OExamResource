@@ -1,0 +1,20 @@
+﻿@{
+    string url;
+    if (string.IsNullOrEmpty(ViewContext.HttpContext.Request.QueryString["key"]))
+    {
+        if (ViewContext.RouteData.Values["Id"] == null){
+            url = "List/429EC3B1-72FE-40DB-9A65-E5FEFA7A1600";
+        }else{
+            url = "List/" + ViewContext.RouteData.Values["Id"];
+        }
+    }
+    else
+    {
+        url = "List/429EC3B1-72FE-40DB-9A65-E5FEFA7A1600";
+    }
+}
+@using (Html.BeginForm(url, "Medical", FormMethod.Get))
+{
+    <input name="key" id="searchname" type="text" placeholder="请输入医学搜索关键字..." value="@ViewContext.HttpContext.Request.QueryString["key"]" class="search_03" />
+    <input type="image" id="btnsearch" src="/Content/image/index_ss_08.gif" class="search_04" />
+}

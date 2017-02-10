@@ -1,0 +1,26 @@
+﻿{#template MAIN}
+<table border="1" cellpadding="0" cellspacing="0" align="center" width="660px" style="border-collapse: collapse">
+    <tr>
+        <th width="50%" style="height: 22px">
+            职务名称
+        </th>
+        <th colspan="2">
+            操作
+        </th>
+    </tr>
+    {#foreach $T as s}
+    <tr align="center">
+        <td style="height: 22px">
+            {$T.s.Name}
+        </td>
+        <td>
+            <a href="javascript:void(0);" typeid="post" postname="{$T.s.Name}" class="edit_lb"
+                postid="{$T.s.Id}">修改</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.s.Id}" class="delPost">删除</a>
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

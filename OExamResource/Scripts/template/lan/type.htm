@@ -1,0 +1,28 @@
+﻿{#template MAIN}
+<div class="type_left_01" dataid="00000000-0000-0000-0000-000000000000">
+    *&nbsp;全部<span style="color: #666;">({$T.Total})</span></div>
+{#if $T.Top.length>0}
+<div class="type_left_02 type_left_02_1" style="background-image:url(/Content/image/lan/16-arrow-down.png)">
+    置顶资源
+</div>
+{#foreach $T.Top as t}
+<div class="type_left_03 type_left_03_1" dataid="{$T.t.TypeId}" datakid="{$T.t.Id}">
+    {$T.t.Name}<span style="color: #666;">({$T.t.Count})</span><img src="/Content/image/lan/12-em-up.png"
+        title="顶" class="imgtype typeup" /><img src="/Content/image/lan/12-em-cross.png"
+            title="取消置顶" class="imgtype typecal" />
+</div>
+{#/for} {#/if} {#foreach $T.List as u}
+<div class="type_left_02 type_left_02_1" style="background-image:url(/Content/image/lan/16-arrow-down.png)">
+    {$T.u.Name}{#if $T.u.Id==2}<img src="/Content/image/lan/12-em-plus.png" id="typeadd"
+        style="vertical-align: text-top; margin-left: 10px;" title="新建自定义资源" />{#/if}
+</div>
+{#foreach $T.u.List as l}
+<div class="type_left_03" dataid="{$T.l.Id}">
+    {$T.l.Name}<span style="color: #666;">({$T.l.Count})</span><img src="/Content/image/lan/12-em-top.png"
+        title="置顶" class="imgtype typetop" />{#if $T.u.Id == 2}<img src="/Content/image/lan/24-zoom.png"
+            title="创建者" class="imgtype typeinfo" dataid="{$T.l.UserId}" />{#if $T.l.IsEdit}<img
+                src="/Content/image/lan/12-em-pencil.png" title="修改" class="imgtype typeedit" /><img
+                    src="/Content/image/lan/12-em-cross.png" title="删除" class="imgtype typedel" />{#/if}
+    {#/if}
+</div>
+{/#for} {#/for} {#/template MAIN} 

@@ -1,0 +1,10 @@
+﻿{#template MAIN} {#foreach $T as t} <a class="sa" title="{$T.t.Name}" href="/Resource/List/{$T.t.Id}?key="
+    target="_blank">{$T.t.Name}[{$T.t.Count}]</a><font color="green">[{$T.t.Size}]</font>
+<ul style=" list-style: none;
+            margin-left: 15px;">
+    {#foreach $T.t.List as l}
+    <li style=" display: inline-block;
+            width: 200px;
+            margin: 5px;"><a href="/Resource/List/{$T.l.Id}?key=" title="{$T.l.Name}" target="_blank">
+        {$T.l.Name}[{$T.l.Count}]</a><font color="green">[{$T.l.Size}]</font></li>{#/for}</ul>
+{#/for} {#/template MAIN} 

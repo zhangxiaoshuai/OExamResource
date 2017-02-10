@@ -1,0 +1,94 @@
+﻿{#template MAIN}{#foreach $T as u}
+
+<input type="hidden" name="hdCount" id="hdCount" value="{$T.u.Count}" />
+<div align="left" class="mydiv">
+    <table width="99%" class="mytable">
+        <tr>
+            <td style="width: 30%">
+                课件分类：
+                <select id="ddlcs_Courselist" style="width: 150px; text-align: center">
+                    <option value="00000000-0000-0000-0000-000000000000" selected="selected">请选择</option>
+                </select>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 30%">
+                所属专业：
+                <select id="ddlSpe_Courselist" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Spe as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+            <td>
+        </tr>
+        <tr>
+            <td>
+                资源类型：
+                <select id="ddlType_Courselist" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Type as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                课件名称：
+                <input type="text" name="txtName" id="txtName" value="" />&nbsp;<input type="button"
+                    name="btnSearchCourse" id="btnSearchCourse" value="搜索"  class="btn"/>
+            </td>
+            <td>
+                <input type="button" name="btnUploadResource" id="btnUploadResource" value="上传" basetype="1" class="btn"/> 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" style="vertical-align: top">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td class="yan" valign="middle" align="left" style="height: 20px">
+                            全部列表
+                        </td>
+                        <td class="yan" valign="middle" align="right">
+                            共搜索出<strong id="sCount">{$T.u.Count}</strong>条记录
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="divCourseList">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <div id="divBar">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" align="center" colspan="2">
+                <input type="checkbox" name="ckAll" id="CourseckAll" /><label for="CourseckAll">全选</label>
+                <input type="button" name="btnEditSelected" id="btnEditSelected" value="修改选中"  style="display:none" class="btn" />
+             
+                <input type="button" name="btnDelete" id="btnDelete_Courselist" value="删除选中" class="btn" />
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="/ResourceManage/MassEdit" method="post" id="form1">
+<input type="hidden" id="hdData" name="hdData" value="" />
+</form>
+<form action="/Resource/Preview" target="_blank" method="post" id="form2">
+<input type="hidden" id="hdData2" name="hdData" value="" />
+<input id="hdId" type="hidden" name="hdId" value="@Guid.Empty" />
+<input id="hdType" type="hidden" name="hdType" value="-1" />
+<input id="hdsearchname" type="hidden" name="hdsearchname" value="" />
+</form>
+{#/for} {#/template MAIN} 

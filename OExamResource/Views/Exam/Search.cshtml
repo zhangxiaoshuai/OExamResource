@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "试卷列表";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/exam/search.js")" type="text/javascript"></script>
+    <style type="text/css">
+        .zyk_content_01
+        {
+            width: 1008px;
+        }
+    </style>
+}
+@model Sync.Models.ExamPaperType
+<input type="hidden" id="hdId" value="@Model.Id" />
+<input type="hidden" id="hdTier" value="@Model.Tier" />
+<input type="hidden" id="hdCount" value="@Model.PaperCount" />
+<div class="zyk_content_01">
+    <div class="search_01">
+        <div class="search_02">
+            @Html.Action("SearchControl")
+            <hr style="margin-bottom: 5px; margin-top: 5px;" />
+            <div id="divNav" class="search_05">
+            </div>
+            <div id="divSub" class="search_06">
+            </div>
+        </div>
+    </div>
+    <div id="divPage">
+    </div>
+    <div id="divBar" style="text-align: center; clear: both;">
+    </div>
+</div>

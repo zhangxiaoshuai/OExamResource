@@ -1,0 +1,51 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div id="divList" class="mydiv">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td id="tdTypes">
+                <select id="ddlTypes" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Types as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+            <td id="tdSchool" style="display: none">
+                <input type="hidden" name="hdShow" id="hdShow" value="{$T.u.Display}" />
+                <select id="ddlSchool" style="width: 150px; text-align: center">
+                    {#foreach $T.u.School as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+    </table>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td>
+                <div id="divTypes">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divEdit" style="display: none">
+    <table border="0" cellpadding="0" cellspacing="10">
+        <tr>
+            <td>
+                名称：
+            </td>
+            <td>
+                <input type="hidden" name="hdTypeId" id="hdTypeId" value="" />
+                <input type="text" name="txtNewName" id="txtNewName" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="button" name="btnEditType" id="btnEditType" value="修改" />
+            </td>
+        </tr>
+    </table>
+</div>
+{#/for} {#/template MAIN} 

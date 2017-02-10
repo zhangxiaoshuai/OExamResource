@@ -1,0 +1,6 @@
+﻿{#template MAIN}
+<option value="00000000-0000-0000-0000-000000000000">-请选择-</option>
+ {#foreach $T as u}
+  <option value="{$T.u.Id}">{$T.u.Name}</option>
+ {#/for}
+{#/template MAIN} 

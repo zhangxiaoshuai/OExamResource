@@ -1,0 +1,73 @@
+﻿{#template MAIN}
+<table class="mytable" width="100%">
+    <tr>
+        <th width="3%" style="height: 22px">
+        </th>
+        <th width="12%">
+            登录名
+        </th>
+        <th width="12%">
+            姓名
+        </th>
+        <th width="14%">
+            学校
+        </th>
+        <th width="14%">
+            学院
+        </th>
+        <th width="14%">
+            系别
+        </th>
+        <th width="9%">
+            角色类型
+        </th>
+        <th width="6%">
+            状态
+        </th>
+        <th colspan="4" width="16%">
+            操作
+        </th>
+    </tr>
+    {#foreach $T as t}
+    <tr align="center">
+        <td>
+            <input type="checkbox" name="ckUser" class="ckUser" value="{$T.t.Id}" />
+        </td>
+        <td>
+            {$T.t.LoginName}
+        </td>
+        <td>
+            {$T.t.Name}
+        </td>
+        <td>
+            {$T.t.SchoolName}
+        </td>
+        <td>
+            {$T.t.FacultyName}
+        </td>
+        <td>
+            {$T.t.DepartmentName}
+        </td>
+        <td>
+            {$T.t.RoleName}
+        </td>
+        <td>
+            {$T.t.State}
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" state="{$T.t.State}" class="start">
+                启用</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" state="{$T.t.State}" class="stop">停用</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.t.Id}"  id="up_manager">修改</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" class="del">删除</a>
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

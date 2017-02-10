@@ -1,0 +1,201 @@
+﻿{#template MAIN}
+<div id="DivDetails" align="center">
+    <table style="height: 100%; width: 960px; background-color: #9BADE2; border: 0px solid gray">
+        <tr>
+            <td style="width: 450px; border-right-width: 1px" align="center">
+                <a href="{$T.Address}" target="_blank">
+                    <img src="{$T.Tag2}" style="height: 210px; width: 280px" align="middle" />
+                </a>
+            </td>
+            <!-- <td style="width:150px; border-left-width:0px">
+            
+            </td>-->
+            <td width="510px">
+                <table id="tabletd1" style="height: 200px; width: 100%; line-height: 10px; padding-left: 40px;
+                    border: 1px solid gray">
+                    <tr>
+                        <td align="center" height="40px" colspan="4">
+                            <h2 style="line-height: 40px;">
+                                {$T.Name}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style3">
+                            一级学科:
+                        </td>
+                        <td class="style2">
+                            {$T.Subject1}
+                        </td>
+                        <td class="style4">
+                            二级学科:
+                        </td>
+                        <td class="style2">
+                            {$T.Subject2}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style3">
+                            课程负责人:
+                        </td>
+                        <td class="style2">
+                            {$T.Author}
+                        </td>
+                        <td class="style4">
+                            所在省份:
+                        </td>
+                        <td class="style2">
+                            {$T.Province}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style3">
+                            所属学校:
+                        </td>
+                        <td class="style2">
+                            {$T.Schoolname}
+                        </td>
+                        <td class="style4">
+                            获奖年份:
+                        </td>
+                        <td class="style2">
+                            {$T.AwardsDate}年
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style3">
+                            课程级别:
+                        </td>
+                        <td class="style2">
+                            {$T.CourceSort}
+                        </td>
+                        <td class="style4">
+                            课程层次:
+                        </td>
+                        <td class="style2">
+                            {$T.Hierarchy}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="style3" style="vertical-align: middle">
+                            访问情况:
+                            <!--连通状态:{#if $T.Connected==false}<font color="red">暂时无法连接服务器</font> {#else}<font color="blue">访问正常</cont>{#/if}-->
+                        </td>
+                        <td class="style2">
+                            <img id="Urlimg" alt="" src="../../../Content/image/QualityCourse/QualityCourse_load.gif " />
+                        </td>
+                        <td colspan="2" align="center">
+                            <a href="{$T.Address}" target="_blank">
+                                <img src="../../../Content/image/QualityCourse/QualityCourse_index.jpg" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table style="width: 100%; height: 300px" id="tabletd" class="jpkc_text">
+                {#if $T.Thesenpapier.length>10}
+                    <tr>
+                        <td>
+                            <div   class="jpkc_text_div" id="divbottom">
+                                内容概要:
+                                <div id="f_team" style="display: none"><a href="#" class="aclick" values="c_team">更多>>></a>
+                                    <!--<label>
+                                        {$T.TeacherInfos}</label>{#if $T.TeacherInfo.length>300}-->
+                                    <!--{#/if}-->
+                                </div>
+                                <div id="f_d_team" >
+                                   <label>
+                                        {$T.Thesenpapier}</label> 
+                                    <a href="#" class="aclick" values="d_team">隐藏>>></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {#/if}
+                    {#if $T.Introduction.length>10}
+                    <tr>
+                        <td>
+                            <div class="jpkc_text_div">
+                                课程简介:
+                                <div id="j_s_team" style="display: none"> <a href="#" class="aclick" values="js_team">更多>>></a>
+                                    <!-- <label>
+                                        {$T.TeacherArmys}</label>
+                                    {#if $T.TeacherArmy.length>300}-->
+                                   <!--{#/if}-->
+                                </div>
+                                <div id="d_j_s_team" >
+                                    <label>
+                                        {$T.Introduction}</label>
+                                    <a href="#" class="aclick" values="d_js_team">隐藏>>></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                     {#/if}
+                    {#if $T.TeacherTeam.length>10}
+                    <tr>
+                        <td>
+                            <div class="jpkc_text_div">
+                                教师团队:
+                                <div id="k_m_team">  <a href="#" class="aclick" values="km_team">更多>>></a>
+                                    <!--<label>
+                                        {$T.Describes}</label>
+                                    {#if $T.Describe.length>300}-->
+                                  
+                                    <!--{#/if}-->
+                                </div>
+                                <div id="d_k_m_team" style="display: none">
+                                   <label>
+                                        {$T.TeacherTeam}</label>
+                                    <a href="#" class="aclick" values="d_km_team">隐藏>>></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                      {#/if}
+                    {#if $T.Condition.length>10}
+                    <tr>
+                        <td>
+                            <div class="jpkc_text_div">
+                                教学条件:
+                                <div id="j_g_team">   <a href="#" class="aclick" values="jg_team">更多>>></a>
+                                    <!-- <label>
+                                        {$T.ConstructionPlannings}</label>
+                                    {#if $T.ConstructionPlanning.length>300} -->
+                                 <!--{#/if}-->
+                                </div>
+                                <div id="d_j_g_team" style="display: none">
+                                    <label>
+                                        {$T.Condition}</label>
+                                    <a href="#" class="aclick" values="d_jg_team">隐藏>>></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                      {#/if}
+                    {#if $T.Condition.length>10}
+                    <tr>
+                        <td>
+                            <div class="jpkc_text_div">
+                                教学方法:
+                                <div id="z_c_team">  <a href="#" class="aclick" values="zc_team">更多>>></a>
+                                    <!--<label>
+                                        {$T.PolicyMeasuress}</label>{#if $T.PolicyMeasures.length>300}-->
+                                  <!--{#/if}-->
+                                </div>
+                                <div id="d_z_c_team" style="display: none">
+                                    <label>
+                                        {$T.Methods}</label>
+                                    <a href="#" class="aclick" values="d_zc_team">隐藏>>></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {#/if}
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+{#/template MAIN}

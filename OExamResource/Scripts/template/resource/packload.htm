@@ -1,0 +1,88 @@
+﻿{#template MAIN}{#foreach $T as u}
+<input type="hidden" name="BaseType" id="BaseType" value="{$T.u.BaseType}" />
+        <table border="0" cellpadding="0" cellspacing="10" style="width: 100%">
+            <tr>
+                <td width="30%" align="right" style="height: 22px">
+                    文件：
+                </td>
+                <td>
+                    <input type="file" name="file" class="w200" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" style="height: 22px" >
+                    名称：
+                </td>
+                <td >
+                    <input type="text" name="txtName" id="txtName" value="" style="width: 150px"/>
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="height: 22px">
+                    分类：
+                </td>
+                <td>
+              <select id="ddlcs_resourcelist" style="width: 150px; text-align: center">
+                    <option value="00000000-0000-0000-0000-000000000000" selected="selected">请选择</option>
+              </select>
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="height: 22px">
+                   所属专业：
+                </td>
+                <td>
+                    <select id="ddlSpe_resourcelist" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Spe as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="height: 22px">
+                    资源类型：
+                </td>
+                <td>
+                    <select id="ddlType_resourcelist" style="width: 150px; text-align: center">
+                     {#foreach $T.u.Type as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" style="height: 22px">
+                    所属课程：
+                </td>
+                <td >
+                <input type="text" name="txtName" id="Text1" value="" style="width: 150px"/>
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="height: 22px">
+                    关键字：
+                </td>
+                <td >
+                <input type="text" name="txtName" id="Text2" value="" style="width: 150px"/>
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" style="height: 22px">
+                    资源简介：
+                </td>
+                <td>
+                    <textarea id="txtFescribe" cols="30" rows="6" wrap="physical" style="resize: none;
+                height: 80px; width: 380px"></textarea>
+                </td>
+            </tr>
+            <tr>
+               <td style="height: 22px"></td>
+                <td class="tc">
+                    <input type="button" id="btnOk" value="上传" class="bg1" />
+                    <input type="button" id="btnupload_back" value="返回" class="bg1" />
+                </td>
+            </tr>
+        </table>
+
+{#/for} {#/template MAIN} 

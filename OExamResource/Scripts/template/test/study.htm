@@ -1,0 +1,25 @@
+﻿{#template MAIN}
+<dl>
+    {#foreach $T as u}
+    <dt id="{$T.u.Part.Id}">{$T.u.Part.SortId}、{$T.u.Part.Name}</dt>
+    {#foreach $T.u.List as t}
+    <dd id="{$T.t.Id}">
+        <table>
+            <tr>
+                <td valign="top">{$T.t.SortId}：</td>
+                <td>{$T.t.Question}</td>
+            </tr>
+            <tr>
+                <td valign="top"><img src="/Content/image/80.gif"/></td>
+                <td><div class="answer_exam"><b>正确答案：</b>{$T.t.Answer}</div></td>
+            </tr>
+            <tr>
+                <td valign="top"><img src="/Content/image/80.gif"/></td>
+                <td><div class="explain_exam"><b>答案解释：</b>{$T.t.Explain}</div></td>
+            </tr>
+        </table>
+    </dd>
+    <dd><hr style="margin:30px auto;"/></dd>    
+    {#/for} {#/for}
+</dl>
+{#/template MAIN} 

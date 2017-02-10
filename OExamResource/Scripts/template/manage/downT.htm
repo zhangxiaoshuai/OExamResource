@@ -1,0 +1,29 @@
+﻿{#template MAIN}
+<table cellspacing="0" cellpadding="0" border="1" style="border-collapse: collapse;"
+    width="100%">
+    <tr>
+        <th width="50%">
+            名称
+        </th>
+        <th width="25%">
+            Ip地址
+        </th>
+        <th width="25%">
+            时间
+        </th>
+    </tr>
+    {#foreach $T as t}
+    <tr>
+        <td>
+            {$T.t.ResourceName}
+        </td>
+        <td>
+            {$T.t.Ip}
+        </td>
+        <td>
+            {$T.t.CreateTime}
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

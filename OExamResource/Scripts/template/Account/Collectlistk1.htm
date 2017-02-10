@@ -1,0 +1,80 @@
+﻿{#template MAIN}
+<div style="margin-top: 20px;">
+    <table width="100%">
+        <tr>
+            <th>
+                序号
+            </th>
+            <th>
+                名称
+            </th>
+            <th>
+                学科
+            </th>
+            <th>
+                专业
+            </th>
+            <th>
+                收藏时间
+            </th>
+            <th>
+                删除
+            </th>
+           <!-- <th width="100px">
+                预览
+            </th>-->
+            <th>
+                下载
+            </th>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <hr />
+            </td>
+        </tr>
+        {#foreach $T as u}
+        <tr align="center" class="trResource">
+            <td>
+                {$T.u$index+1}
+            </td>
+            <td style="text-align: left; padding-left: 20px;">
+                {#if $T.u.Packid=="00000000-0000-0000-0000-000000000000"} <a class="Collectlistk1_To_preview"
+                    href="/Resource/Preview/{$T.u.Id}?t=1" style="color: Blue; text-decoration: underline;"
+                    hddate="{$T.u.Id}">{$T.u.Title}</a> {#else} <a class="Collectlistk1_To_preview" href="/Resource/Preview/{$T.u.Packid}?t=0"
+                        style="color: Blue; text-decoration: underline;" hddate="{$T.u.Id}">{$T.u.Title}</a>
+                {#/if}
+            </td>
+            <td>
+                {$T.u.Subjectname}
+            </td>
+            <td>
+                {$T.u.Speciality}
+            </td>
+            <td>
+                {$T.u.Time.toDate("yyyy-MM-dd")}
+            </td>
+            <td>
+                <a href="javascript:void();" dataid="{$T.u.Id}" style="color: Blue; text-decoration: underline;"
+                    class="tdDelResource1">删除</a>
+            </td>
+            <!--<td style="cursor: pointer;" title="点击预览" valign="bottom">
+            无预览
+                 {#if $T.u.Packid=="00000000-0000-0000-0000-000000000000"}
+                <img src="{$T.u.Icofilepath}" height="100px" width="130px" class="imgResource" dataurl="{$T.u.Previewfilepath}"
+                    style="display: block;" />
+                {#else} 无预览 {#/if} 
+            </td>-->
+            <td>
+                <a href="{$T.u.DownloadFilepath}" target="_blank" style="color: Blue;
+                    text-decoration: underline;" class="tdDownResource1">下载</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <hr />
+            </td>
+        </tr>
+        {#/for}
+    </table>
+</div>
+{#/template MAIN}

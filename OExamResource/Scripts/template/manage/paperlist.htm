@@ -1,0 +1,50 @@
+﻿{#template MAIN}
+<table id="tabPaperList" class="mytable"
+    width="100%">
+    <tr style="height: 22px">
+        <th width="28%">
+            试卷名称
+        </th>
+        <th width="20%">
+            类 型
+        </th>
+        <th width="22%">
+            所属书目
+        </th>
+        <th width="10%">
+            答题时间
+        </th>
+        <th width="10%">
+            年 月
+        </th>
+        <th width="10%" colspan="2">
+            操 作
+        </th>
+    </tr>
+    {#foreach $T as t}
+    <tr align="center" style="height: 22px">
+        <td>
+            <a href="/Exam/Study/{$T.t.Id}" title="{$T.t.Title}" target="_blank">{$T.t.Name}</a>
+        </td>
+        <td>
+            {$T.t.Type1}
+        </td>
+        <td>
+            {$T.t.Type2}
+        </td>
+        <td>
+            {$T.t.Time}
+        </td>
+        <td>
+            {$T.t.YearMonth}
+        </td>
+        <td>
+            <a href="/ExamManage/Paper/{$T.t.Id}" target="_blank" class="edit_exam">修改</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" class="del_exam">删除</a>
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

@@ -1,0 +1,7 @@
+﻿{#template MAIN} {#foreach $T as u}
+<h2><a href="#{$T.u.Part.Id}">{$T.u.Part.SortId}{$T.u.Part.Name}</a></h2>
+    {#foreach $T.u.List as t}
+    <a href='#{$T.t.Id}' class='num_exam'>{$T.t.S}</a>
+    {#/for}
+{#/for}
+{#/template MAIN} 

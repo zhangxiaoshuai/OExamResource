@@ -1,0 +1,253 @@
+﻿{#template MAIN} {#foreach $T as p}
+<div id="divLog" class="divLog">
+    <strong>
+        <label id="lbSchoolName">
+            {$T.p.Name}
+        </label>
+    </strong>从<strong>
+        <label id="lbStartTime">
+            {$T.p.CreateTime}
+        </label>
+    </strong>到<strong> {$T.p.Now} </strong>使用信息<br />
+    <br />
+    {#foreach $T.p.List_Resource as r}
+    <div id="divResource" flag="{$T.r.RFlag}" style="{$t.r.resource}">
+        <fieldset>
+            <legend>
+                <h3>
+                    课件素材库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/{$T.p.Id}?tag=0">查看资源库详细记录</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a id="Trialreport" schoolid="{$T.p.Id}" href="#">导出资源库试用报告</a>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             {#if $T.p.Tag1!=null}
+            <a target="_blank" href="http://223.4.12.119:8000/system/admin/sys/LoginInfoScool.aspx?id={$T.p.Tag1}&logid={$T.p.Tag2}"">查看老版本使用记录</a>
+            {#/if}
+            <br />
+            <br />
+            <br />
+            下载资源<strong> {$T.r.DownloadCountR} </strong>条，收藏资源<strong> {$T.r.CollectCountR}
+            </strong>条，浏览资源<strong> {$T.r.BrowseCountR} </strong>次；<br />
+            资源下载次数最多的一天是<strong> {$T.r.DayR} </strong>，下载<strong> {$T.r.DCountR} </strong>次;<br />
+            下载次数最多的素材是 <strong>{$T.r.ResourceRM} </strong>，下载 <strong>{$T.r.RMCount} </strong> 次；<br />
+            下载次数最多的资源是 <strong>{$T.r.ResourceRR} </strong>，下载 <strong>{$T.r.RRCount} </strong> 次；
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                Ip段下载详情（此处最多显示前51条，如需更多，请查看详细记录）：<br />
+                <div id="lbRIp">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                学科下载详情：<br />
+                <div id="lbRSub">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                素材按月统计汇总：<br />
+                <div id="lbRMonthCount">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+        </fieldset>
+    </div>
+    <br />
+    <br />
+    {#/for} {#foreach $T.p.list_Medical as m}
+    <div id="divMedicine" flag="{$T.m.MFlag}" style="{$t.m.medicine}">
+        <fieldset>
+            <legend>
+                <h3>
+                    医学库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/{$T.p.Id}?tag=1">查看医学库详细记录</a>
+            <a id="TrialreportMedical" schoolid="{$T.p.Id}" href="#">导出医学库试用报告</a>
+            <br />
+            <br />
+            <br />
+            下载资源<strong> {$T.m.DownloadCountM} </strong>条，收藏资源<strong> {$T.m.CollectCountM}
+            </strong>条，浏览资源<strong> {$T.m.BrowseCountM} </strong>次；<br />
+            资源下载次数最多的一天是<strong> {$T.m.DayM} </strong>，下载<strong> {$T.m.DCountM} </strong>次;<br />
+            下载次数最多的资源是 <strong>{$T.m.ResourceM} </strong>，下载 <strong>{$T.m.MCount} </strong>
+            次；
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                Ip段下载详情：<br />
+                <div id="lbMIp">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                学科下载详情：<br />
+                <div id="lbMSub">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                资源按月统计汇总：<br />
+                <div id="lbMMonthCount">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+        </fieldset>
+    </div>
+    {#/for}
+    <br />
+    <br />
+    {#foreach $T.p.list_Test as t}
+    <div id="divTest" flag="{$T.t.TFlag}" style="{$t.t.test}">
+        <fieldset>
+            <legend>
+                <h3>
+                    试题库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/{$T.p.Id}?tag=3">查看试题库详细记录</a>
+             <a id="TrialreporTest" schoolid="{$T.p.Id}" href="#">导出试题库试用报告</a>
+            <br />
+            <br />
+            <br />
+<!--            下载组卷<strong> {$T.t.DownloadCountT} </strong>次，<br />
+            下载组卷次数最多的一天是<strong> {$T.t.DayTD} </strong>，下载<strong> {$T.t.DCountTD} </strong>
+            次;<br />
+            下载次数最多的是 <strong>{$T.t.ResourceTD} </strong>，下载 <strong>{$T.t.CountTD} </strong>
+            次；<br />-->
+            在线训练<strong> {$T.t.BrowseCountT} </strong>次；<br />
+          <!--  在线训练次数最多的一天是<strong> {$T.t.DayT} </strong>，训练<strong> {$T.t.CountT} </strong>次;<br />-->
+            在线训练次数最多的是 <strong>{$T.t.ResourceT} </strong>，训练 <strong>{$T.t.TCount} </strong>
+            次；
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                Ip段训练详情：<br />
+                <div id="lbTIp">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+              学科浏览详情：<br />
+                <div id="lbTMonthCount">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+        </fieldset>
+    </div>
+    {#/for}
+    <br />
+    <br />
+    {#foreach $T.p.list_Exam as e}
+    <div id="divExam" flag="{$T.e.EFlag}" style="@viewbag.exam">
+        <fieldset>
+            <legend>
+                <h3>
+                    模考库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/{$T.p.Id}?tag=4">查看模考库详细记录</a>
+            <a id="TrialreporExam" schoolid="{$T.p.Id}" href="#">导出模考库试用报告</a>
+            <br />
+            <br />
+            <br />
+            模考<strong> {$T.e.DownloadCountE} </strong>次；<br />
+            模考次数最多的一天是<strong> {$T.e.DayED} </strong>，模考<strong> {$T.e.CountED} </strong>次;<br />
+            模考次数最多的是 <strong>{$T.e.ResourceED} </strong>，模考 <strong>{$T.e.EDCount} </strong>
+            次；<br />
+            学习试卷<strong> {$T.e.BrowseCountE} </strong>次，<br />
+            学习次数最多的一天是<strong> {$T.e.DayE} </strong>，学习<strong> {$T.e.CountE} </strong>次;<br />
+            学习次数最多的是 <strong>{$T.e.ResourceE} </strong>，学习<strong>{$T.e.ECount} </strong>次；
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                Ip段模考详情：<br />
+                <div id="lbEIp">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                学科模考详情：<br />
+                <div id="lbESub">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                模考按月统计汇总：<br />
+                <div id="lbEMonthCount">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+        </fieldset>
+    </div>
+    {#/for}
+    <br />
+    <br />
+    {#foreach $T.p.list_Quality as q}
+    <div id="divQualityCourse" flag="{$T.q.QFlag}" style="{$t.q.qualitycourse}">
+        <fieldset>
+            <legend>
+                <h3>
+                    精品课程库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/{$T.p.Id}?tag=2">查看精品课程库详细记录</a>
+             <a id="TrialreporQualityCourse" schoolid="{$T.p.Id}" href="#">导出精品课程库试用报告</a>
+            <br />
+            <br />
+            <br />
+            浏览课程<strong> {$T.q.BrowseCountQ} </strong>次，<br />
+            浏览次数最多的一天是<strong> {$T.q.DayQ} </strong>，浏览<strong> {$T.q.CountQ} </strong>次;<br />
+            浏览次数最多的是 <strong>{$T.q.ResourceQ} </strong>，浏览<strong> {$T.q.QCount} </strong>次；
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                Ip段浏览详情：<br />
+                <div id="lbQIp">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                学科浏览详情：<br />
+                <div id="lbQSub">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div style="width: 100%; float: left">
+                精品课程按月统计汇总：<br />
+                <div id="lbQMonthCount">
+                    <strong>暂无</strong>
+                </div>
+            </div>
+            <br />
+        </fieldset>
+    </div>
+    {#/for}
+</div>
+{#/for} {#/template MAIN} 

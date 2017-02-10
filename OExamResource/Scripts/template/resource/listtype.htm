@@ -1,0 +1,12 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div>
+    <label>
+        {$T.u.Name}({$T.u.Count})</label>
+    {#foreach $T.u.List as s}
+    <div class="pl10">
+        <a class="listtype" href="javascript:void(0);" typeid="{$T.s.Id}" typecount="{$T.s.Count}">
+            {$T.s.Name}({$T.s.Count}) </a>
+    </div>
+    {#/for}
+</div>
+{#/for} {#/template MAIN}

@@ -1,0 +1,3 @@
+﻿{#template MAIN} {#foreach $T as u} <a title="{$T.u.Title}" href="/Exam/Search/{$T.u.Id}?key={$('#txtSearch').val()}&mean={$('#ddlMean').val()}&year={$('#ddlYear').val()}">
+    {$T.u.Name}<span style="color: #555;">（{$T.u.PaperCount}）</span></a> {#/for}
+{#/template MAIN}

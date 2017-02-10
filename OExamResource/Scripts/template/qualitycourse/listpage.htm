@@ -1,0 +1,35 @@
+﻿{#template MAIN}
+<td>
+    {#foreach $T as u}
+    <div class="zyk_content_04_jpkc">
+        <div class="tp">
+            <a href="/QualityCourse/Detail/{$T.u.Id}" target="_blank" class="btnpreview" style="text-align: -moz-center">
+                <!--<img src="http://download.cctr.net.cn{$T.u.Filepath}" alt="图片错误无法显示" width="128px" height="130px" /> -->
+                <div>
+                    <img class="bgcolor" src="{$T.u.Tag2}" alt="图片错误无法显示" width="140px" height="105px"
+                        style="border: 3px solid #F2F2F2" /></div>
+                <div  alt=" {$T.u.Name}" style="width: 150px; white-space: nowrap; text-overflow: ellipsis;
+                    overflow: hidden;">
+                    {$T.u.Name}
+                </div>
+                <div id="colordiv">
+                    <div style="width: 140px; height: 12px; white-space: nowrap; text-overflow: ellipsis;
+                        overflow: hidden;">
+                        {$T.u.Author}
+                    </div>
+                    <div style="width: 140px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
+                        margin-top: 2px;">
+                        {$T.u.SchoolName}
+                    </div>
+                </div>
+            </a>
+            <div class="jpk">
+                <label>
+                    {$T.u.AwardsDate}年</label>
+                <span class="type_{$T.u.CourceSort}"></span>
+            </div>
+        </div>
+    </div>
+    {#/for}
+</td>
+{#/template MAIN}

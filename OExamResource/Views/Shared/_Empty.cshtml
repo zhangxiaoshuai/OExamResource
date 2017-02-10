@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="@Url.Content("~/Scripts/common/ie6.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/plugin/cellpagebar/pagebar.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery/jquery.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/json2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/jtemplates/jquery-jtemplates.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/common.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/artDialog/jquery.artDialog.js?skin=idialog")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/artDialog/artDialogExt.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/cellpagebar/pagebar.js")" type="text/javascript"></script>
+    @RenderSection("SubHead", false)
+</head>
+<body>
+@RenderBody()
+</body>
+</html>

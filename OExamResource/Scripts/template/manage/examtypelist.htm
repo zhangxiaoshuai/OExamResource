@@ -1,0 +1,19 @@
+﻿{#template MAIN}
+<table class="tabExamType" id="tabExamType" border="0" cellpadding="0" cellspacing="0"
+    width="100%">
+    {#foreach $T as l}
+    <tr>
+        <td class="tier0">
+            {$T.l.Name}({$T.l.Count})
+        </td>
+        <td>
+            <ul class="MM">
+                {#foreach $T.l.List as p}
+                <li><a title="{$T.p.Title}" href="/ExamManage/PaperList/{$T.p.Id}">{$T.p.Name}({$T.p.Count})</a></li>
+                {#/for}
+            </ul>
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

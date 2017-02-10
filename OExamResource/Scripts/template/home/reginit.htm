@@ -1,0 +1,153 @@
+﻿{#template MAIN}
+<table width="400px" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td align="right" valign="middle" style="width: 30%; height: 20px;">
+            账号类型：
+        </td>
+        <td align="left" valign="middle" style="height: 20px">
+            <input type="radio" name="rbRegType" id="rbRegDefault" value="1" checked="checked"><label
+                for="rbRegDefault">普通</label>
+            <input type="radio" name="rbRegType" id="rbRegTeacher" value="0"><label for="rbRegTeacher">教师</label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="width: 30%; height: 20px;">
+            登录帐号：
+        </td>
+        <td width="58%" align="left" valign="middle">
+            <input type="text" name="txtRegId" id="txtRegId" value="">&nbsp;<label for="txtRegId"
+                style="color: Red;">*</label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            登录密码：
+        </td>
+        <td align="left" valign="middle">
+            <input type="password" name="txtRegPwd" id="txtRegPwd" value="">&nbsp;<label for="txtRegPwd"
+                style="color: Red;">*</label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            确认密码：
+        </td>
+        <td align="left" valign="middle">
+            <input type="password" id="txtRegPwd2" name="txtRegPwd2" value="">&nbsp;<label for="txtRegPwd2"
+                style="color: Red;">*</label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            真实姓名：
+        </td>
+        <td align="left" valign="middle">
+            <input type="text" name="txtRegName" id="txtRegName" value="">&nbsp;<label for="txtRegName"
+                style="color: Red;">*</label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            性&nbsp;&nbsp;&nbsp;&nbsp;别：
+        </td>
+        <td align="left" valign="middle">
+            <input type="radio" name="rbRegSex" id="rbRegMan" value="1" checked="checked"><label
+                for="rbRegMan">男</label>
+            <input type="radio" name="rbRegSex" id="rbRegWoman" value="0"><label for="rbRegWoman">女</label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            出生日期：
+        </td>
+        <td align="left" valign="middle">
+            <input type="text" id="txtRegBirthday" onclick="WdatePicker()" readonly="readonly" />
+        </td>
+    </tr>
+    <tr style="">
+        <td align="right" valign="middle" style="height: 20px;">
+            学&nbsp;&nbsp;&nbsp;&nbsp;校：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlSchool0" onchange="bindSchool(this)">
+                {#foreach $T.School as u}
+                <option value="{$T.u.Id}">{$T.u.Name}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            学&nbsp;&nbsp;&nbsp;&nbsp;院：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlSchool1" onchange="bindSchool(this)">
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            系&nbsp;&nbsp;&nbsp;&nbsp;别：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlSchool2">
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            职&nbsp;&nbsp;&nbsp;&nbsp;业：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlzy">
+                <option value='00000000-0000-0000-0000-000000000000'>请选择</option>
+                {#foreach $T.ZY as u}
+                <option value="{$T.u.Id}">{$T.u.Name}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            职&nbsp;&nbsp;&nbsp;&nbsp;称：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlzc">
+                <option value='00000000-0000-0000-0000-000000000000'>请选择</option>
+                {#foreach $T.ZC as u}
+                <option value="{$T.u.Id}">{$T.u.Name}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            职&nbsp;&nbsp;&nbsp;&nbsp;务：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlzw">
+                <option value='00000000-0000-0000-0000-000000000000'>请选择</option>
+                {#foreach $T.ZW as u}
+                <option value="{$T.u.Id}">{$T.u.Name}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="width: 30%; height: 20px;">
+            电子邮箱：
+        </td>
+        <td align="left" valign="middle" style="height: 20px">
+            <input type="text" name="txtRegEmail" value="" id="txtRegEmail">
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="width: 30%; height: 20px;">
+            联系电话：
+        </td>
+        <td align="left" valign="middle" style="height: 20px">
+            <input type="text" name="txtRegPhone" value="" id="txtRegPhone">
+        </td>
+    </tr>
+</table>
+{#/template MAIN}

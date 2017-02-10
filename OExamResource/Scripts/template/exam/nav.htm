@@ -1,0 +1,4 @@
+﻿{#template MAIN} 
+<a href="/">首页</a> <a>></a> <a href="/Exam/Index">模考库</a>
+{#foreach $T as u} <a>></a> <a href="/Exam/Type/{$T.u.Id}">{$T.u.Name}</a> 
+{#/for} {#/template MAIN} 

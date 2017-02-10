@@ -1,0 +1,27 @@
+﻿{#template MAIN} {#foreach $T as l}
+<tr>
+    <td width="10%">
+        {$T.l.Name}{$T.l.Count}
+        <br />
+        <font color="gray">( 前台显示：{#if $T.l.Isdeleted}
+            <input type="checkbox" class="Test_check" typeid="{$T.l.Id}" />
+            {#else}
+            <input type="checkbox" class="Test_check" typeid="{$T.l.Id}" checked="checked" />
+            {#/if})</font> {#if $T.l.QX} 全选：
+        <input type="checkbox" class="Test_checkAll" typeid="{$T.l.Id}" checked="checked" />
+        {#else} 全选：
+        <input type="checkbox" class="Test_checkAll" typeid="{$T.l.Id}" />
+        {#/if}
+    </td>
+    <td style="vertical-align: top">
+        <ul>
+            {#foreach $T.l.list as t}{#if $T.t.Isdeleted}
+            <li id="{$.T.t.Id}" class="myli"><font color="gray">{$T.t.Name}</font>
+                <input type="checkbox" class="Test_check" typeid="{$T.t.Id}" /></li>{#else}
+            <li id="{$.T.t.Id}" class="myli">{$T.t.Name}
+                <input type="checkbox" class="Test_check" typeid="{$T.t.Id}" checked="checked" /></li>
+            {#/if}{#/for}
+        </ul>
+    </td>
+</tr>
+{#/for} {#/template MAIN} 

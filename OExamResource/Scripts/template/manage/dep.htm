@@ -1,0 +1,52 @@
+﻿{#template MAIN}
+<table cellspacing="0" border="1" style="width: 100%; border-collapse: collapse;
+    text-align: center" width="100%">
+    <tr>
+        <th colspan="2" style="height: 22px; width: 60%">
+            院系名称
+        </th>
+        <th colspan="2" style="height: 22px;">
+            操作
+        </th>
+    </tr>
+    {#foreach $T as u}
+    <tr>
+        <td colspan="2">
+            {$T.u.Name}
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.u.Id}" class="edit">修改</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.u.Id}" class="del_yxgl">删除</a>
+        </td>
+    </tr>
+    {#foreach $T.u.List as l} {#if $T.l$index==0}
+    <tr>
+        <td rowspan="{$T.u.Length}" width="20%" class="rows">
+            系别
+        </td>
+        <td>
+            {$T.l.Name}
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.l.Id}" class="edit">修改</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.l.Id}" class="del_yxgl">删除</a>
+        </td>
+    </tr>
+    {#else}
+    <tr>
+        <td>
+            {$T.l.Name}
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.l.Id}" class="edit">修改</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.l.Id}" class="del_yxgl">删除</a>
+        </td>
+    </tr>
+    {#/if} {#/for} {#/for}</table>
+{#/template MAIN} 

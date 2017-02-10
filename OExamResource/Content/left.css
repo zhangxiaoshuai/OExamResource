@@ -1,0 +1,399 @@
+﻿*
+{
+	margin: 0;
+	padding: 0;
+}
+.btn
+{
+	border-right: #7b9ebd 1px solid;
+	padding-right: 2px;
+	border-top: #7b9ebd 1px solid;
+	padding-left: 2px;
+	font-size: 12px;
+	border-left: #7b9ebd 1px solid;
+	cursor: hand;
+	color: black;
+	padding-top: 2px;
+	border-bottom: #7b9ebd 1px solid;
+}
+.myli
+{
+	float: left;
+	list-style-type: none;
+	padding: 3px;
+	width: 180px;
+	font: 12px 宋体;
+	color:Blue;
+}
+BODY
+{
+	background: #799ae1;
+	font: 12px 宋体;
+}
+.my_link
+{
+}
+.mydiv
+{
+	padding-top: 10px;
+	width: 99%;
+}
+.mytable
+{
+	color: #658fd4;
+	background-color: #eef6fe;
+	font-size: 12px;
+	font-family: "新宋体";
+	overflow: auto;
+}
+.mytable th
+{
+	color: #0066cc;
+	background-color: #AEDEF2;
+	font-size: 14px;
+	color: #05B;
+}
+.mytable td
+{
+	font-size: 12px;
+	padding: 3px 4px 3px 1px;
+	color: #4f6b72;
+}
+.ul
+{
+	font: 16px 宋体;
+	margin-left: 10px;
+}
+.dela
+{
+	width: 15px;
+	float: right;
+}
+.uli
+{
+	list-style: none;
+	cursor: default;
+	width: 360px;
+}
+.uli a
+{
+	margin-left: 20px;
+}
+.test
+{
+	font: 16px 宋体;
+}
+td.alt
+{
+	background: #F5FAFA;
+	color: #797268;
+}
+
+IMG
+{
+	vertical-align: bottom;
+}
+A
+{
+	font: 12px 宋体;
+	color: blue;
+	text-decoration: none;
+}
+A:hover
+{
+	text-decoration: underline;
+}
+.sec_menu
+{
+	border-right: white 1px solid;
+	background: #d6dff7;
+	overflow: hidden;
+	border-left: white 1px solid;
+	border-bottom: white 1px solid;
+}
+
+.sec_menu a
+{
+	margin-left: 20px;
+}
+.left_menu_tab
+{
+	border: 1px solid #4A8DFE;
+	margin: 5px;
+}
+.menu_title
+{
+	background-image: url("/Content/image/leftitem0bg.gif");
+	color: #0033FF;
+	font-weight: bold;
+	line-height: 23px;
+	margin: 1px;
+	padding-left: 5px;
+	vertical-align: middle;
+}
+
+.menu_row
+{
+	background-color: #FFFFFF;
+	color: #245688;
+	line-height: 22px;
+	padding-left: 15px;
+	vertical-align: middle;
+}
+.menu_row a
+{
+	color: #245688;
+}
+.click_right
+{
+	float: right;
+	font-size: 12px;
+	padding-top: 5px;
+	margin-right: 30px;
+	line-height: 30px;
+}
+.click_right a
+{
+	color: #FFFFFF;
+}
+.clickon
+{
+	background-image: url("/Content/image/topbgon.gif");
+	float: left;
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	width: 70px;
+	background-repeat: no-repeat;
+	text-align: center;
+}
+.clickon a
+{
+	color: #0000FF;
+}
+.clickoff
+{
+	float: left;
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	width: 70px;
+	text-align: center;
+}
+.clickoff a
+{
+	color: #FFFFFF;
+}
+/*
+.menu_title SPAN
+{
+    font-weight: bold;
+    left: 7px;
+    color: #215dc6;
+    position: relative;
+    top: 2px;
+    cursor: pointer;
+}*/
+.menu_title2
+{
+}
+.menu_title2 SPAN
+{
+	font-weight: bold;
+	left: 8px;
+	color: #428eff;
+	position: relative;
+	top: 2px;
+	cursor: pointer;
+}
+
+.txlHeaderBackgroundAlternate
+{
+	color: #ffffff;
+	background-color: #799ae1;
+}
+.txlHeaderBackgroundAlternate A:link
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+.txlHeaderBackgroundAlternate A:visited
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+.txlHeaderBackgroundAlternate A:active
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+.txlHeaderBackgroundAlternate A:hover
+{
+	color: #ffffff;
+	text-decoration: underline;
+}
+.txlRow
+{
+	background-color: #dee5fa;
+}
+.txlRowHighlight
+{
+	background-color: #d4def9;
+}
+.tableBorder
+{
+	border-right: #6595d6 1px solid;
+	border-top: #6595d6 1px solid;
+	border-left: #6595d6 1px solid;
+	border-bottom: #6595d6 1px solid;
+	background-color: #ffffff;
+}
+
+.tier0
+{
+	font-weight: bold;
+	line-height: 24px;
+	text-align: center;
+	vertical-align: top;
+	width: 20%;
+}
+.MM
+{
+	bottom: 0;
+	clip: rect(0px, 0px, 0px, 0px);
+	left: 0;
+	margin: 0;
+	padding: 0;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+.MM li
+{
+	display: block;
+	float: left;
+	font-family: @宋体;
+	font-size: 12px;
+	height: 24px;
+	line-height: 24px;
+	list-style-type: none;
+	padding-left: 0;
+	text-decoration: none;
+	width: 180px;
+}
+.MM A:hover
+{
+	text-decoration: underline;
+}
+
+
+.MMM
+{
+	bottom: 0;
+	clip: rect(0px, 0px, 0px, 0px);
+	left: 0;
+	margin: 0;
+	padding: 0;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+.MMM li
+{
+	display: block;
+	float: left;
+	font-family: @宋体;
+	font-size: 12px;
+	height: 24px;
+	line-height: 24px;
+	list-style-type: none;
+	padding-left: 0;
+	text-decoration: none;
+	width: 220px;
+}
+.MMM A:hover
+{
+	text-decoration: underline;
+}
+
+.tabExamType tr td
+{
+	border-bottom: 1px dotted #CCCCCC;
+}
+
+.item_keep
+{
+	word-break: keep-all;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.system_xinxi
+{
+	width: 600px;
+	empty-cells: show;
+	border-collapse: collapse;
+	margin: 0 auto;
+	border: 1px solid #96C2F1;
+	background-color: #EFF7FF;
+}
+.system_xinxi tr
+{
+	height: 20px;
+	border: 1px solid #96C2F1;
+}
+/*系统信息*/
+.divLog
+{
+	margin-left: 100px;
+	width: 800px;
+	padding-top: 40px;
+}
+.divLog a
+{
+	text-decoration: underline;
+}
+/*系统信息*/
+/*ip管理*/
+.system_ip
+{
+	width: 600px;
+	empty-cells: show;
+	border-collapse: collapse;
+	margin: 0 auto;
+	border: 1px solid #96C2F1;
+	background-color: #EFF7FF;
+}
+.system_ip tr
+{
+	height: 20px;
+	border: 1px solid #96C2F1;
+}
+
+/*ip管理*/
+/*院系管理*/
+.system_department
+{
+	empty-cells: show;
+	border-collapse: collapse;
+	margin: 0 auto;
+	border: 1px solid #96C2F1;
+	background-color: #EFF7FF;
+}
+/*院系管理*/
+
+
+/*教师试用统计*/
+.ul0_tealog
+{
+	float: left;
+	list-style-type: none;
+	width: 1020px;
+}
+/*教师试用统计*/

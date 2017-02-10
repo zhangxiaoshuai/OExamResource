@@ -1,0 +1,116 @@
+﻿{#template MAIN}
+<div class="mydiv" style="padding-top: 20px">
+    <table class="mytable" width="99%" >
+        <tr>
+            <td colspan="3">
+                <input type="button" name="btnAddMenu" id="btnAddMenu" value="添加菜单" class="btn" />
+            </td>
+        </tr>
+        <tr>
+            <th>
+                菜单名称
+            </th>
+            <th>
+                菜单地址
+            </th>
+            <th>
+                修改
+            </th>
+            <th>
+                删除
+            </th>
+        </tr>
+        {#foreach $T as u}
+        <tr align="center">
+            <td align="left">
+                {$T.u.Title}
+            </td>
+            <td>
+                {$T.u.Url}
+            </td>
+            <td>
+                <a href="javascript:void(0);" dataid="{$T.u.Id}" class="edit_menu">修改</a>
+            </td>
+            <td>
+                <a href="javascript:void(0);" dataid="{$T.u.Id}" class="del_menu">删除</a>
+            </td>
+        </tr>
+        {#foreach $T.u.list as t}
+        <tr align="center">
+            <td>
+                {$T.t.Title}
+            </td>
+            <td>
+                {$ T.t.Url}
+            </td>
+            <td>
+                <a href="javascript:void(0);" dataid="{$T.t.Id}" class="edit_menu">修改</a>
+            </td>
+            <td>
+                <a href="javascript:void(0);" dataid="{$T.t.Id}" class="del_menu">删除</a>
+            </td>
+        </tr>
+        {#foreach $T.t.list as q}
+         <tr align="right">
+            <td>
+                {$T.q.Title}
+            </td>
+            <td align="center">
+                {$T.q.Url}
+            </td>
+            <td align="center">
+                <a href="javascript:void(0);" dataid="{$T.q.Id}" class="edit_menu">修改</a>
+            </td>
+            <td align="center">
+                <a href="javascript:void(0);" dataid="{$T.q.Id}" class="del_menu">删除</a>
+            </td>
+        </tr>
+         {#/for} 
+        {#/for} 
+        <tr>
+        <td colspan="4">
+        <hr />
+        </td>
+        </tr>
+        {#/for}
+    </table>
+    <div id="divAddmenuDiv" style="display: none">
+        <table width="100%" border="0" cellpadding="0" cellspacing="10">
+            <tr>
+                <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                    菜单名称：
+                </td>
+                <td width="58%" align="left" valign="middle" style="height: 20px">
+                    <input type="text" id="TxtMenuName" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle" style="height: 20px; width: 30%;">
+                </td>
+                <td align="left" valign="middle" style="height: 20px">
+                    <input type="button" name="btnSuremenu" id="btnSuremenu" value="添加" class="btn" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="DivUpMenuDiv" style="display: none">
+        <table width="100%" border="0" cellpadding="0" cellspacing="10">
+            <tr>
+                <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                    菜单名称：
+                </td>
+                <td width="58%" align="left" valign="middle" style="height: 20px">
+                    <input type="text" id="TxtMenuNameUp" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle" style="height: 20px; width: 30%;">
+                </td>
+                <td align="left" valign="middle" style="height: 20px">
+                    <input type="button" name="btnSuremenuUp" id="btnMenuUP" dataid="" value="修改" class="btn" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{#/template MAIN} 

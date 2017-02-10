@@ -1,0 +1,54 @@
+﻿{#template MAIN}
+<table cellspacing="0" border="1" style="width: 100%; border-collapse: collapse;"
+    width="100%">
+    <tr style="height: 22px">
+        <th>
+            学校名称
+        </th>
+        <th>
+            ip
+        </th>
+        <th>
+            下载用户
+        </th>
+        <th>
+           下载次数
+        </th>
+<!--        <th>
+           日期
+        </th>-->
+        <th>
+          销售人员
+        </th>
+        <th>
+        操作
+        </th>
+    </tr>
+    {#foreach $T as s}
+    <tr style="height: 22px">
+        <td align="center">
+            {$T.s.SchoolName}
+        </td>
+        <td align="center">
+            {$T.s.ip}
+        </td>
+        <td align="center">
+            {$T.s.teachername}
+        </td>
+        <td align ="center">
+            {$T.s.DownLoadCount}
+        </td>
+<!--        <td align ="center">
+            {$T.s.datatime}
+        </td>-->
+        <td align ="center">
+            {$T.s.sellname}
+        </td >
+        <td align="center" >
+            <a href="javascript:void(0);" dataid="{$T.s.Id}" class="schoolDownOk">启用</a>
+            <a href="javascript:void(0);" dataid="{$T.s.Id}" class="schoolDownOkNo">停用</a>
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

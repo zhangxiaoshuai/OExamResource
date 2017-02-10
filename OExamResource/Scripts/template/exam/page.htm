@@ -1,0 +1,21 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div class="zyk_content_08">
+    <div class="exampaper" style="background-image: url(/Images/exam/k5/0.jpg)">
+        <div class="paperhead">
+            <div class="papertitle">
+                {$T.u.E.Name}</div>
+        </div>
+        <div class="paperfooter">
+            <label style="vertical-align: top; margin-right: 5px;">{$T.u.E.Year}</label>{#if !!$T.u.E.Means}<img
+                    src="/Images/exam/p.png" title="全真题" />{#/if}</div>
+    </div>
+    <div class="zyk_content_06">
+        {#if $T.u.SortId>2} 
+        <a href="/Exam/Study/{$T.u.E.Id}" style="color:Black" target="_blank">开始学习</a>|<a
+            href="/Exam/Test/{$T.u.E.Id}" style="color:Black" target="_blank">开始模考</a> 
+        {#else} <a href="#"  class="show">
+                开始学习</a>|<a href="#"  class="show">开始模考</a> 
+        {#/if}
+    </div>
+</div>
+{#/for} {#/template MAIN} 

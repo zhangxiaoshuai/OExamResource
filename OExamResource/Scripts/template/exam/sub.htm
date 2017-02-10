@@ -1,0 +1,6 @@
+﻿{#template MAIN} <a href="javascript:void(0);" id="lkAll" style="color: #9C3D3D;">全部（{$("#hdCount").val()||0}）</a>
+{#foreach $T.List as u} <a href="/Exam/Type/{$T.u.Id}" title="{$T.u.Title}">{$T.u.Name}<span style="color: #555;">（{$T.u.PaperCount}）</span></a>
+{#/for} {#if $T.Other.PaperCount>0} <a href="javascript:void(0);" id="lkOther" datacount="{$T.Other.PaperCount}"
+    style="color: #9C3D3D;">
+    <img src="/Images/exam/p.png" style="vertical-align: middle; border: none;" title="全真题" />{$T.Other.Name}（{$T.Other.PaperCount}）</a>
+{#if} {#/template MAIN}

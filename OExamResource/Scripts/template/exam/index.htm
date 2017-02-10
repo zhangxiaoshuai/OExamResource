@@ -1,0 +1,47 @@
+﻿{#template MAIN}
+<ul>
+    {#foreach $T as u}
+    <li>
+        <div class="index_dl divChange" dataid="{$T.u.Id}">
+            <table border="0" cellspacing="0" cellpadding="0" class="index_dl_03">
+                <tr>
+                    <td>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr class="index_dl_04">
+                                <td width="36">
+                                    <img src="{$T.u.Logo}" />
+                                </td>
+                                <td>
+                                    <div class="subtitle" title="{$T.u.Name}({$T.u.Count})">
+                                        <a href="/Exam/Type/{$T.u.Id}" title="{$T.u.Title}">{$T.u.Name}<span style="color: #555;">({$T.u.Count})</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" class="index_dl_05">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="index_dl_05">
+                            <tr>
+                                <td valign="top">
+                                    <div class="subcontent" dataid="{$T.u.Id}">
+                                        {#foreach $T.u.List as t}<div style="width: 230px; float: left;">
+                                            <a href="/Exam/Type/{$T.t.Id}" title="{$T.t.Title}">{$T.t.Name}<span style="color: #555;">({$T.t.Count})</span></a>
+                                        </div>
+                                        {#/for}</div>
+                                </td>
+                                <td valign="bottom"  width="50px">
+                                    <a href="javascript:void(0);" class="btnOpen" dataid="{$T.u.Id}" style=" margin-bottom:15px">
+                                        更多...</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </li>
+    {#/for}
+</ul>
+{#/template MAIN} 

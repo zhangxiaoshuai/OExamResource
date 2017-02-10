@@ -1,0 +1,10 @@
+﻿{#template MAIN}
+    <a href="/QualityCourse/Index">首页</a> > <a href="/QualityCourse/Index">精品课程库 </a>
+    {#foreach $T as u} 
+    {#if $T.u.Type>4}
+   > <a href="/QualityCourse/List/{$T.u.Id}?type={$T.u.Type}&searchname={$T.u.searchname}&jibie={$T.u.jibie}&niandu={$T.u.niandu}">"{$T.u.Name}"<font style="color:Gray">({$T.u.Count})</font> </a>
+    {#else}
+    > <a href="/QualityCourse/List/{$T.u.Id}?type={$T.u.Type}&searchname={$T.u.searchname}&jibie={$T.u.jibie}&niandu={$T.u.niandu}">{$T.u.Name}<font style="color:Gray">({$T.u.Count})</font> </a>
+    {#/if}
+{#/for}
+ {#/template MAIN}

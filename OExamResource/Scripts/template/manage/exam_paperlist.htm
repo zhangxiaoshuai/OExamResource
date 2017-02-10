@@ -1,0 +1,41 @@
+﻿{#template MAIN} {#foreach $T as u}
+<input type="hidden" name="hdId" id="hdId" value="{$T.u.ept.Id}" />
+<input type="hidden" name="hdCount" id="hdCount" value="{$T.u.Count}" />
+<table class="tabExamType" border="0" cellpadding="0" cellspacing="10" width="100%">
+    <tr>
+        <td id="tdExamType1">
+        </td>
+    </tr>
+    <tr>
+        <td id="tdExamType2">
+        </td>
+    </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="10" width="100%">
+    <tr>
+        <td valign="middle" align="left" style="height: 20px">
+            全部列表
+        </td>
+        <td>
+            <input type="hidden" name="hdType3Id" value="" id="hdType3Id" />
+            试卷名称：<input type="text" name="txtPaperName" id="txtPaperName" value="" />
+            &nbsp;<input type="button" name="btnSearchExamPaper" id="btnSearchExamPaper" value="搜索" class="btn" />
+        </td>
+        <td valign="middle" align="right">
+            共搜索出<strong id="sCount">{$T.u.Count}</strong>条记录
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div id="divPaperList">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3">
+            <div id="divBar">
+            </div>
+        </td>
+    </tr>
+</table>
+{#/for} {#/template MAIN} 

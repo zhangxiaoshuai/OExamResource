@@ -1,0 +1,9 @@
+﻿{#template MAIN}
+    {#foreach $T as u}
+    {#if $T.u.Count>0}
+    <div style="line-height:40px;">
+        <a class="listtype" href="javascript:void(0);" typeid="{$T.u.Id}" typecount="{$T.u.Count}">{$T.u.Name}<font style="color: #555; font-style: italic">({$T.u.Count})</font></a>
+    </div>
+    {#/if}{#/for}
+</ul>
+{#/template MAIN}

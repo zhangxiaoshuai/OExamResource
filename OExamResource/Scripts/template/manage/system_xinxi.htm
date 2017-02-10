@@ -1,0 +1,70 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div class="mydiv" style="background-color: #EEF6FE;" align="center">
+    <table class="mytable" width="500px">
+        <tr>
+<!--            <td>
+                学校名称：{$T.u.SchoolName}&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn" name="btnName"
+                    id="btnName" value="修改" class="btn" />
+            </td>
+-->            <td>
+                <a href="javascript:void(0)" id="Asystem_schoollog" schoolid="{$T.u.school}">查看详细使用记录</a>
+            </td>
+        </tr>
+        <tr>
+<!--            <td>
+                开通模块：
+            </td>
+-->            <td>
+                系统设置：
+            </td>
+        </tr>
+        <tr>
+<!--            <td>
+                <ol id="listModules" style="list-style-position: inside">
+                </ol>
+            </td>
+-->            <td valign="top">
+                <table border="0" cellpadding="0" cellspacing="10" style="">
+                    <tr>
+                        <td>
+                            是否开启注册：
+                        </td>
+                        <td>
+                               <input type="checkbox" {$T.u.IsRegCK} name="ckIsReg" id="ckIsReg"  value="{$T.u.Reg}" />
+                            <label for="ckIsReg">开启注册</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            注册是否审核：
+                        </td>
+                        <td>
+                              <input type="checkbox" {$T.u.IsValidCK} name="ckIsValid" id="ckIsValid" value="{$T.u.Valid}" /><label
+                                for="ckIsValid">开启审核</label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div id="divEdit" style="display: none">
+        <table border="0" cellpadding="0" cellspacing="10">
+            <tr>
+                <td>
+                    学校名称：
+                </td>
+                <td>
+                    <input type="text" name="txtName" value="{$T.u.SchoolName}" id="txtName" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="button" name="btnEdit" value="修改" id="btnEdit" class="btn" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{#/for}{#/template MAIN} 

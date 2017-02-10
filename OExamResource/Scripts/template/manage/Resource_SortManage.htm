@@ -1,0 +1,114 @@
+﻿{#template MAIN} {#foreach $T as u} 
+<table border="0" cellpadding="0" cellspacing="0" width="99%" style="vertical-align: top">
+    <tr>
+        <th width="25%">
+            素材大类
+        </th>
+        <th width="25%">
+            素材分类
+        </th>
+        <th width="25%">
+            素材专业
+        </th>
+<!--        <th>
+            知识点
+        </th>-->
+    </tr>
+    <tr>
+        <td align="center" style="height: 20px">
+        </td>
+        <td align="center">
+            <label id="lbCategory_resource">
+            </label>
+            <input type="hidden" name="hdCategory" id="hdCategory_resource" value="" />
+        </td>
+        <td align="center">
+            <label id="lbSubject_resource">
+            </label>
+            <input type="hidden" name="hdSubject" id="hdSubject_resource" value="" />
+        </td>
+<!--        <td align="center">
+            <label id="lbSpeciality_resource">
+            </label>
+            <input type="hidden" name="hdSpeciality" id="hdSpeciality_resource" value="" />
+        </td>-->
+    </tr>
+    <tr>
+        <td align="center">
+            <select id="ddlCategory_resource" size="17" style="width: 150px; height: 250px">
+            </select>
+        </td>
+        <td align="center">
+            <select id="ddlSubject_resource" size="17" style="width: 150px; height: 250px">
+            </select>
+        </td>
+        <td align="center">
+            <select id="ddlSpeciality_resource" size="17" style="width: 150px; height: 250px">
+            </select>
+        </td>
+<!--        <td align="center">
+            <select id="ddlKnowledge_resource" size="17" style="width: 150px; height: 250px">
+            </select>
+        </td>-->
+    </tr>
+    <tr>
+        <td align="center">
+            <input type="button" name="btnAddCategory" id="btnAddCategory_resource" value="添加" class="btn"/>
+            &nbsp;&nbsp;
+            <input type="button" name="btnEditCategory" id="btnEditCategory_resource" value="修改" class="btn"/>
+            &nbsp;&nbsp;
+            <input type="button" name="btnDelCategory" id="btnDelCategory_resource" value="删除" class="btn"/>
+        </td>
+        <td align="center">
+            <input type="button" name="btnAddSubject" id="btnAddSubject_resource" value="添加" class="btn"/>
+            &nbsp;&nbsp;
+            <input type="button" name="btnEditSubject" id="btnEditSubject_resource" value="修改"class="btn" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnDelSubject" id="btnDelSubject_resource" value="删除"class="btn" />
+        </td>
+        <td align="center">
+            <input type="button" name="btnAddSpeciality" id="btnAddSpeciality_resource" value="添加" class="btn"/>
+            &nbsp;&nbsp;
+            <input type="button" name="btnEditSpeciality" id="btnEditSpeciality_resource" value="修改"class="btn" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnDelSpeciality" id="btnDelSpeciality_resource" value="删除" class="btn"/>
+        </td>
+<!--        <td align="center">
+            <input type="button" name="btnAddKnowledge" id="btnAddKnowledge_resource" value="添加" class="btn"/>
+            &nbsp;&nbsp;
+            <input type="button" name="btnEditKnowledge" id="btnEditKnowledge_resource" value="修改" class="btn"/>
+            &nbsp;&nbsp;
+            <input type="button" name="btnDelKnowledge" id="btnDelKnowledge_resource" value="删除"class="btn" />
+        </td>-->
+    </tr>
+    <tr>
+        <td align="center">
+            <input type="text" name="txtCategory" id="txtCategory_resource" value="" style="display: none" />
+            <input type="button" name="btnCategory" id="btnCategory_resource" style="display: none" value="" class="btn"/>
+            <input type="button" name="btnEscCategory" id="btnEscCategory_resource" style="display: none"
+                value="取消"class="btn" />
+        </td>
+        <td align="center">
+            <input type="text" name="txtSubject" id="txtSubject_resource" value="" style="display: none" />
+            <input type="button" name="btnSubject" id="btnSubject_resource" style="display: none" value="" class="btn"/>
+            <input type="button" name="btnEscSubject" id="btnEscSubject_resource" style="display: none"
+                value="取消" class="btn"/>
+        </td>
+        <td align="center">
+            <input type="text" name="txtSpeciality" id="txtSpeciality_resource" value="" style="display: none" />
+            <input type="button" name="btnSpeciality" id="btnSpeciality_resource" style="display: none"
+                value=""class="btn" />
+            <input type="button" name="btnEscSpeciality" id="btnEscSpeciality_resource" style="display: none"
+                value="取消" class="btn"/>
+        </td>
+<!--        <td align="center">
+            <input type="text" name="txtKnowledge" id="txtKnowledge_resource" value="" style="display: none" />
+            <input type="button" name="btnKnowledge" id="btnKnowledge_resource" style="display: none"
+                value="" class="btn"/>
+            <input type="button" name="btnEscKnowledge" id="btnEscKnowledge_resource" style="display: none"
+                value="取消" class="btn"/>
+        </td>-->
+    </tr>
+</table>
+
+{#/for} {#/template MAIN} 

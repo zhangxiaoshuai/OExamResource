@@ -1,0 +1,19 @@
+﻿{#template MAIN}
+<div id="change">
+    <ul>
+        {#foreach $T as u}
+        <li style="margin-bottom: 20px; margin-left: 16px; margin-right: 6px; width:223px">
+            <div class="index_dl_07 divChange">
+                <div style="border: 1px solid #fff; height: 78px;">
+                    <a href="/Medical/List/{$T.u.Id}" style="float: left; margin-right: 5px; height: 78px;">
+                        <img src="/Content/image/Medical/{$T.u.Ico}" border="0" height="78px" width="63px" /></a>
+                    <a class="index_dl_04" href="/Medical/List/{$T.u.Id}">{$T.u.Name}</a>
+                    <br />
+                    资源数量：{$T.u.Count}
+                </div>
+            </div>
+        </li>
+        {#/for}
+    </ul>
+</div>
+{#/template MAIN} 

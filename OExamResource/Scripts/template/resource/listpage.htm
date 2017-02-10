@@ -1,0 +1,25 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div style="width: 120px; height: 170px; margin:20px 15px 15px 15px; *margin-left: 10px;" class="fl">
+    {#if $T.u.C==-1}
+    <a href="javascript:;" style="display: block;color:#888;" class="tc clearfix ban">
+        <img src="{$('#hdUrl').val()}{$T.u.Ico||undefined}" onerror="nofindImg(this,'{$T.u.ErrorIco}')"
+            width="120" height="100" />
+        <div style="text-align: center; * width: 80%;" class='mt10' title="{$T.u.Title||''}">
+            {$T.u.Title.length>14 ? $T.u.Title.substr(0,14)+'...':$T.u.Title}
+        </div>
+    </a>
+    {#else}
+    <a href="/Resource/Preview/{$T.u.Id}?t={$T.u.BaseType}" target="_blank"
+        style="display: block;" class="tc clearfix">
+        <img src="{$('#hdUrl').val()}{$T.u.Ico||undefined}" onerror="nofindImg(this,'{$T.u.ErrorIco}')"
+            width="120" height="100" />
+        {#if $T.u.BaseType==0}
+        <div class='cgray' style="margin-bottom:-5px;">共{$T.u.C}章节</div>
+        {#/if}
+        <div style="text-align: center; * width: 80%;" class='mt10' title="{$T.u.Title||''}">
+            {$T.u.Title.length>14 ? $T.u.Title.substr(0,14)+'...':$T.u.Title}
+        </div>
+    </a>
+    {#/if}
+</div>
+{#/for} {#/template MAIN}

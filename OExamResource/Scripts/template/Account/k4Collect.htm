@@ -1,0 +1,52 @@
+﻿{#template MAIN}
+<div style="margin-top: 20px;">
+    <table width="100%">
+        <tr>
+            <th>
+                序号
+            </th>
+            <th>
+                试卷名称
+            </th>
+            <th>
+                所属分类
+            </th>
+            <th>
+                收藏时间
+            </th>
+            <th>
+                取消收藏
+            </th>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <hr />
+            </td>
+        </tr>
+        {#foreach $T.List as u}
+        <tr align="center" class="trResource" height="40">
+            <td>
+                {$T.u$index+1+($T.PageCount*($T.PageIndex-1))}
+            </td>
+            <td style="text-align:left;padding-left: 20px;">
+                <a href="/Exam/Study/{$T.u.PaperId}" target="_blank" style="color: Blue;">{$T.u.PaperName}</a>
+            </td>
+            <td>
+                <a href="/Exam/Type/{$T.u.TypeId}" target="_blank" style="color: Blue;">{$T.u.TypeName}</a>
+            </td>
+            <td>
+                {$T.u.CreateTime.toDate("yyyy-MM-dd")}
+            </td>
+            <td>
+                <a href="javascript:void();" dataid="{$T.u.Id}" style="color: Blue;" class="k4Del">取消收藏</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <hr />
+            </td>
+        </tr>
+        {#/for}
+    </table>
+</div>
+{#/template MAIN}

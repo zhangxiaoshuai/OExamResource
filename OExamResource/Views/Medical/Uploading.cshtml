@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "资源上传";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/medical/uploading.js")" type="text/javascript"></script>
+     <script type="text/javascript" src="@Url.Content("~/Scripts/plugin/jquery.form.js")"></script>
+}
+<input id="hdId" type="hidden" value="@ViewBag.Id"/>
+<input id="hdtype" type="hidden" value="@ViewBag.type"/>
+<input id="hdsearchname" type="hidden" value="@ViewBag.searchname"/>
+<input id="Guidlist" type="hidden" value="@ViewBag.guidlist"/>
+<form id="uploadform" name="uploadform" method="post" action="/Medical/GetShangchuan"  enctype="multipart/form-data">
+<div id="upload" align="center" style="">
+</div>
+</form>

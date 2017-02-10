@@ -1,0 +1,73 @@
+﻿{#template MAIN}
+<div style="margin-top: 20px;">
+    <table width="100%">
+        <tr>
+            <th>
+                序号
+            </th>
+            <th>
+                名称
+            </th>
+            <th>
+                大类
+            </th>
+            <th>
+                学科
+            </th>
+            <th>
+                收藏时间
+            </th>
+            <th>
+                删除
+            </th>
+            <th width="100px">
+                预览
+            </th>
+             <th>
+               下载
+            </th>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <hr />
+            </td>
+        </tr>
+        {#foreach $T as u}
+        <tr align="center" class="trResource">
+            <td>
+               {$T.u$index+1}
+            </td>
+            <td style="text-align:left;padding-left: 20px;">
+            <a class="Collectlistk2_To_preview" href="/medical/preview/{$T.u.Id}"  style="color:Blue;text-decoration: underline;">{$T.u.Title}</a> 
+            </td>
+            <td>
+                {$T.u.Subjectname}
+            </td>
+            <td>
+               {$T.u.Speciality}
+            </td>
+            <td>
+                {$T.u.Time.toDate("yyyy-MM-dd")}
+            </td>
+            <td>
+                <a href="javascript:void();" dataid="{$T.u.Id}" style="color: Blue; text-decoration: underline;"
+                    class="tdDelResource2">删除</a>
+            </td>
+            <td style="cursor: pointer;" title="点击预览" valign="bottom">
+                <img src="{$T.u.Icofilepath}" height="100px" width="130px" class="imgResource" dataurl="{$T.u.Previewfilepath}"
+                    style="display: block;" />
+            </td>
+            <td>
+             <a href="/Download/FileStreamDownload1/{$T.u.Id}?ku=2" target="_blank" style="color: Blue; text-decoration: underline;"
+                    class="tdDownResource1">下载</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8">
+                <hr />
+            </td>
+        </tr>
+        {#/for}
+    </table>
+</div>
+{#/template MAIN}

@@ -1,0 +1,5 @@
+﻿.pagecell,#pagefirst,#pagelast,#pageprev,#pagenext,#pagego{cursor:pointer}
+#pagefirst,#pagelast,#pageprev,#pagenext,#pagego{display:-moz-inline-box;display:inline-block;width:auto;text-align:center;color:blue}
+.pagecell{margin:auto 3px;display:-moz-inline-box;display:inline-block;min-width:12px;text-align:center;color:Blue;text-decoration:underline}
+.pagecurrent{color:Red;text-decoration:none;}
+#pageindex{width:30px}

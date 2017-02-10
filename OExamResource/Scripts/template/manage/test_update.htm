@@ -1,0 +1,36 @@
+﻿{#template MAIN} {#foreach $T as u}
+ <div class="mydiv">
+    <form id="form_update"  action="/TestManage/UpdateResource"
+    method="post" enctype="multipart/form-data">
+    <table class="mytable" width="99%">
+        <tr>
+            <td style="height: 30px" width="30%">
+  <a href="../../../Content/试题库列表.xls" target="_blank">下载批量导入教师列表模版</a>
+        <br />
+                表单名称：<br />
+                要导入的Excel文件中第一个表单的名称
+            </td>
+            <td>
+                <input type="text" name="txtSheet" id="txtSheet" value="Sheet1" />
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 30px">
+                文件路径：<br />
+                要导入的Excel文件所在的物理路径
+            </td>
+            <td>
+                <input type="file" name="upXls" id="upXls" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="btnImport" id="btnImport_test" value="导入" class="btn" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+{#/for} {#/template MAIN} 

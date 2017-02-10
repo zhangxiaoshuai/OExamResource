@@ -1,0 +1,9 @@
+﻿{#template MAIN}
+<div class="zyk_content_03_a">
+    <a href="/Resource/Index">首页</a> > <a href="/QualityCourse/Index">精品课程库 </a>
+    {#foreach $T as u}     
+     > <a href="/QualityCourse/List/{$T.u.Id}?type={$T.u.type}">{$T.u.Name}<font style="color:Gray">({$T.u.Count})</font> </a> 
+   
+{#/for}
+</div>
+ {#/template MAIN}

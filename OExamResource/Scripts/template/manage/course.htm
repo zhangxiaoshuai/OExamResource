@@ -1,0 +1,67 @@
+﻿{#template MAIN}
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse;"
+    width="100%">
+    <tr>
+        <th width="3%" style="height: 22px">
+        </th>
+        <th width="27%">
+            名称
+        </th>
+        <th width="25%">
+            学校
+        </th>
+        <th width="9%">
+            负责人
+        </th>
+        <th width="6%">
+            省份
+        </th>
+        <th width="6%">
+            年度
+        </th>
+        <th width="6%">
+            级别
+        </th>
+        <th width="8%">
+            连通状态
+        </th>
+        <th colspan="2" width="10%">
+            操作
+        </th>
+    </tr>
+    {#foreach $T as t}
+    <tr align="center">
+        <td>
+            <input type="checkbox" name="ckCourse" class="ckCourse" value="{$T.t.Id}" />
+        </td>
+        <td>
+            <a href="/QualityCourse/Detail/{$T.t.Id}" title="{$T.t.Title}" target="_blank">{$T.t.Name}</a>
+        </td>
+        <td>
+            {$T.t.SchoolName}
+        </td>
+        <td>
+            {$T.t.Author}
+        </td>
+        <td>
+            {$T.t.Province}
+        </td>
+        <td>
+            {$T.t.AwardsDate}
+        </td>
+        <td>
+            {$T.t.CourceSort}
+        </td>
+        <td>
+            {$T.t.Connected}
+        </td>
+        <td>
+            <a href="javascript:void(0);"   dataid="{$T.t.Id}" class="edit_quality">修改</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" class="del_quality">删除</a>
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

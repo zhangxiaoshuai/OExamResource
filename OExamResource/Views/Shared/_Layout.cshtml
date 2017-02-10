@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="@Url.Content("~/Scripts/common/ie6.js")" type="text/javascript"></script>
+    <link href="@Url.Content("~/Content/base.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/sync.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Scripts/plugin/cellpagebar/pagebar.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/jquery/jquery.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/json2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/jtemplates/jquery-jtemplates.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/common.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/sync.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/artDialog/jquery.artDialog.js?skin=idialog")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/artDialog/artDialogExt.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/cellpagebar/pagebar.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/swfobject.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/My97DatePicker/WdatePicker.js")" type="text/javascript"></script>
+    @RenderSection("SubHead", false)
+    <script src="/Scripts/views/layout.js" type="text/javascript"></script>
+    <script src="/Scripts/plugin/placeholder/placeholdercall.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="zyk_content_01">
+        <div id="head">
+            <table width="960" border="0" cellspacing="0" cellpadding="0" align="center" class="index_head">
+                <tr>
+                    <td rowspan="2" class="index_logo">
+                        <img src="/Content/image/index_logo.png" />
+                    </td>
+                    <td valign="top">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td align="right" class="index_head01">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr style="display: none;" id="trLogin">
+                                            <td align="right">
+                                                @*账号&nbsp;<input type="text" size="14" class="index_input03" id="txtLoginName" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                                密码&nbsp;<input type="password" size="14" class="index_input03" id="txtLoginPwd" />*@&nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td>
+                                            <td width="80" align="left">
+                                                <input type="image" id="btnLogin" src="/Content/image/index_dl.gif" />
+                                            </td>
+                                            <td width="49">
+                                                <input type="image" id="btnReg" src="/Content/image/index_zc.gif" />
+                                            </td>
+                                        </tr>
+                                        <tr style="display: none; text-align: right;" id="trLogout">
+                                            <td colspan="2">
+                                                欢迎您， <a id="lblUserName" href="/Account/Manage" style="color: red;"></a>&nbsp;&nbsp;&nbsp;<a
+                                                    id="lblUserNameCenter" href="/Account/Manage" style="color: Blue;">个人中心 </a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                            </td>
+                                            <td width="49">
+                                                <input type="image" id="btnLogout" src="/Content/image/index_zx.gif" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <ul id="nav">
+                            @{
+                                var list = ViewBag.LayModule as List<Models.Module>;
+                                if (list != null && list.Count > 0)
+                                {
+                                    foreach (var m in list.OrderBy(p => p.Tag1))
+                                    {
+                                <li><a flag="@m.Code.ToLower()" href="/@m.Code" target=@(m.Name == "校内资源库" ? "_blank" : "_self")>@m.Name</a></li>
+                                    }
+                                }
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div style="background: #708AD5; height: 10px; margin: 0 auto;">
+    </div>
+    <div id="Content" class="zykcontent">
+        @RenderBody()
+        <br style="clear: both;" />
+    </div>
+    <div id="footer">
+        技术支持：中国高等学校教学资源网 <a href="/Abouthtml" target="_blank">关于产品</a> | <a href="/AboutUs.html"
+            target="_blank">联系我们</a>
+    </div>
+    <div style="display: none; line-height: 30px;" id="acc_reg">
+    </div>
+    <div style="display: none;" id="acc_txt">
+        <span style="background: url(/Content/image/lan/16-member.png) no-repeat left center;
+            padding-left: 16px; display: -moz-inline-box; display: inline-block;">
+            <input id="txtLoginName" type="text" style="width: 80px; border: none; background: none;
+                border-bottom: 1px solid #000;" />
+        </span>
+        <br />
+        <br />
+        <span style="background: url(/Content/image/lan/16-security-key.png) no-repeat left center;
+            padding-left: 16px; display: -moz-inline-box; display: inline-block;">
+            <input id="txtLoginPwd" type="password" style="width: 80px; border: none; background: none;
+                border-bottom: 1px solid #000;" />
+        </span>
+    </div>
+    @*<div id="divloading" style="position: fixed; z-index: 2000; width: 100%; text-align: center;
+        top: 250px;display:none;">
+        <img src="/Content/image/loading.gif" />
+    </div>*@
+    <div id='div_fn'></div>
+    <script type="text/javascript">
+        var isIE = !!window.ActiveXObject;
+        var isIE6 = isIE && !window.XMLHttpRequest;
+        if (!isIE6) {
+            $('#div_fn').load('/fn.htm');
+        }
+    </script>
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F684a1a063f4d065f36efbd2d0f862ed0' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var l_href = $("a img:first-child")
+            var s = []
+            s = $("a img:first-child");
+            $("a img:first-child").each(function () {
+                var $this = $(this);
+                if ($this.attr("src") == "http://eiv.baidu.com/hmt/icon/21.gif") { $this.hide() }
+            });
+        });
+    </script>
+</body>
+</html>

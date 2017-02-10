@@ -1,0 +1,5 @@
+﻿{#template MAIN} {#foreach $T as u}
+ 
+    <a href="/Medical/List/{$T.u.Id}?type={$T.u.type}&&searchname={$T.u.searchname}">{$T.u.Name}<font
+        style="color: #555;font-style:italic">({$T.u.Count})</font></a> 
+{#/for} {#/template MAIN} 

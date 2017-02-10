@@ -1,0 +1,74 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div style=" padding-top:40px" class="mydiv">
+<table class="mytable" width="99%" >
+    <tr>
+        <td align="right" valign="middle" style="width: 30%; height: 20px;">
+            所属学校：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlSchool_teachermore" style="width: 150px; text-align: center">
+                {#foreach $T.u.School as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            所属学院：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlFaculty_teachermore" style="width: 150px; text-align: center">
+                {#foreach $T.u.Faculty as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            所属系别：
+        </td>
+        <td align="left" valign="middle">
+            <select id="ddlDepartment_teachermore" style="width: 150px; text-align: center">
+                {#foreach $T.u.Department as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            帐号前缀：
+        </td>
+        <td align="left" valign="middle">
+            <input type="text" name="txtPrefix" id="txtPrefix" value="" />
+            <label id="lbPreMsg" style="height: 20px; color: Red">
+            </label>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+            生成数量：
+        </td>
+        <td align="left" valign="middle">
+            <input type="text" name="txtCount" id="txtCount" value="" />
+            <label id="lbCouMsg" style="height: 20px; color: Red">
+            </label>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" valign="middle" style="height: 20px;">
+        </td>
+        <td align="left">
+            <input type="button" name="btnCreate" id="btnCreate_TeacherMore" value="生成" class="btn"/>
+        </td>
+        <td>
+        </td>
+    </tr>
+</table></div>
+{#/for} {#/template MAIN} 

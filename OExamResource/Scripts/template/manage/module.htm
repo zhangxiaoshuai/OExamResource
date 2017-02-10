@@ -1,0 +1,10 @@
+﻿{#template MAIN}
+<ol>
+    {#foreach $T as m}
+    <li>
+        <input class="ckModules" id="ck{$T.m.Id}" type="checkbox" value="{$T.m.Id}"{$T.m.Checked}
+           {$T.m.Disabled} /><label for="ck{$T.m.Id}">{$T.m.Name}</label>
+    </li>
+    {#/for}
+</ol>
+{#/template MAIN} 

@@ -1,0 +1,105 @@
+﻿{#template MAIN} {#foreach $T as u}
+<input type="hidden" name="hdCount" id="hdCount" value="{$T.u.Count}" />
+<div align="left" class="mydiv">
+    <table width="99%" class="mytable">
+        <tr>
+            <td width="30%">
+                素材分类：
+                <select id="ddlcs_auditresource" style="width: 150px; text-align: center">
+                </select>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                所属专业：
+                <select id="ddlSpe_auditresource" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Spe as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                素材类型：
+                <select id="ddlType_auditresource" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Type as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td>  素材名称：
+                <input type="text" name="txtName" id="txtName" value="" />&nbsp;
+                <input type="button" name="btnSearchResource" id="btnSearchResource_audit" value="搜索" class="btn"/>
+            </td>
+            <td>
+              
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" style="vertical-align: top">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td class="yan" valign="middle" align="left" style="height: 20px">
+                            全部列表
+                        </td>
+                        <td class="yan" valign="middle" align="right">
+                            共搜索出<strong id="sCount">{$T.u.Count}</strong>条记录
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="divResourceList">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <div id="divBar">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <input type="checkbox" name="ckAll" id="ckAll_auditresource" /><label for="ckAll">全选</label> 
+                <input type="button" name="btnAudit" id="btnAudit_auditresource" value="通过审核"class="btn" />
+             
+                <input type="button" name="btnDelete" id="btnDelete_auditresource" value="删除选中"class="btn" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divPreview" style="display: none">
+    <table border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="center" id="tdPreview">
+                <img src='/Images/source/file_zanwu_big.jpg' alt='' />
+            </td>
+        </tr>
+    </table>
+    <br />
+    <br />
+    <table border="0" cellpadding="0" cellspacing="0" width="50%">
+        <tr>
+            <td width="50%" align="center">
+                <input type="hidden" name="hdResourceId" value="" id="hdResourceId" />
+                <input type="button" name="btnAudit" id="Audit_auditresource" value="通过" class="btn"/>
+            </td>
+            <td>
+                <input type="button" name="btnAudit" id="Delete_auditresource" value="删除" class="btn"/>
+            </td>
+        </tr>
+    </table>
+</div>
+{#/for} {#/template MAIN} 

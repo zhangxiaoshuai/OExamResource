@@ -1,0 +1,6 @@
+﻿{#template MAIN} {#foreach $T as s}
+<optgroup label="{$T.s.Name}" id="{$T.s.Id}">
+    {#foreach $T.s.List as l}
+    <option value="{$T.l.Id}" {$T.l.Checked}>{$T.l.Name}</option>
+    {#/for}</optgroup>
+{#/for} {#/template MAIN} 

@@ -1,0 +1,268 @@
+﻿@model List<Models.LanResource>
+<script src="/Scripts/plugin/jquery.form.js" type="text/javascript"></script>
+<div style="margin: 10px;">
+    选择课程：@Html.DropDownList("ddlCourse", ViewBag.slCourse as List<SelectListItem>) &nbsp;&nbsp;<a
+        id="btnAddResource" href="javascript:void(0);"><img src="/Content/image/24-em-plus.png"
+            class="btimg" /><span class="btimg">添加新资源</span></a>
+</div>
+<div style="margin-top: 20px;">
+    <table width="100%">
+        <tr>
+            <th>
+                序号
+            </th>
+            <th width="25%">
+                名称
+            </th>
+            <th width="25%">
+                分类
+            </th>
+            @*<th>
+                扩展名
+            </th>*@
+            <th>
+                上传时间
+            </th>
+            <th>
+                操作
+            </th>
+            <th width="100px">
+                预览
+            </th>
+        </tr>
+        <tr>
+            <td colspan="7">
+                <hr />
+            </td>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            var item = Model[i];
+            <tr align="center" class="trResource">
+                <td>@(i + 1)
+                </td>
+                <td>@item.Name
+                </td>
+                <td>@item.Tag1
+                </td>
+                @*<td>@(string.IsNullOrWhiteSpace(item.NameEx) ? "无" : item.NameEx)
+                </td>*@
+                <td>@item.CreateTime.ToShortDateString()
+                </td>
+                <td>
+                    <a href="/Download/LanResource/@item.Id" target="_blank" style="color:Blue;text-decoration:underline;">
+                        下载</a>&nbsp; <a href="javascript:void(0);" dataShare="@(item.IsShare == true ? 1 : 0)" dataId="@item.Id" dataType="@item.TypeId" dataName = "@item.Name" style="color:Blue;text-decoration:underline;"class="tdEditResource">
+                            编辑</a>&nbsp; <a href="javascript:void(0);" dataId="@item.Id" style="color:Blue;text-decoration:underline;" class="tdDelResource">
+                                删除</a>
+                </td>
+                <td style="cursor: pointer;" title="查看详细" valign="bottom">
+                    <a href="/Lan/Detail/@ViewBag.UserInfo.SchoolId?rid=@item.Id" style="width:130px;height:100px;display:block;" target="_blank">
+                        <img src="@(item.ImageUrl)" height="100px" width="130px" class="imgResource" style="display:block;border:none;"/>
+                        <img src="/Content/image/24-zoom.png" title="预览" class="imgZoom" dataurl="@(item.ViewUrl)"
+                            style="position: relative; width: 20px; bottom: 20px; left: 55px; border: none;"></a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">
+                    <hr />
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div id="divEditResource" style="display: none; line-height: 30px;">
+    <form id="fmupload" style="padding: 20px; display: block;" method="post" enctype="multipart/form-data">
+    <input type="hidden" id="hdId" name="hdId" />
+    <table>
+        <tr>
+            <td>
+                名称：
+            </td>
+            <td>
+                <input type="text" id="txtEditResource" name="name" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                分类：
+            </td>
+            <td>@ViewBag.ResourceType
+            </td>
+        </tr>
+        <tr class="trShare">
+            <td>
+                缩略：
+            </td>
+            <td>
+                <input type="file" name="mini" />
+            </td>
+        </tr>
+        <tr class="trShare">
+            <td>
+                预览：
+            </td>
+            <td>
+                <input type="file" name="view" />
+            </td>
+        </tr>
+        <tr class="trShare">
+            <td>
+                资源：
+            </td>
+            <td>
+                <input type="file" name="file" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        /*课程切换*/
+        $("#ddlCourse").unbind().change(function () {
+            $("#divload").load("/Account/Resource/" + $(this).val());
+        });
+        /*资源样式*/
+        $(".trResource").unbind().hover(function () {
+            $(this).css("color", "#A2671E");
+        }, function () {
+            $(this).css("color", "");
+        });
+        /*预览*/
+        $(".imgZoom").unbind().click(function () {
+            var $that = $(this);
+            layoutparm = {};
+            layoutparm.ext = $(($that.attr("dataurl") || "jpg").split(".")).last().get(0).toLowerCase().trim();
+            layoutparm.html = "";
+            if ($that.attr("dataurl").trim().length <= 0) {
+                layoutparm.html = "<img src='/Images/lan/default/resource.jpg' style='margin-bottom:-3px;width:650px;height:500px;'/>";
+                $("#divView").html(layoutparm.html);
+            } else {
+                if (layoutparm.ext == "swf" || layoutparm.ext == "ppt" || layoutparm.ext == "doc") {
+                    layoutparm.html = "<object classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0'";
+                    layoutparm.html += " width='650' height='500'>";
+                    layoutparm.html += " <param name='movie' value='" + $that.attr("dataurl") + "' />";
+                    layoutparm.html += " <param name='quality' value='high' />";
+                    layoutparm.html += " <embed src='" + $that.attr("dataurl") + "' quality='high' pluginspage='http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash'";
+                    layoutparm.html += " type='application/x-shockwave-flash' width='650px' height='500px'>";
+                    layoutparm.html += " </embed>";
+                    layoutparm.html += " </object>";
+                } else if (layoutparm.ext == "flv") {
+                    layoutparm.html = '<embed type="application/x-shockwave-flash" src="/Images/source/flvplayer.swf" width="650" height="500" style="margin-bottom:-3px;" id="single" name="single" quality="high" allowfullscreen="true" flashvars="file=' + $that.attr("dataurl") + '&amp;image=' + $that.attr("dataurl") + '&amp;width=650&amp;height=500">';
+                } else if (layoutparm.ext == "mp3") {
+                    layoutparm.html = "<object id='Player' width='650' height='500' classid='CLSID:6BF52A52-394A-11D3-B153-00C04F79FAA6'>";
+                    layoutparm.html += "<param name='URL' value='" + $that.attr("dataurl") + "'>";
+                    layoutparm.html += "<param name='autoStart' value='1'>";
+                    layoutparm.html += "<param name='balance' value='0'>";
+                    layoutparm.html += "<param name='baseURL' value>";
+                    layoutparm.html += "<param name='captioningID' value>";
+                    layoutparm.html += "<param name='currentPosition' value='0'>";
+                    layoutparm.html += "<param name='currentMarker' value='0'>";
+                    layoutparm.html += "<param name='defaultFrame' value>";
+                    layoutparm.html += "<param name='enabled' value='1'>";
+                    layoutparm.html += "<param name='enableErrorDialogs' value='0'>";
+                    layoutparm.html += "<param name='enableContextMenu' value='1'>";
+                    layoutparm.html += "<param name='fullScreen' value='0'>";
+                    layoutparm.html += "<param name='invokeURLs' value='1'>";
+                    layoutparm.html += "<param name='mute' value='0'>";
+                    layoutparm.html += "<param name='playCount' value='1'>";
+                    layoutparm.html += "<param name='rate' value='1'>";
+                    layoutparm.html += "<param name='SAMIStyle' value>";
+                    layoutparm.html += "<param name='SAMILang' value>";
+                    layoutparm.html += "<param name='SAMIFilename' value>";
+                    layoutparm.html += "<param name='stretchToFit' value='0'>";
+                    layoutparm.html += "<param name='uiMode' value='full'>";
+                    layoutparm.html += "<param name='volume' value='100'>";
+                    layoutparm.html += "<param name='VideoBorder3D' value='0'>";
+                    layoutparm.html += "<param name='windowlessVideo' value='5'>";
+                    layoutparm.html += "</object>";
+                } else {
+                    layoutparm.html = "<img src='" + $that.attr("dataurl") + "' style='margin-bottom:-3px;width:650px;height:500px;'/>";
+                }
+            }
+            $.dialog({
+                opacity: 0.1,
+                padding: 0,
+                title: '预览',
+                content: $(layoutparm.html).get(0),
+                lock: true,
+                close: function () {
+                    layoutparm = {};
+                }
+            });
+            return false;
+        });
+        /*删除*/
+        $(".tdDelResource").unbind().click(function () {
+            var $that = $(this);
+            $.artDialog.confirm("确定删除吗？", function () {
+                layoutparm = {};
+                layoutparm.resourceId = $that.attr("dataId");
+                layoutparm.courseId = $("#ddlCourse").val();
+                $.sync.ajax.post("/Account/DelResource", layoutparm, function (data) {
+                    $.artDialog.tips(data.Msg);
+                    if (data.State) {
+                        setTimeout(function () { $("#divload").load("/Account/Resource/" + $("#ddlCourse").val()); }, 1000);
+                    }
+                });
+            }).title("删除资源");
+        });
+        /*修改*/
+        $(".tdEditResource").unbind().click(function () {
+            var $that = $(this);
+            $("#txtEditResource").val($that.attr("dataName"));
+            $("#ddlResourceType").val($that.attr("dataType"));
+            if ($that.attr("dataShare") == 1) {
+                $(".trShare").hide();
+            } else {
+                $(".trShare").show();
+            }
+            $("#hdId").val($that.attr("dataId"));
+            $("#fmupload").prop("action", "/Account/EditResource");
+            $.artDialog.confirm(document.getElementById("divEditResource"), function () {
+                $("#fmupload").submit();
+                return false;
+            }).title("修改资源信息（不需要修改的属性不用改变）");
+            $("#fmupload").ajaxForm({
+                success: function (data, statusText, xhr, $form) {
+                    data = JSON.parse(data);
+                    $.artDialog.tips(data.Msg);
+                    if (data.State) {
+                        setTimeout(function () { $("#divload").load("/Account/Resource/" + $("#ddlCourse").val()); }, 1000);
+                        $.dialog.list['Confirm'].close();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    document.write(XMLHttpRequest.responseText);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        });
+        /*添加*/
+        $("#btnAddResource").unbind().click(function () {
+            $(".trShare").show();
+            $("#hdId").val($("#ddlCourse").val());
+            $("#fmupload").prop("action", "/Account/AddResource");
+            $.artDialog.confirm(document.getElementById("divEditResource"), function () {
+                $("#fmupload").submit();
+                return false;
+            }).title("添加新资源");
+            $("#fmupload").ajaxForm({
+                success: function (data, statusText, xhr, $form) {
+                    data = JSON.parse(data);
+                    $.artDialog.tips(data.Msg);
+                    if (data.State) {
+                        setTimeout(function () { $("#divload").load("/Account/Resource/" + $("#ddlCourse").val()); }, 1000);
+                        $.dialog.list['Confirm'].close();
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    document.write(XMLHttpRequest.responseText);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
+</script>

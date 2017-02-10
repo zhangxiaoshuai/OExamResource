@@ -1,0 +1,422 @@
+@{
+    ViewBag.Title = "医学预览";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Sup = (List<Models.ResourceCategory>)ViewBag.Sup;
+
+    string url = Model.Medical_Tag == 1 ? ViewBag.UrlM : ViewBag.Url;
+    string downUrl = Model.Medical_Tag == 1 ? ViewBag.DownloadUrlM : ViewBag.DownloadUrl;
+    string pid = ViewContext.RouteData.Values["id"].ToString();
+    int index = string.IsNullOrWhiteSpace(Request.QueryString["index"]) ? 0 : int.Parse(Request.QueryString["index"]);
+    bool isPack = null != ViewBag.List;
+    string k1path = "";
+    string size;
+    if (isPack)
+    {
+        if ((((int)ViewBag.Pack.Size) / 1024) < 1024)
+        {
+            size = (((int)ViewBag.Pack.Size) / 1024).ToString("0.0") + "K";
+        }
+        else
+        {
+            size = (((int)ViewBag.Pack.Size) / 1024 / 1024).ToString("0.0") + "M";
+        }
+        int len = ViewBag.Pack.KeyWord.IndexOf('{');
+        if (len != -1)
+        {
+            ViewBag.Pack.KeyWord = ViewBag.Pack.KeyWord.Substring(0, len);
+        }
+    }
+    else
+    {
+        if ((((int)Model.Size) / 1024) < 1024)
+        {
+            size = (((int)Model.Size) / 1024).ToString("0.0") + "K";
+        }
+        else
+        {
+            size = (((int)Model.Size) / 1024 / 1024).ToString("0.0") + "M";
+        }
+        int len = Model.KeyWords.IndexOf('{');
+        if (len != -1)
+        {
+            Model.KeyWords = Model.KeyWords.Substring(0, len);
+        }
+    }
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/medical/preview.js")" type="text/javascript"></script>
+    <style type="text/css">
+        .bg1
+        {
+            background-image: url(/Content/image/bg1.png);
+            width: 90px;
+            height: 25px;
+            border: none;
+            cursor: pointer;
+        }
+        .nav a
+        {
+            font-size: 14px;
+            color: Blue;
+        }
+        .nav a:hover
+        {
+            color: rgb(236, 123, 0);
+        }
+        .title
+        {
+            font-size: 16px;
+            color: rgb(236, 123, 0);
+        }
+        .sub a
+        {
+            font-size: 14px;
+            color: Blue;
+            display: inline;
+        }
+        .sub a:hover
+        {
+            text-decoration: underline;
+            color: rgb(236, 123, 0);
+        }
+        .sub a.curr
+        {
+            color: rgb(236, 123, 0);
+        }
+    </style>
+}
+<div class='w960 bc'>
+    <div class="nav mt10">
+        <a href="/">首页</a> <span class="m10">></span> <a href="/Medical">医学库</a>
+        @{ 
+            foreach (var item in Sup)
+            {
+            <span class="m10">></span>
+            <a href="/Medical/List/@item.Id">@item.Name</a>
+            }
+        }
+    </div>
+    <div>
+        <div class="fl w700">
+            <div class="h25 mt15 title lh150">
+                <span class="ic ic-@(Model.FileExt) mr10"></span>@Model.Title
+            </div>
+            <div class="h500" id="container">
+                @if (!ViewBag.Enable)
+                {
+                    <img src="/Content/image/Default/NONE04.jpg" />
+                }
+                else
+                {
+                    string[] img = new string[] { "jpg", "gif", "bmp", "png", "wmf" };
+                    string[] pdf = new string[] { "pdf" };
+                    string[] swf = new string[] { "swf", "doc", "ppt", "pps" };
+                    string[] flv = new string[] { "flv" };
+                    string[] mp3 = new string[] { "mp3" };
+                    string ext = Model.FileExt.ToLower();
+                    if (img.Contains(ext))
+                    {
+                    <img src="@(url + k1path + Model.PreviewFilepath)" width="700px" height="500px"/>
+                    }
+                    else if (pdf.Contains(ext))
+                    {
+                    <div class="h500 w700" id="viewerPlaceHolder">
+                    </div>
+                    <script src="/Scripts/common/flexpaper_flash.js" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        var fp = new FlexPaperViewer('/Scripts/common/FlexPaperViewer', 'viewerPlaceHolder',
+                         {
+                             config: {
+                                 SwfFile: escape('@(url + k1path + Model.PreviewFilepath)'),
+                                 Scale: 0.6,
+                                 ZoomTransition: 'easeOut',
+                                 ZoomTime: 0.5,
+                                 ZoomInterval: 0.2,
+                                 FitPageOnLoad: false,
+                                 FitWidthOnLoad: true,
+                                 PrintEnabled: true,
+                                 FullScreenAsMaxWindow: false,
+                                 ProgressiveLoading: true,
+                                 MinZoomSize: 0.2,
+                                 MaxZoomSize: 5,
+                                 SearchMatchAll: true,
+                                 InitViewMode: 'Portrait',
+                                 ViewModeToolsVisible: true,
+                                 ZoomToolsVisible: true,
+                                 NavToolsVisible: true,
+                                 CursorToolsVisible: true,
+                                 SearchToolsVisible: true,
+                                 localeChain: 'zh_CN'
+                             }
+                         });
+                    </script>
+                    }
+                    else if (swf.Contains(ext))
+                    {
+                    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0"
+                        width="700px" height="500px">
+                        <param name="movie" value="@(url + k1path + Model.PreviewFilepath)" />
+                        <param name="quality" value="high" />
+                        <param name="wmode" value="transparent" />
+                        <embed src="@(url + k1path + Model.PreviewFilepath)" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"
+                            type="application/x-shockwave-flash" width="700px" height="500px"> </embed>
+                    </object>
+                    }
+                    else if (flv.Contains(ext))
+                    {
+                    <object type="application/x-shockwave-flash" width="700" height="500"
+                        wmode="transparent" data='/Images/source/flvplayer.swf?file=@(url + k1path + Model.PreviewFilepath)'>
+                        <param name="movie" value='/Images/source/flvplayer.swf?file=@(url + k1path + Model.PreviewFilepath)' />
+                        <param name="wmode" value="transparent" />
+                    </object>
+                    }
+                    else if (mp3.Contains(ext))
+                    {
+@*<object width="700" height="500" classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95">
+                        <param name="filename" value="@(url + k1path + Model.PreviewFilepath)" />
+                        <embed width="700" height="500" type="application/x-mplayer2" src="@(url + k1path + Model.PreviewFilepath)"></embed>
+                    </object>*@
+                    <object type="application/x-shockwave-flash" width="700" height="500" wmode="transparent" data='/Images/source/flvplayer.swf?file=@(url + k1path + Model.PreviewFilepath)&image=/Content/image/Default/YP04.jpg'>
+                        <param name="movie" value='/Images/source/flvplayer.swf?file=@(url + k1path + Model.PreviewFilepath)&image=/Content/image/Default/YP04.jpg'>
+                        ' />
+                        <param name="wmode" value="transparent" />
+                    </object>
+                    }
+                }
+            </div>
+            @*<div class="h50 tc" style="line-height: 50px; border-top: 1px solid #DDD;">
+                <img src="/Images/source/jiucuo.png" border="0" class="mr10 ml20 vm" id="btnError" dataid="@(Model.Id)" datacode="@(isPack ? 0 : 1)">
+                <img src="/Images/source/shoucang.png" border="0" class="mr10 vm"  id="btnLog" dataid="@(Model.Id)" datacode="@(isPack ? 0 : 1)">
+            </div>*@
+        </div>
+        <div class="fr w250">
+            @*<div class="h40">
+                <a href="/Resource/Upload" target="_blank">
+                    <input type="button" value="上&nbsp;&nbsp;传" class="bg1 mt10" /></a>
+            </div>*@
+            @{
+                if (isPack)
+                {
+                    int i = 0;
+                    /*height：250px*/
+                <div style="overflow: auto; padding-left: 15px; height: 250px;" id="lkList">
+                    @foreach (Models.ResourceCourse item
+in ViewBag.List)
+                    {
+                        <div class="sub lh200 keep w200" title="@item.Title">
+                            <span class="ic ic-@(item.FileExt) mr10" title="@(item.FileExt)"></span><a href="/Medical/Preview/@pid?t=0&index=@i" class="@(index == i ? "curr" : "")">@item.Title</a></div>
+                        i++;
+                    }
+                </div>
+                <div style="overflow: auto; line-height: 24px; height: 250px;">
+                    <table>
+                        <caption class="f16 cgreen mt20">
+                            文档信息</caption>
+                        @if (!string.IsNullOrWhiteSpace(ViewBag.Pack.Name))
+                        {
+                            <tr>
+                                <td class="tr cblue w50" valign="top">
+                                    名称：
+                                </td>
+                                <td>@ViewBag.Pack.Name
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="tr cblue" valign="top">
+                                点击：
+                            </td>
+                            <td>
+                                @ViewBag.Pack.ClickCount
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tr cblue" valign="top">
+                                格式：
+                            </td>
+                            <td>
+                                rar
+                            </td>
+                        </tr>
+                        @if (!string.IsNullOrWhiteSpace(ViewBag.Pack.KeyWord))
+                        {
+                            <tr>
+                                <td class="tr cblue" valign="top">
+                                    标签：
+                                </td>
+                                <td>@ViewBag.Pack.KeyWord
+                                </td>
+                            </tr>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(ViewBag.Pack.Remark))
+                        {
+                            <tr>
+                                <td class="tr cblue" valign="top">
+                                    概述：
+                                </td>
+                                <td>
+                                    <label id="lbl_remark">
+                                    @(new HtmlString(HttpUtility.HtmlDecode(ViewBag.Pack.Remark)))
+                                  
+                                    </label>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                }
+                else
+                {
+                <div style="height: 500px; overflow: auto; line-height: 24px;">
+                    <table>
+                        <caption class="f16 cgreen">
+                            文档信息</caption>
+                        @if (!string.IsNullOrWhiteSpace(Model.Title))
+                        {
+                            <tr>
+                                <td class="tr cblue w50" valign="top">
+                                    名称：
+                                </td>
+                                <td>@Model.Title
+                                </td>
+                            </tr>
+                        }
+                        <tr>
+                            <td class="tr cblue" valign="top">
+                                点击：
+                            </td>
+                            <td>
+                                @Model.ClickCount 次
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tr cblue" valign="top">
+                                格式：
+                            </td>
+                            <td>
+                                @Model.FileExt
+                            </td>
+                        </tr>
+                        @if (!string.IsNullOrWhiteSpace(Model.KeyWords))
+                        {
+                            <tr>
+                                <td class="tr cblue" valign="top">
+                                    标签：
+                                </td>
+                                <td>@Model.KeyWords
+                                </td>
+                            </tr>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(Model.Fescribe))
+                        {
+                            <tr>
+                                <td class="tr cblue" valign="top">
+                                    概述：
+                                </td>
+                                <td>
+                                    <label id="lbl_remark">
+                                      @(new HtmlString(HttpUtility.HtmlDecode(Model.Fescribe)))
+                                    </label>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                }
+            }
+            <div style="line-height: 50px;">
+                @if (isPack)
+                {
+                    //"?path=/k1" +
+                    if (ViewBag.Pack.FilePath == null)
+                    {
+                    <a href="javascript:alert('对不起，试用版未开放此资源下载');">
+                        <img src="/Images/source/button/download_hui.png" border="0" class="ml10 vm" /></a>
+                    }
+                    else
+                    {
+                        string[] paths = ((string)ViewBag.Pack.FilePath).Split('|');
+                        int _i = 1;
+                        if (paths.Length > 1)
+                        {
+                            foreach (string _path in paths)
+                            {
+                                <a href="###" class="lk_download" data="@ViewBag.Pack.Id"  basetype="@ViewBag.baseType">
+                                    <img src="/Images/source/button/download.png" border="0" class="ml10 vm" />
+                                </a><label>文件@(_i)</label>
+                                _i++;
+                                <input type="hidden" value="@(downUrl + _path)" name="pathId"/>
+                            }
+                        }
+                        else
+                        {
+                            <a href="###" class="lk_download" data="@ViewBag.Pack.Id"  basetype="@ViewBag.baseType">
+                                <img src="/Images/source/button/download.png" border="0" class="ml10 vm" />
+                            </a>
+                           <input type="hidden" value="@(downUrl + paths[0])" name="pathId"/>
+                        }
+                    }
+                }
+                else
+                {
+                    if (Model.DownloadFilepath == null)
+                    {
+                    <a href="javascript:alert('对不起，试用版未开放此资源下载');">
+                        <img src="/Images/source/button/download_hui.png" border="0" class="ml10 vm" /></a>
+                    }
+                    else
+                    {
+                        <a href="###" class="lk_download" data="@Model.Id"  basetype="@ViewBag.baseType">
+                            <img src="/Images/source/button/download.png" border="0" class="ml10 vm" />
+                        </a>
+                    <input type="hidden" value="@(downUrl + Model.DownloadFilepath)" name="pathId"/>
+                    }
+                }
+                <div class="h25 ml10" style="line-height: 25px;">
+                    <span class="vm">大小：@size</span></div>
+            </div>
+        </div>
+        <br class="cb" />
+    </div>
+
+    <br class='cb' />
+</div>
+<script type="text/javascript">
+//    $('a.lk_download').click(function () {
+//        var par = {};
+//        par.path = $(this).attr('datapath');
+//        par.Id = $(this).attr('data');
+//        var baseType = $(this).attr('baseType');
+//        if (baseType == 0) {
+//            window.location.href = "/Medical/StreamFileDisk?path=" + par.path + "&Id=" + par.Id;
+//        }
+//        else {
+//            window.location.href = "/Medical/StreamFileDiskMaterial?path=" + par.path + "&Id=" + par.Id;
+//        }
+//    });
+
+    var download = function (url, data, method) {
+        if (url && data) {
+            data = typeof data == 'string' ? data : jQuery.param(data);
+            var inputs = '';
+            jQuery.each(data.split('&'), function () {
+                var pair = this.split('=');
+                inputs += '<input type="hidden" name="' + pair[0] + '" value="' + pair[1] + '" />';
+            });
+            jQuery('<form action="' + url + '" method="' + (method || 'post') + '">' + inputs + '</form>')
+                       .appendTo('body').submit().remove();
+        };
+    };
+    $('a.lk_download').click(function () {
+        var par = {};
+        par.path = $('[name=pathId]').val(); ;
+        par.Id = $(this).attr('data');
+        var baseType = $(this).attr('baseType');
+        if (baseType == 0) {
+            download('/Medical/StreamFileDisk', 'path=' + par.path + '&Id=' + par.Id, 'post');
+        }
+        else {
+            download('/Medical/StreamFileDiskMaterial', 'path=' + par.path + '&Id=' + par.Id, 'post');
+        }
+    });
+</script>

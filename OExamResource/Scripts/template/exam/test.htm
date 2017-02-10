@@ -1,0 +1,63 @@
+﻿{#template MAIN} {#foreach $T as u}
+<dl>
+    <dt id="{$T.u.Part.Id}" datas="{$T.u.Part.ItemScore}">{$T.u.Part.SortId.toString()}、{$T.u.Part.Name}<span
+        style="font-size: 14px;">({$T.u.Part.ItemScore*$T.u.Part.ItemCount}分)(每题{$T.u.Part.ItemScore}分，共{$T.u.Part.ItemCount}题)</span></dt>
+    <dt>
+        <span>{$T.u.Part.Explain}</span>
+    </dt>
+    {#foreach $T.u.List as t}
+    <dd id="{$T.t.Id}">
+        <table>
+            <tr>
+                <td valign="top">
+                    {$T.t.S}：
+                </td>
+                <td>
+                    {$T.t.Q}
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td valign="top">
+                    <img src="/Content/image/80.gif" />
+                </td>
+                <td>
+                    <div>
+                        <b>我的答案：</b><span class="a_my" datav1="{$T.t.A.trim().replace(/\([^\(\)]*\)/g,'')}"
+                            datav2="" dataeq="{$T.t.B}"></span></div>
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td valign="top">
+                    <img src="/Content/image/80.gif" />
+                </td>
+                <td>
+                    <div>
+                        <b>正确答案：</b><span class="a_true">{$T.t.V}</span></div>
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td valign="top">
+                    <img src="/Content/image/80.gif" />
+                </td>
+                <td>
+                    <div class="a_exp">
+                        <b>答案解释：</b>{$T.t.E}</div>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <img src="/Content/image/80.gif" />
+                </td>
+                <td>
+                    <div>
+                        <b>答案：</b><span class="a">{$T.t.C}</span></div>
+                </td>
+            </tr>
+        </table>
+    </dd>
+    <dd>
+        <hr style="margin: 30px auto;" />
+    </dd>
+    {#/for}
+</dl>
+{#/for} {#/template MAIN} 

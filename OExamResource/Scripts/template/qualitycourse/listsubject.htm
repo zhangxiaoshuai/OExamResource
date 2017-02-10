@@ -1,0 +1,4 @@
+﻿{#template MAIN}
+            {#foreach $T as u} <a href="/QualityCourse/List/{$T.u.Id}?type={$T.u.type}&searchname={$T.u.searchname}&jibie={$T.u.jibie}&niandu={$T.u.niandu}">{$T.u.Name}<font style="color:Gray">({$T.u.Count})</font></a>
+            {#/for}
+{#/template MAIN} 

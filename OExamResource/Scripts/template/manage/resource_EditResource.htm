@@ -1,0 +1,99 @@
+﻿{#template MAIN} {#foreach $T as u}  
+<input type="hidden" name="hdId" id="hdId" value="{$T.u.Id}" />
+<table border="0" cellpadding="0" cellspacing="10" style="width: 100%">
+    <tr>
+        <td width="30%" align="right" style="height: 22px">
+            素材名称：
+        </td>
+        <td>
+            <input type="text" name="txtResourceName" id="txtResourceName" value="{$T.u.Title}" />
+            (50字以内,必填)
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            素材类型：
+        </td>
+        <td>
+         <select id="ddlType_Editresource" style="width: 150px; text-align: center">
+                            {#foreach $T.u.Type as t}
+                            <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                            {#/for}
+                        </select> 
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            素材分类：
+        </td>
+        <td>
+            <select id="ddlcs_Editresource" style="width: 150px; text-align: center">
+               {#foreach $T.u.sub as t}
+                            <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                            {#/for}
+            </select>
+            (必选)
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            适用专业：
+        </td>
+        <td>
+         <select id="ddlSpe_Editresource" style="width: 150px; text-align: center">
+                            {#foreach $T.u.Spe as t}
+                            <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                            {#/for}
+                        </select> 
+        </td>
+    </tr>
+    <!--<tr>
+        <td align="right" style="height: 22px">
+            知 识 点：
+        </td>
+        <td>
+         <select id="ddlKnow_Editresource" style="width: 150px; text-align: center">
+                            {#foreach $T.u.Know as t}
+                            <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                            {#/for}
+                        </select> 
+        </td>
+    </tr>-->
+    <!--<tr>
+        <td align="right" style="height: 22px">
+            精品等级：
+        </td>
+        <td>
+         <select id="ddlBoutiqueGrade_Editresource" style="width: 150px; text-align: center">
+                            {#foreach $T.u.BoutiqueGrade as t}
+                            <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                            {#/for}
+                        </select> 
+        </td>
+    </tr>-->
+    <tr>
+        <td align="right">
+            素材介绍：
+        </td>
+        <td>
+            <textarea id="txtFescribe" cols="30" rows="6" wrap="physical" style="resize: none;
+                height: 80px; width: 380px">{$T.u.Fescribe}</textarea>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            关键字：
+        </td>
+        <td>
+            <input type="text" name="txtKey" id="txtKey" value="{$T.u.KeyWords}" />
+            (多个标签请用 | 分开，例：(计算机 | 语文)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center" style="height: 22px">
+            <input type="button" name="btnSure" id="btnSure_Editresource" value="确认修改" class="btn" />&nbsp;&nbsp;&nbsp;
+            <input type="button" name="btnEsc" id="btnEsc_Editresource" value="返回"  class="btn"/>
+        </td>
+    </tr>
+</table>
+{#/for} {#/template MAIN} 

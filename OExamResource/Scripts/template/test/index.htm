@@ -1,0 +1,15 @@
+﻿{#template MAIN}
+<ul>
+    {#foreach $T as u}
+    <li style="margin-bottom: 20px;margin-left:10px;margin-right:10px;">
+        <div class="index_dl_07 divChange">
+            <div style="border: 1px solid #fff; height: 78px;">
+                <a href="/Test/Type/{$T.u.Id}" style="float:left;margin-right:5px;height:78px;"><img src="/Images/test/cover/{$T.u.Flag}00000.png" border="0" height="78px" width="63px"/></a>
+                    <a class="index_dl_04" href="/Test/Type/{$T.u.Id}">{$T.u.Name}</a>
+                    <br />课程门次：{$T.u.SubCount}
+            </div>
+        </div>
+    </li>
+    {#/for}
+</ul>
+{#/template MAIN} 

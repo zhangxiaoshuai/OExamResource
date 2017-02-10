@@ -1,0 +1,7 @@
+﻿{#template MAIN} {#foreach $T as p}
+<option {$T.p.Check} value="{$T.p.Id}">{$T.p.Name}</option>
+{#foreach $T.p.List as q}
+<option {$T.q.Check} value="{$T.q.Id}">&nbsp;&nbsp;{$T.q.Name}</option>
+{#foreach $T.q.List as o}
+<option {$T.o.Check} value="{$T.o.Id}">&nbsp;&nbsp;&nbsp;&nbsp;{$T.o.Name}</option>
+{#/for} {#/for} {#/for} {#/template MAIN} 

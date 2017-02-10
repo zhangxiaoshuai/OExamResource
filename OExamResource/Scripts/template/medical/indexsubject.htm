@@ -1,0 +1,11 @@
+﻿{#template MAIN}
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="zyk_content_02"
+    align="center">
+    <tr>
+        <td>
+            {#foreach $T as u} <a href="/Resource/List/{$T.u.Id}?type=1">{$T.u.Name}<font style="color:Gray">({$T.u.Count})</font></a>
+            {#/for}
+        </td>
+    </tr>
+</table>
+{#/template MAIN} 

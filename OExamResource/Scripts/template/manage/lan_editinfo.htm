@@ -1,0 +1,98 @@
+﻿{#template MAIN} {#foreach $T as u}
+<input type="hidden" name="hdId" value="{$T.u.Id}" id="hdId" />
+<div id="divInfo" class="mydiv">
+    <table class="mytable" width="99%">
+        <tr>
+            <td width="15%">
+                <label id="shName">{$T.u.Name}</label>
+                <!--<strong style="font: 14px" id="hName">{$T.u.Name}</strong>-->
+                <input type="text" style="width: 100px; display: none" name="txtName" id="txtName"
+                    value="{$T.u.Name}" />
+            </td>
+            <td width="10%">
+                <input type="button" name="btnEditName" id="btnEditName" value="修改名称" class="btn" />
+            </td>
+            <td width="10%" align="right">
+                选择院系
+            </td>
+            <td>
+                <select id="ddlSFD">
+                </select>
+            </td>
+        </tr>
+    </table>
+    <fieldset style="height: 140px">
+        <legend>学校简介</legend>
+        <textarea id="remark" disabled="disabled" cols="80" rows="4" style="width: 99%; height: 95px;
+            resize: none;background-color: #AEDEF2;" wrap="physical">{$T.u.Remark}</textarea><br />
+        <input type="button" name="btnEdit" id="btnEdit" value="修改" class="btn"/>&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" name="btnEditRemark" id="btnEditRemark" value="确定" class="btn"/>
+    </fieldset>
+    <br />
+    <fieldset style="height: 138px">
+        <legend>学校Logo(Logo图片为100x100的jpg或png图片)</legend>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="200px">
+                    <img src="{$T.u.LogoImg}" alt="" id="imgLogo" style="width: 104px; height: 100px;
+                        border: 1px solid #ffffff" /><a id="delLogoImg" style="vertical-align: top" href="javascript:void(0);"
+                            title="删除">×</a>
+                </td>
+                <td>
+                    <input type="button" name="btn_show_logo" id="btn_show_logo" value="选择图片"class="btn" /><br />
+                    <form id="form_Logo" style="padding: 20px; display: none;" action="/LanManage/Upload"
+                    method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="schoolid" value="{$T.u.Id}" />
+                    <input type="hidden" name="flag" value="logo" />
+                    <input name="upImg" id="upLogo" type="file" />&nbsp;&nbsp;<input type="submit" value="上传" class="btn"/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <fieldset style="height: 138px">
+        <legend>学校名称(名称图片为400x70的jpg或png图片)</legend>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="420px">
+                    <img id="imgName" src="{$T.u.NameImg}" alt="" style="height: 100px; width: 400px;
+                        border: 1px solid #ffffff" /><a id="delNameImg" style="vertical-align: top" href="javascript:void(0);"
+                            title="删除">×</a>
+                </td>
+                <td>
+                    <input type="button" name="btn_show_name" id="btn_show_name" value="选择图片" class="btn"/>
+                    <form id="form_name" style="padding: 20px; display: none;" action="/LanManage/Upload"
+                    method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="schoolid" value="{$T.u.Id}" />
+                    <input type="hidden" name="flag" value="name" />
+                    <input name="upImg" type="file" id="upName" />&nbsp;&nbsp;<input type="submit" value="上传"class="btn" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>标语图片(标语图片为600x275的jpg或png图片)</legend>
+        <div id="divBannerImgs">
+            <ul id="ulImg">
+                {#if $T.u.BannerImgs.length>0} {#foreach $T.u.BannerImgs as t}
+                <li id="{$T.t$index}">
+                    <img id="img{$T.t$index}" src="{$T.t}" alt="" /><a class="delImg" style="vertical-align: top"
+                        href="javascript:void(0);" title="删除" dataid="{$T.t$index}">×</a> </li>
+                {#/for} {#/if}
+                <li id="app">
+                    <input type="button" style="margin: 36px" name="btn_show_banner" value="选择图片" class="btn" id="btn_show_banner" /></li>
+            </ul>
+            <form id="form_banner" style="padding: 20px; display: none;" action="/LanManage/Upload"
+            method="post" enctype="multipart/form-data">
+            <input type="hidden" name="schoolid" value="{$T.u.Id}" />
+            <input type="hidden" name="flag" value="banner" />
+            <input name="upImg" id="upBanner" type="file" />&nbsp;&nbsp;<input type="submit"
+                value="上传"class="btn" />
+            </form>
+        </div>
+    </fieldset>
+</div>
+{#/for} {#/template MAIN} 

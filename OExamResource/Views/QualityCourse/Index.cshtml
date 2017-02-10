@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "精品课程库";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/QualityCourse/index.js")" type="text/javascript"></script>
+}
+<div id="fudong">
+    <div>
+    </div>
+</div>
+<div id="indexlist">
+    <div class="search_01">
+        <div class="search_02">
+                 @Html.DropDownList("ddljibie", Model.ddljibie as List<SelectListItem>, new { @class = "search_04" })
+            </select>
+                @Html.DropDownList("ddlniandu", Model.ddlniandu as List<SelectListItem>, new { @class = "search_04" })
+            </select>
+            <input id="searchname" type="text" size="23" value="请输入精品课程名称..." style="color:Gray" class="search_03" />
+            <input type="image" id="btnsearch" src="/Content/image/index_ss_08.gif" class="search_04" />
+        </div>
+    </div>
+    <div id="changequality" style="width:980px; margin: 0 auto">
+    </div>
+</div>

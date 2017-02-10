@@ -1,0 +1,166 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div style="padding-top: 20px" class="mydiv">
+    <table class="mytable" width="99%">
+        <tr>
+            <td align="right">
+                账号状态：
+            </td>
+            <td colspan="2">
+                <select id="ddlState">
+                    <option value="-1" selected="selected">全部</option>
+                    <option value="0">已启用</option>
+                    <option value="1">已禁用</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                帐号/姓名：
+            </td>
+            <td colspan="2">
+                <input type="text" name="txtName" id="txtName" value="" />
+                <input type="button" name="btnSearchManager" id="btnSearchManager" value="搜索" class="btn" />
+                <input type="button" name="btnAddManager" id="btnAddManager" value="添加" class="btn" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center" style="vertical-align: top;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td class="yan" valign="middle" align="left" style="height: 20px">
+                            全部列表
+                        </td>
+                        <td class="yan" valign="middle" align="right">
+                            共搜索出<strong id="sCount">{$T.u.count}</strong>条记录
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="divUserList">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="3">
+                <div id="divBar">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" align="right">
+                <input type="checkbox" name="ckAll" id="ckAll" /><label for="ckAll">全选</label>
+                <!-- <input type="checkbox" name="ckReverse" id="ckReverse" /><label for="ckReverse">反选</label>-->
+            </td>
+            <td width="30%">
+                <input type="radio" checked="checked" name="groupAff" value="0" id="rEnabled" /><label
+                    for="rEnabled">启用</label>
+                <input type="radio" name="groupAff" value="1" id="rDisabled" /><label for="rDisabled">停用</label>
+                <input type="radio" name="groupAff" value="-1" id="rDelete" /><label for="rDelete">删除</label>
+                <input type="button" name="btnAffirm" id="btnAffirm" value="确认操作" class="btn" />
+            </td>
+            <td>
+                <input type="button" name="btnEditSelected" id="btnEditSelected" value="修改选中" class="btn" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divAddManager" style="display: none">
+    <table width="100%" border="0" cellpadding="0" cellspacing="10">
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                登录帐号：
+            </td>
+            <td width="58%" align="left" valign="middle" style="height: 20px">
+                <input type="text" name="txtLoginName" id="txtLoginName" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                登录密码：
+            </td>
+            <td align="left" valign="middle">
+                <input type="password" name="txtLoginPwd" id="txtLoginPwd" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                确认密码：
+            </td>
+            <td align="left" valign="middle">
+                <input type="password" name="txtSurePwd" id="txtSurePwd" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                真实姓名：
+            </td>
+            <td align="left" valign="middle">
+                <input type="text" name="txtTrueName" id="txtTrueName" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                学校：
+            </td>
+            <td>
+                <select id="ddlSchool" style="width: 150px; text-align: center">
+                    {#foreach $T.u.School as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                所属学院：
+            </td>
+            <td align="left" valign="middle">
+                <select id="ddlFaculty" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Faculty as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                所属系别：
+            </td>
+            <td align="left" valign="middle">
+                <select id="ddlDepartment" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Department as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                角色类型：
+            </td>
+            <td align="left" valign="middle">
+                <select id="ddlRole" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Role as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td align="right" valign="middle" style="height: 20px; width: 30%;">
+            </td>
+            <td align="center" valign="middle" style="height: 20px">
+                <input type="button" name="btnAdd" id="btnAdd" value="添加" class="btn" />
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="/SystemManage/MassEdit" method="post" id="form1">
+<input type="hidden" id="hdData" name="hdData" value="" />
+</form>
+{#/for} {#/template MAIN} 

@@ -1,0 +1,44 @@
+﻿{#template MAIN} {#foreach $T as u}
+<li>
+    <div class="index_dl divChange" dataid="{$T.u.Id}">
+        <table border="0" cellspacing="0" cellpadding="0" class="index_dl_03">
+            <tr>
+                <td>
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr class="index_dl_04">
+                            <td width="36">
+                                <img src="/Content/image/{$T.u.Ico}" />
+                            </td>
+                            <td>
+                                <div class="subtitle">
+                                    <a href="/Resource/List/{$T.u.Id}">{$T.u.Name}<font style="color: #555">({$T.u.Count})</font></a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" class="index_dl_05">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="index_dl_05">
+                        <tr>
+                            <td valign="top">
+                                <div class="subcontent" dataid="{$T.u.Id}">
+                                    {#foreach $T.u.List as t}
+                                    <div style="width: 115px; float: left;">
+                                        <a href="/Resource/List/{$T.t.Id}">{$T.t.Name}<font style="color: #555">({$T.t.Count})</font></a>
+                                    </div>
+                                    {#/for}</div>
+                            </td>
+                            <td valign="bottom" width="44px">
+                                <a href="javascript:void(0);" class="cateid" cateid="{$T.u.Id}" dataid="{$T.u.Id}" style=" margin-bottom:15px">
+                                    更多...</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</li>
+{#/for} {#/template MAIN} 

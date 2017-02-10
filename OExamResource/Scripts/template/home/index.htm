@@ -1,0 +1,10 @@
+﻿{#template MAIN}
+ <div>
+ {#foreach $T as u}
+  <h2>{$T.u.Name}</h2>  
+ {#foreach $T.u.List as t}
+ <a href="/Subject/{$T.t.Id}">{$T.t.Name}</a>
+ {#/for}
+ {#/for}
+ </div>
+{#/template MAIN}

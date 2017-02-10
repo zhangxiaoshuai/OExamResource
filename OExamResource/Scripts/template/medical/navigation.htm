@@ -1,0 +1,10 @@
+﻿{#template MAIN} <a href="/Medical/Index">首页</a> <span class='mr10'>&gt;</span> <a href="/Medical/Index">医学库</a>
+{#foreach $T as u} 
+<span class='mr10'>&gt;</span> 
+{#if $T.u.Type>4} 
+<a href="/Medical/List/{$T.u.Id}?type={$T.u.Type}&&searchname={$T.u.searchname}">"{$T.u.Name}"<font style="color: #555;font-style:italic">({$T.u.Count})</font></a> 
+{#else} 
+<a href="/Medical/List/{$T.u.Id}?type={$T.u.Type}&&searchname={$T.u.searchname}">{$T.u.Name}<font style="color: #555;font-style:italic">({$T.u.Count})</font></a> 
+{#/if} 
+{#/for}
+{#/template MAIN}

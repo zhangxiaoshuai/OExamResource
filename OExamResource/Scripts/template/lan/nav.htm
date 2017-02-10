@@ -1,0 +1,18 @@
+﻿{#template MAIN}<div class="nav_choose04" flag="nav_A">
+    {#foreach $T.A as a}<div class="nav_choose05" style="width:300px;"><a href="/Lan/Index/{$T.a.Id}">
+        {$T.a.Name}</a></div>{#/for}
+</div>
+<div class="nav_choose04" flag="nav_B">
+    {#foreach $T.B as b}<div class="nav_choose05 {$T.b.c}" style="width:150px;"><a href="/Lan/Dict/{$('#hdId').val()}?uid={$T.b.Id}">
+        {$T.b.Name}</a></div>{#/for}
+</div>
+<div class="nav_choose04" flag="nav_C">
+    {#foreach $T.C as c}<div class="nav_choose05 {$T.c.c}" style="width:300px;"><a href="/Lan/Single/{$('#hdId').val()}?cid={$T.c.Id}">
+        {$T.c.Name}（{$T.c.UserName}）</a></div>{#/for}
+</div>
+<div class="nav_choose04" flag="nav_D">
+    {#foreach $T.D as d}<div class="nav_choose06">{$T.d.Name}</div>
+       {#foreach $T.d.List as l}<div class="nav_choose05" style="width:300px;"><a href="/Lan/Dict/{$('#hdId').val()}?tid={$T.l.Id}">
+        {$T.l.Name}</a></div>{#/for}{#/for}
+</div>
+{#/template MAIN} 

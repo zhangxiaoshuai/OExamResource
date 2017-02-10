@@ -1,0 +1,100 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div style="padding-top: 40px" class="mydiv">
+    <table width="99%" class="mytable">
+    <tr>
+            <td >
+            <input type="button" name="btnAddNewKind" id="btnAddNewKind" value="添加职务" class="btn"  style="margin-left:20px;"/>
+            </td>
+    </tr>
+      <!--  <tr align="center">
+            <td>
+                <input type="radio" name="rKind" value="Job" id="rJob" checked="checked" /><label
+                    for="rJob">职称类别</label>
+                <input type="radio" name="rKind" value="Pro" id="rPro" /><label for="rPro">职业类别</label>
+                <input type="radio" name="rKind" value="Post" id="rPost" /><label for="rPost">职务类别</label>
+            </td>
+        </tr>-->
+        <tr>
+            <td>
+                <div id="divKind" align="center">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="job_add_s" style="display: none">
+    <table>
+        <tr align="center">
+            <td>
+                职称名称：
+                <input type="text" name="txtName" value="" id="u_job" />
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" name="btnSure" id="job_id" class="btn_ok" typeid="job" jobid=""
+                    value="确定" style="border-right: #7b9ebd 1px solid; padding-right: 2px; border-top: #7b9ebd 1px solid;
+                    padding-left: 2px; font-size: 12px; border-left: #7b9ebd 1px solid; cursor: hand;
+                    color: black; padding-top: 2px; border-bottom: #7b9ebd 1px solid;" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="pro_add_s" style="display: none">
+    <table>
+        <tr align="center">
+            <td>
+                职业名称：
+                <input type="text" name="txtName" value="" id="u_pro" />
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" name="btnSure" typeid="pro" id="pro_id" class="btn_ok" value="确定"
+                    style="border-right: #7b9ebd 1px solid; padding-right: 2px; border-top: #7b9ebd 1px solid;
+                    padding-left: 2px; font-size: 12px; border-left: #7b9ebd 1px solid; cursor: hand;
+                    color: black; padding-top: 2px; border-bottom: #7b9ebd 1px solid;" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="post_add_s" style="display: none">
+    <table>
+        <tr align="center">
+            <td>
+                职务名称：
+                <input type="text" name="txtName" value="" id="u_post" />
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <input type="button" name="btnSure" id="post_id" class="btn_ok" typeid="post" value="确定"
+                    style="border-right: #7b9ebd 1px solid; padding-right: 2px; border-top: #7b9ebd 1px solid;
+                    padding-left: 2px; font-size: 12px; border-left: #7b9ebd 1px solid; cursor: hand;
+                    color: black; padding-top: 2px; border-bottom: #7b9ebd 1px solid;" />
+            </td>
+        </tr>
+    </table>
+</div>
+    <div id="divAddPostDiv" style="display: none">
+        <table width="100%" border="0" cellpadding="0" cellspacing="10">
+            <tr>
+                <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                    职务名称：
+                </td>
+                <td width="58%" align="left" valign="middle" style="height: 20px">
+                     <input type="text" id="TxtNewPostName" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle" style="height: 20px; width: 30%;">
+                </td>
+                <td align="left" valign="middle" style="height: 20px">
+                    <input type="button" name="btnNewPost" id="btnNewPost" value="添加" class="btn" />
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+{#/for} {#/template MAIN} 

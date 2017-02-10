@@ -1,0 +1,109 @@
+﻿{#template MAIN}
+<table width="700px" align="center" style="background-color: #708AD5; margin-top: 10px;
+    line-height: 40px">
+    <tr>
+        <td class="style1">
+            名称：
+        </td>
+        <td class="style5">
+            <input class="sc_input" type="text" id="source_name" name="source_name" /><font color="red">
+                <label id="name_m" name="name_m">
+                    *</label>
+            </font>
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            大类：
+        </td>
+        <td class="style5">
+            <select id="slcategory" class="sc_input" style="width: 150px; text-align: center"
+                name="slcategory">
+                <option value="00000000-0000-0000-0000-000000000000">-请选择-</option>
+            </select><font color="red">
+                <label id="labcate" name="name_m">
+                    *</label></font>
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            学科：
+        </td>
+        <td class="style5">
+            <select id="slsubject" class="sc_input" style="width: 150px; text-align: center"
+                name="slsubject">
+                <option value="00000000-0000-0000-0000-000000000000">-请选择-</option>
+            </select><font color="red"><label id="labsub" name="name_m">*</label></font>
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            专业：
+        </td>
+        <td class="style5">
+            <select id="slspeciality" name="slspeciality" class="sc_input" style="width: 150px;
+                text-align: center">
+                <option value="00000000-0000-0000-0000-000000000000">-请选择-</option>
+            </select><font color="red"><label id="labspe" name="name_m">*</label></font>
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            关键字：
+        </td>
+        <td class="style5">
+            <input class="sc_input" type="text" id="KeyWords" name="KeyWords" />
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            路径：
+        </td>
+        <td class="style5">
+            <input class="sc_input" id="uploadfile" type="file" name="uploadfile" /><font color="red"><label
+                id="labupl" name="name_m">*</label></font>
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            资源类型：
+        </td>
+        <td class="style5">
+            <select id="sltype" name="sltype" class="sc_input" style="width: 150px; text-align: center">
+                <option value="00000000-0000-0000-0000-000000000000">-请选择-</option>
+            </select><font color="red"><label id="labty" name="name_m">*</label></font>
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            所属课程：
+        </td>
+        <td class="style5">
+            <input class="sc_input" type="text" id="Coursename" name="Coursename" />
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            资源简介：
+        </td>
+        <td class="style5">
+            <textarea id="Fescribe" name="Fescribe" style="resize: none; height: 87px; width: 215px"></textarea><font
+                color="red"><label id="labfes" name="name_m">*</label></font>
+        </td>
+    </tr>
+    <tr>
+        <td class="style1">
+            <input type="submit" id="btnshangchuan" value="" style="width: 80px; height: 28px;background-image: url(../Images/source/sc.png);
+                 border: 0px solid #708AD5;" />
+        </td>
+        <td class="style5">
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <input type="reset" id="btnreset" value="" style="width: 80px; height: 28px;background-image: url(../Images/source/cz.png);
+                 border: 0px solid #708AD5;" />
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <input type="button" id="btngoup" value="" style=" width: 80px; height: 28px;background-image: url(../Images/source/fh.png);
+                border: 0px solid #708AD5;" />
+        </td>
+    </tr>
+</table>
+{#/template MAIN}

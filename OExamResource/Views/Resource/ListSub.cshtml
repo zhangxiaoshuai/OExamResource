@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+    string Key = ViewContext.HttpContext.Request["key"].ToString();
+    bool IsJX = ViewContext.HttpContext.Request["isJX"].ToLower() == "true";
+}
+@model List<Models.ResourceCategory>
+@{
+    foreach (var item in Model)
+    {
+        if (IsJX)
+        {
+            if (item.Count_JX >= 10)
+            {
+    <a href="/Resource/List/@(item.Id)?key=@Key">@item.Name<span style="color: #555">(@item.Count_JX)</span></a> 
+            }
+        }
+        else
+        {
+            if (item.Count >= 10)
+            {
+    <a href="/Resource/List/@(item.Id)?key=@Key">@item.Name<span style="color: #555">(@item.Count)</span></a>
+            }
+        }
+    }
+}

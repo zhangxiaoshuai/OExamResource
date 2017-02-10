@@ -1,0 +1,16 @@
+﻿@{
+    string url;
+    if (string.IsNullOrEmpty(ViewContext.HttpContext.Request.QueryString["key"]))
+    {
+        url = "List/" + ViewContext.RouteData.Values["Id"];
+    }
+    else
+    {
+        url = "List/";
+    }
+}
+@using (Html.BeginForm(url, "Resource", FormMethod.Get))
+{
+    <input name="key" id="searchname" type="text" placeholder="请输入资源搜索关键字..." value="@ViewContext.HttpContext.Request.QueryString["key"]" class="search_03" />
+    <input type="image" id="btnsearch" src="/Content/image/index_ss_08.gif" class="search_04" />
+}

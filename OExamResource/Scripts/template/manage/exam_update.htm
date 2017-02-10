@@ -1,0 +1,34 @@
+﻿{#template MAIN} {#foreach $T as l}
+<div  class="mydiv">
+    <form id="form_update"   action="/ExamManage/UpdateResource"
+    method="post" enctype="multipart/form-data">
+    <table class="mytable" width="99%">
+        <tr>
+            <td style="height: 30px" width="30%">
+                表单名称：<br />
+                要导入的Excel文件中第一个表单的名称
+            </td>
+            <td>
+                <input type="text" name="txtSheet" id="txtSheet" value="Sheet0" />
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 30px">
+                文件路径：<br />
+                要导入的Excel文件所在的物理路径
+            </td>
+            <td>
+                <input type="file" name="upXls" id="upXls" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="submit" name="btnImport" id="btnImport_exam" value="导入" class="btn" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+{#/for} {#/template MAIN} 

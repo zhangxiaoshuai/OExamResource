@@ -1,0 +1,155 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div  style="background-color: #EEF6FE">
+    <table class="mytable" width="400px">
+        <tr>
+            <td align="right" width="30%">
+                登录名:
+            </td>
+            <td width="15%">
+                {$T.u.LoginName}
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                姓名：
+            </td>
+            <td>
+                <input type="text" name="txtName" id="txtName" value="{$T.u.UserName}" />
+                <label id="lb_name" class="lb" style="color: Red">
+                </label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                性别：
+            </td>
+            <td valign="middle">
+                {#if $T.u.Sex=="男"}
+                <input type="radio" name="rSex" id="rM" value="1" checked="checked" /><label for="rM">男</label>
+                <input type="radio" name="rSex" id="rWM" value="0" /><label for="rWM">女</label>
+                {#else}
+                <input type="radio" name="rSex" id="Radio1" value="1" /><label for="rM">男</label>
+                <input type="radio" name="rSex" id="Radio2" value="0" checked="checked" /><label
+                    for="rWM">女</label>
+                {#/if}
+            </td>
+        </tr>
+<!--        <tr>
+            <td align="right">
+                生日：
+            </td>
+            <td>
+                <input onclick="WdatePicker()" type="text" name="txtBirthday" id="txtBirthday" value="{$T.u.Birthday}" />
+            </td>
+        </tr> -->       
+        <tr>
+            <td align="right">
+                邮箱：
+            </td>
+            <td>
+                <input type="text" name="txtEmail" id="txtEmail" value="{$T.u.Email}" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                电话：
+            </td>
+            <td>
+                <input type="text" name="txtPhone" id="txtPhone" value="{$T.u.Phone}" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                学院：
+            </td>
+            <td>
+                <select id="ddlFaculty" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Faculty as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                系别：
+            </td>
+            <td>
+                <select id="ddlDepartment" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Department as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <!--<tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                职业类别：
+            </td>
+            <td align="left" valign="middle" style="height: 20px">
+                <select id="ddlProfession" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Profession as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr> -->        
+        <!--<tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                职称类别：
+            </td>
+            <td align="left" valign="middle" style="height: 20px">
+                <select id="ddlJob" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Job as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>-->
+        <tr>
+            <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                职务类别：
+            </td>
+            <td align="left" valign="middle" style="height: 20px">
+                <select id="ddlPost" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Post as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <!--<tr>
+            <td align="right">
+                用户类型：
+            </td>
+            <td>
+                {$T.u.UserType}
+            </td>
+        </tr>-->
+        <tr>
+            <td align="right">
+                创建时间：
+            </td>
+            <td>
+                {$T.u.CreateTime}
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                系统身份：
+            </td>
+            <td>
+                {$T.u.MainID}
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="button" name="btnInfoSure" id="btnInfoSure" class="btn" value="修改" />
+                <input type="button" name="btnPWord" id="btnPWord" class="btn" value="更改密码" />
+            </td>
+        </tr>
+    </table>
+</div>
+{#/for} {#/template MAIN} 

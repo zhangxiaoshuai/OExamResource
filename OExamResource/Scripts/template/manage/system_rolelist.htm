@@ -1,0 +1,73 @@
+﻿{#template MAIN}
+<div style="padding-top: 20px">
+    <table class="mytable" width="99%">
+        <tr>
+           <!-- <td colspan="3">
+                <input type="button" name="btnAddRole" id="btnAddRole" value="添加角色" class="btn" />
+            </td>-->
+        </tr>
+        <tr>
+            <th>
+                角色名称
+            </th>
+            <th>
+                修改
+            </th>
+            <!--<th>
+                删除
+            </th>-->
+        </tr>
+        {#foreach $T as u}
+        <tr align="center">
+            <td>
+                {$T.u.Name}
+            </td>
+            <td>
+                <a href="javascript:void(0);" dataid="{$T.u.Id}" class="edit_role">修改</a>
+            </td>
+           <!-- <td>
+                <a href="javascript:void(0);" dataid="{$T.u.Id}" class="del_role">删除</a>
+            </td>-->
+        </tr>
+        {#/for}
+    </table> 
+    <div id="divAddroleDiv" style="display: none">
+        <table width="100%" border="0" cellpadding="0" cellspacing="10">
+            <tr>
+                <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                    角色名称：
+                </td>
+                <td width="58%" align="left" valign="middle" style="height: 20px">
+                     <input type="text" id="TxtRoleName" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle" style="height: 20px; width: 30%;">
+                </td>
+                <td align="left" valign="middle" style="height: 20px">
+                    <input type="button" name="btnSurerole" id="btnSurerole" value="添加" class="btn" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="DivUpRoleDiv" style="display: none">
+        <table width="100%" border="0" cellpadding="0" cellspacing="10">
+            <tr>
+                <td align="right" valign="middle" style="width: 30%; height: 20px;">
+                    角色名称：
+                </td>
+                <td width="58%" align="left" valign="middle" style="height: 20px">
+                     <input type="text" id="TxtRoleNameUp" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle" style="height: 20px; width: 30%;">
+                </td>
+                <td align="left" valign="middle" style="height: 20px">
+                    <input type="button" name="btnSureroleUp" id="btnRoleUP" dataid="" value="修改" class="btn" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+{#/template MAIN} 

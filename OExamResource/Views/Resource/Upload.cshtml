@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "文件上传";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section SubHead{
+    <script type="text/javascript">
+        $(function () {
+            @if (ViewBag.Msg != null)
+            {
+                <text> $.dialog.alert("@ViewBag.Msg");</text>
+            }
+            $("#ddlCate,#ddlSub").change(function () {
+                var p = {};
+                p.id = $(this).val();
+                var $that = $("#ddlSub");
+                if ($(this).attr("id") == "ddlSub") {
+                    $that = $("#ddlSpe");
+                }
+                $that.html("<option value>-请选择-</option>");
+                $.sync.ajax.post("/Resource/GetSubCate", p, function (data) {
+                    if (data.State == 1) {
+                        for (var item in data.Result) {
+                            $that.append("<option value=" + data.Result[item].Id + ">" + data.Result[item].Name + "</option>");
+                        }
+                    }
+                });
+            });
+            $("#btnOk").click(function () {
+                $("#hdId").val($("#ddlSpe").val() || $("#ddlSub").val() || $("#ddlCate").val());
+            });
+        });
+    </script>
+    <style type="text/css">
+        .bg1
+        {
+            background-image: url(/Content/image/bg1.png);
+            width: 90px;
+            height: 25px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+}
+<div class="w960" style="margin: 20px auto; line-height: 30px; background-color: #F0F0F0;
+    padding-top: 20px; padding-bottom: 20px;">
+    @using (Html.BeginForm("Upload", "Resource", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="hidden" name="cateId" id="hdId" />
+        <table class="w">
+            <tr>
+                <td class="w200 tr pr20" valign="top">
+                    文件：
+                </td>
+                <td>
+                    <input type="file" name="file" class="w200" />
+                </td>
+            </tr>
+            <tr>
+                <td class="w200 tr pr20" valign="top">
+                    名称：
+                </td>
+                <td>
+                    @Html.TextBox("name", null, new { @class = "w200" })
+                </td>
+            </tr>
+            <tr>
+                <td class="w200 tr pr20" valign="top">
+                    分类：
+                </td>
+                <td>
+                    <select id="ddlCate" class="w200">
+                        <option value>-请选择-</option>
+                        @foreach (var item in ViewBag.Cate as IEnumerable<Models.ResourceCategory>)
+                        { 
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                    <br />
+                    <select id="ddlSub" class="w200">
+                        <option value>-请选择-</option>
+                    </select>
+                    <br />
+                    <select id="ddlSpe" class="w200">
+                        <option value>-请选择-</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="w200 tr pr20" valign="top">
+                    资源类型：
+                </td>
+                <td>
+                    <select id="ddlType" name="typeId" class="w200">
+                        <option value>-请选择-</option>
+                        @foreach (var item in ViewBag.Type as IEnumerable<Models.ResourceType>)
+                        { 
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="w200 tr pr20" valign="top">
+                    所属课程：
+                </td>
+                <td>@Html.TextBox("course", null, new { @class = "w200" })
+                </td>
+            </tr>
+            <tr>
+                <td class="w200 tr pr20" valign="top">
+                    关键字：
+                </td>
+                <td>@Html.TextBox("keyWord", null, new { @class = "w500" })
+                </td>
+            </tr>
+            <tr>
+                <td class="w200 tr pr20" valign="top">
+                    资源简介：
+                </td>
+                <td>
+                    <textarea class="w500 h100" name="remark"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="tc">
+                    <input type="submit" id="btnOk" value="上传" class="bg1" />
+                    <input type="button" onclick="window.close();" value="取消" class="bg1" />
+                </td>
+            </tr>
+        </table>
+    }
+</div>

@@ -1,0 +1,9 @@
+﻿{#template MAIN} {#foreach $T as c} 
+<ul class="ulE">
+<li style="float: left; list-style-type: none; padding: 10px; width: 900px;font-weight:600">{$T.c.Tag2}&nbsp;:&nbsp;{$T.c.DownloadCount} 次 </li>
+ 
+    {#foreach $T.c.List as s}
+    <li> {$T.s.Tag2}&nbsp;:&nbsp;{$T.s.DownloadCount} 次</li>
+    {#/for}</ul>
+<br />
+{#/for} {#/template MAIN} 

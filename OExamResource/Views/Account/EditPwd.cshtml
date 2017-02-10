@@ -1,0 +1,58 @@
+﻿<table width="100%" border="0" cellpadding="0" cellspacing="0" style="line-height: 40px;margin-top:30px;">
+    <tr>
+        <td align="right" width="300px">
+            原&nbsp;&nbsp;密&nbsp;&nbsp;码：
+        </td>
+        <td align="left">
+            <input type="password" id="txtOpwd" />
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            新&nbsp;&nbsp;密&nbsp;&nbsp;码：
+        </td>
+        <td align="left">
+            <input type="password" id="txtNpwd" />
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            重复新密码：
+        </td>
+        <td align="left">
+            <input type="password" id="txtRpwd" />
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+        </td>
+        <td align="left">
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" id="btnEditPwd" value="提交" style="width: 50px;" />
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(function () {
+        $("#btnEditPwd").unbind().click(function () {
+            layoutparm = {};
+            layoutparm.opwd = $("#txtOpwd").val().trim();
+            layoutparm.npwd = $("#txtNpwd").val().trim();
+            layoutparm.rpwd = $("#txtRpwd").val().trim();
+            if (layoutparm.opwd == "" || layoutparm.npwd == "") {
+                $.artDialog.tips("请输入原密码和新密码！");
+                return false;
+            }
+            if (layoutparm.npwd != layoutparm.rpwd) {
+                $.artDialog.tips("密码输入有误！");
+                return false;
+            }
+            $.sync.ajax.post("/Account/RePwd", layoutparm, function (data) {
+                $.dialog.tips(data.Msg);
+                if (data.State == 1) {
+                    $("#txtOpwd,#txtNpwd,#txtRpwd").val("");
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,46 @@
+﻿{#template MAIN}
+<table class="mytable" width="99%">
+    <tr>
+        <th width="3%" style="height: 22px">
+        </th>
+        <th width="26%">
+            名称
+        </th>
+        <th width="28%">
+            课程
+        </th>
+        <th width="28%">
+            分类
+        </th>
+        <th width="10%">
+            教师
+        </th>
+        <th width="5%">
+            操作
+        </th>
+    </tr>
+    {#foreach $T as t}
+    <tr align="center">
+        <td>
+            <input type="checkbox" id="cks{$T.t.Id}" name="ckResource" class="ckResource" value="{$T.t.Id}" />
+        </td>
+        <td>
+            <a href="/Lan/Detail/{$T.t.SchoolId}?rid={$T.t.Id}" id="{$T.t.Id}" title="{$T.t.Title}"
+                target="_blank">{$T.t.Name}</a>
+        </td>
+        <td>
+            {$T.t.CourseName}
+        </td>
+        <td>
+            {$T.t.ResourceTypeName}
+        </td>
+        <td>
+            {$T.t.Teacher}
+        </td>
+        <td width="5%">
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" class="del">删除</a>
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

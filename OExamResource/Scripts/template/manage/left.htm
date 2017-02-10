@@ -1,0 +1,24 @@
+﻿{#template MAIN} {#foreach $T as t}
+<table class="left_menu_tab" cellspacing="0" cellpadding="0" width="158px" align="center">
+    <tr>
+        <td class="menu_title" id="{$T.t.Id}" height="25px">
+            <span>{$T.t.Title}</span>
+        </td>
+    </tr>
+    <tr>
+        <td id="submenu{$T.t.Id}">
+            {#foreach $T.t.List as l}
+            <div class="menu_row">
+                <table cellspacing="0" cellpadding="0" width="135px" align="center">
+                    <tr>
+                        <td height="20px">
+                            <a href="javascript:void(0);" id="{$T.l.Url}" title="{$T.l.Url}">{$T.l.Title}</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {#/for}
+        </td>
+    </tr>
+</table>
+{#/for} {#/template MAIN} 

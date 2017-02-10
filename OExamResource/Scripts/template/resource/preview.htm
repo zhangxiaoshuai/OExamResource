@@ -1,0 +1,43 @@
+﻿{#template MAIN}
+<table>
+    <tr>
+        <td height="120" style="vertical-align: middle">
+            <a href="javascript:void(0);" id="leftclick">
+                <img src='../../../images/source/zuohui.png' id='leftNav' height="100" width="30"
+                    align="left" style="margin-left: 50px; margin-bottom: -16px;" /></a>
+        </td>
+        <td class="yulan_03" height="120" valign="top" id="tdImg">
+            {#foreach $T as u} {#if $T.u$index <4}           
+            <a href="javascript:void(0);" id="A{$T.u$index}" resourceid="{$T.u.Id}" class="clickpic"
+                value="" style="text-align: center;">
+                <div title="{$T.u.Title}" style="width: 120px; height: 30px; display: table-cell;
+                    vertical-align: middle">
+                    {#if $T.u.Title.length>19}{$T.u.Title.substr(0,19)}{#else}{$T.u.Title}{#/if}</div>
+                <img class="bgcolor" alt="{$T.u.Id}" src="{$T.u.IcoFilepath}" height="90px" style="border: 3px solid #F2F2F2"
+                    width="120px" />
+                <div>
+                    {$T.u$index+1}/{$T.length}</div>
+            </a>{#else} <a href="javascript:void(0);" id="A{$T.u$index}" resourceid="{$T.u.Id}"
+                class="clickpic" value="http://download.cctr.net.cn{$T.u.Filepath}" style="display: none;
+                text-align: center;">
+                <div title="{$T.u.Title}" style="width: 120px; height: 30px; display: table-cell;
+                    vertical-align: middle">
+                    {#if $T.u.Title.length>19}{$T.u.Title.substr(0,19)}{#else}{$T.u.Title}{#/if}</div>
+                <img class="bgcolor" alt="{$T.u.Id}" src="{$T.u.IcoFilepath}" height="90px" style="border: 3px solid #F2F2F2"
+                    width="120" />
+                <div>
+                    {$T.u$index+1}/{$T.length}</div>
+            </a>{#/if}{#/for}
+        </td>
+        <td height="120" style="vertical-align: middle">
+            {#if $T.length>4} <a href="javascript:void(0);" id="rightclick">
+                <img src='../../../Images/source/youhei.png' id='rightNav' height="100" width="30"
+                    border="0px" align="right" style="margin-right: 50px; margin-bottom: -16px;" /></a>
+            {#else} <a href="javascript:void(0);" id="A1">
+                <img src='../../../Images/source/youhui.png' id='rightNav' height="100" width="30"
+                    border="0px" align="right" style="margin-right: 50px; margin-bottom: -16px;" /></a>
+            {#/if}
+        </td>
+    </tr>
+</table>
+{#/template MAIN} 

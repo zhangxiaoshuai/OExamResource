@@ -1,0 +1,48 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div class="mydiv" align="center">
+<input type="hidden" name="hdCount" id="hdCount" value="{$T.u.count}" />
+<table width="99%" class="mytable">
+    <tr>
+        <td align="left" style="height: 20px;">
+            学校名称:<input type="text" name="txtName" id="txtName" value="" style="width: 100px;" />
+        </td>
+        <td align="left" style="height: 20px;">
+            ip:<input type="text" name="txtIp" id="txtIp" value="" style="width: 100px;" />
+        </td>
+        <td align="left" style="height: 20px;">
+        用户名:<input type="text" name="txtName" id="TextName" value="" style="width: 100px;" />
+        </td>
+        <td style="width: 300px;">
+         起始时间:<input type="text" onclick="WdatePicker()" name="txt_startme" id="txt_startime" value="" style="width: 80px;"/>
+         结束时间:<input type="text" onclick="WdatePicker()" name="txt_endtime" id="txt_endtime" value="" style="width: 80px;"/>
+        </td>
+        <td >
+            <input type="button" name="btnSearchDownMonitor" id="btnSearchDownMonitor" value="搜索" class="btn" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6" style="vertical-align: top">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="yan" valign="middle" align="left" style="height: 20px" colspan="2" width="960px">
+                        全部列表
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="divDownSchoolList">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5" align="center">
+            <div id="divBar">
+            </div>
+        </td>
+    </tr>
+</table>
+</div>
+{#/for} {#/template MAIN} 

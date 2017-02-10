@@ -1,0 +1,14 @@
+﻿{#template MAIN} {#foreach $T as l}
+<li id="li{$T.l.Id}" dataid="{$T.l.Id}" flag="{$T.l.Level}" module="{$T.l.Module}"
+    class="uli"><span id="sp{$T.l.Id}">{$T.l.Title}</span>{$T.l.Flag}<a href="javascript:void(0);"
+        dataid="{$T.l.Id}" class="dela">×</a><a href="javascript:void(0);" dataid="{$T.l.Id}"
+            class="softdela" flag="{$T.l.IsDeleted}">{$T.l.Stats}</a><a href="javascript:void(0);"
+                dataid="{$T.l.Id}" class="adda">添加</a></li>
+<ul id="ul{$T.l.Id}" class="ul">
+    {#foreach $T.l.List as t}
+    <li class="uliuli" url="{$T.t.Url}" dataid="{$T.t.Id}"><span id="sp{$T.t.Id}">{$T.t.Title}</span>{$T.t.Flag}<a
+        href="javascript:void(0);" dataid="{$T.t.Id}" class="dela">×</a><a href="javascript:void(0);"
+            dataid="{$T.t.Id}" class="softdela" flag="{$T.t.IsDeleted}">{$T.t.Stats}</a></li>
+    {#/for}
+</ul>
+{#/for} {#/template MAIN} 

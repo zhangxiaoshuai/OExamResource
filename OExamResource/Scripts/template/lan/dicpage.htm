@@ -1,0 +1,15 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div style="width:340px;float:left;margin:0px 14px 5px 0px;text-align:left;">
+<table>
+    <tr>
+     <td valign="bottom">
+        <a href="/Lan/Detail/{$("#hdId").val()}?rid={$T.u.Id}" target="_blank" style="display:inline-block;width:130px;height:100px;"><img src="{$T.u.ImageUrl || '/Content/image/Default/NONE03.jpg'}" style="width:130px;height:100px;border:none;" ></a>
+    <img src="/Content/image/24-zoom.png" class="imgZoom" dataurl="{$T.u.ViewUrl}" style="position:relative;width:20px;bottom:25px;left:110px;"/>
+    </td>
+        <td valign="top"><div class="item_keep" style="line-height:34px;width:200px;" title="{$T.u.Name}"><a href="/Lan/Detail/{$("#hdId").val()}?rid={$T.u.Id}">{$T.u.Name}</a></div>
+    <div class="item_keep" style="line-height:24px;color:#666;width:200px;" title="{$T.u.Tag2}">课程：<a href="/Lan/Single/{$("#hdId").val()}?cid={$T.u.CourseId}">{$T.u.Tag2}</a></div>
+    <div class="item_keep" style="line-height:24px;color:#666;width:200px;" title="{$T.u.Tag1}">分类：<a href="/Lan/Dict/{$("#hdId").val()}?tid={$T.u.TypeId}">{$T.u.Tag1}</a></div>
+    <div class="item_keep" style="line-height:24px;color:#666;width:200px;" title="{$T.u.ClickCount || 0}">点击：{$T.u.ClickCount||0}</div></td>
+    </tr>
+</table></div>
+{/#for} {#/template MAIN} 

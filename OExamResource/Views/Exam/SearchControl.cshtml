@@ -1,0 +1,60 @@
+﻿@using (Html.BeginForm("Search", "Exam", FormMethod.Get))
+{
+    <div class='fl'>
+        @Html.DropDownList("mean", ViewBag.ddlMeans as List<SelectListItem>, new { @class = "search_04", id = "ddlMean" })@(" ")
+        @Html.DropDownList("year", ViewBag.ddlYears as List<SelectListItem>, new { @class = "search_04", id = "ddlYear" })
+        <input type="text" id="txtSearch" name="key" class="search_03" value="@ViewContext.HttpContext.Request.QueryString["key"]" placeholder="请输入试卷名称..." />
+        <input type="image" id="btnSearch" src="/Content/image/index_ss_08.gif" class="search_04" />
+    </div>
+    <div class="w100 fr">
+        <a id="uploadify"></a>
+    </div>
+    
+    <div class="none">
+        <script src="/Scripts/plugin/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+        <link href="/Scripts/plugin/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">
+            var _enupload = true;
+            $("#uploadify").uploadify({
+                swf: "/Scripts/plugin/uploadify/uploadify.swf",
+                uploader: '/KindFile/SWFUploadFile/',
+                buttonText: '导入试卷文件',
+                height: 27,
+                width: 100,
+                multi: false,
+                fileSizeLimit: '4MB',
+                fileTypeDesc: 'sync试卷文件',
+                fileTypeExts: '*.sdb',
+                formData: { type: "examjson" },
+                queueID: 'fileQueue',
+                onSelect: function () {
+                    if (!_enupload) {
+                        $.dialog.tips('请勿重复上传，请耐心等待。');
+                        $("#uploadify").uploadify('cancel');
+                    }
+                },
+                onUploadSuccess: function (file, data, response) {
+                    data = JSON.parse(data);
+                    if (!data.State) {
+                        alert(data.Msg);
+                    } else {
+                        _enupload = false;
+                        $.dialog.tips("上传成功，准备解析...");
+                        var par = {};
+                        par.filepath = data.Result;
+                        $.post("/Exam/Import", par, function (d) {
+                            if (d.State != 1) {
+                                alert("出错了...");
+                            } else {
+                                $.dialog.alert("解析成功，已录入。");
+                            }
+                            _enupload = true;
+                        });
+                    }
+                }
+            });
+        </script>
+    </div>
+}
+<div class='cb'>
+</div>

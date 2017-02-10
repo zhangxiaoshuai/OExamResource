@@ -1,0 +1,17 @@
+﻿{#template MAIN} {#foreach $T as u}
+<table class="mytable" width="99%">
+    <tr>
+        <td colspan="2">
+            <strong>共有 {$T.u.Count} 个</strong>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <ul id="ulTestList" class="ul">
+                </ul>
+            </table>
+        </td>
+    </tr>
+</table>
+{#/for} {#/template MAIN} 

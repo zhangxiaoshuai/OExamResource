@@ -1,0 +1,77 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div align="center" class="mydiv">
+    <table class="mytable" width="99%">
+        <tr>
+            <td  align="right">
+                账号状态：
+            </td>
+            <td>
+                <select id="ddlState">
+                    <option value="-1" selected="selected">全部</option>
+                    <option value="0">已启用</option>
+                    <option value="1">已禁用</option>
+                </select>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                帐号/姓名：
+            </td>
+            <td>
+                <input type="text" name="txtName" id="txtName" value="" />
+                <input type="button" name="btnSearchUser" id="btnSearchUser" value="搜索"class="btn" />
+                <input type="button" name="TeacherAdd" id="TeacherAdd" value="添加" class="btn" />
+                <input type="button" name="TeacherImport" id="TeacherImport" value="批量导入" class="btn" />
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center" style="vertical-align: top">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td class="yan" valign="middle" align="left" style="height: 20px">
+                            全部列表
+                        </td>
+                        <td class="yan" valign="middle" align="right">
+                            共搜索出<strong id="sCount">{$T.u.count}</strong>条记录
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="divUserList">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="3">
+                <div id="divBar">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="40%" align="right" >
+                <input type="checkbox" name="ckAll" id="ckAll_teacherlist" /><label for="ckAll">全选</label>
+            </td>
+            <td width="50%" align="left">
+                <input type="radio" checked="checked" name="groupAff" value="0" id="rEnabled" /><label
+                    for="rEnabled">启用</label>
+                <input type="radio" name="groupAff" value="1" id="rDisabled" /><label for="rDisabled">停用</label>
+                <input type="radio" name="groupAff" value="-1" id="rDelete" /><label for="rDelete">删除</label>
+                <input type="button" name="btnAffirm" id="btnAffirm" value="确认操作" class="btn"/>
+            </td>
+            <td>
+                <!--<input type="button" name="btnEditSelected" id="btnEditSelected" value="修改选中" />-->
+            </td>
+        </tr>
+    </table>
+</div>
+<!--<form action="/TeacherManage/MassEdit" method="post" id="form1">
+<input type="hidden" id="hdData" name="hdData" value="" />
+</form>-->
+{#/for} {#/template MAIN} 

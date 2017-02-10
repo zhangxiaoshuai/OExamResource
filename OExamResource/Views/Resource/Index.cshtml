@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "资源库";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/resource/index.js")" type="text/javascript"></script>
+}
+<div id="fudong">
+    <div id="fudong_01">
+    </div>
+</div>
+<div>
+    <div id="change">
+        <div class="search_01">
+            <div class="search_02">
+                @Html.Partial("SearchControl")
+            </div>
+        </div>
+        <ul id="indexlist">
+        </ul>
+    </div>
+</div>

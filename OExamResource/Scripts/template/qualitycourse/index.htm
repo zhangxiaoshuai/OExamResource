@@ -1,0 +1,21 @@
+﻿{#template MAIN}
+<div id="change">
+    <ul>
+        {#foreach $T as u}
+        <li style="margin-bottom: 20px; margin-left: 16px; margin-right: 6px; width: 223px;
+            margin-top: 10px">
+            <div class="index_dl_07 divChange">
+                <div style="border: 1px solid #fff; height: 85px;">
+                    <a href="/QualityCourse/List/{$T.u.Id}?type=0" style="float: left; margin-right: 5px;
+                        height: 85px;">
+                        <img src="../../../Images/quality/{$T.u.Ico}" border="0" height="85px" width="85px" /></a>
+                    <a class="index_dl_04" href="/QualityCourse/List/{$T.u.Id}?type=0">{$T.u.Name}</a>
+                    <br />
+                    课程数量：{$T.u.Count}
+                </div>
+            </div>
+        </li>
+        {#/for}
+    </ul>
+</div>
+{#/template MAIN} 

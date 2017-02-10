@@ -1,0 +1,69 @@
+@{
+    ViewBag.Title = "医学预览";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/medical/preview.js")" type="text/javascript"></script>
+    <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6613274"></script>
+    <script type="text/javascript" id="bdshell_js"></script>
+    <script src="@Url.Content("~/Scripts/common/flexpaper_flash.js")" type="text/javascript"></script> 
+}
+@*
+隐藏域
+*@
+<input id="hdId" type="hidden" value="@ViewBag.id"/>
+<input id="hdtype" type="hidden" value="@ViewBag.type"/>
+<input id="hdsearchname" type="hidden" value="@ViewBag.searchname"/>
+<input id="Guidlist" type="hidden" value="@ViewBag.guidlist"/>
+<div id="jianju" class="zykcontent">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="yulan">
+        <tr>
+            <td class="yulan_05" align="center" valign="top">
+                <div id="previewdaohang" align="left">
+                    @* <a href="/Resource/Index">首页</a> ><a href="/Resource/Index">资源库</a> >*@
+                </div>
+                <div id="previewbigpic">
+                </div>
+                <div id="preview" class="tp" style="margin-bottom: 0px">
+                </div>
+            </td>
+            <td>
+                <div id="previewdetall">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+@if (ViewBag.Share)
+{
+    <div style="display: none; line-height: 30px;" id="divShare">
+        <table>
+            <tr>
+                <th colspan="2">
+                    请您完善相关资料
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    我的课程：
+                </td>
+                <td>@Html.DropDownList("ddlCourse", ViewBag.slCourse as List<SelectListItem>)<span
+                    style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    资源类型：
+                </td>
+                <td>@ViewBag.ResourceType<span style="color: Red;">*</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="/Account/Manage#Course" target="_blank" style="color: blue; text-decoration: underline;">
+                        没有课程？点击此处</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+}

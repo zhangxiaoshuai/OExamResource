@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "医学库";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Sup = (List<Models.ResourceCategory>)ViewBag.Sup;
+    var Key = (ViewContext.HttpContext.Request.QueryString["key"] ?? "").Trim();
+}
+@model List<Models.ResourceType>
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/medical/list.js")" type="text/javascript"></script>
+    <style type="text/css">
+        #listtype
+        {
+            background-color: #F0F0F0;
+            padding-top: 20px;
+            padding-left: 20px;
+            padding-bottom: 30px;
+            width: 180px;
+            line-height: 30px;
+            border-right: 1px solid #555;
+            border-bottom: 1px solid #555;
+        }
+        #listtype a
+        {
+            color:Blue;
+        }
+        #listtype a:hover
+        {
+            color: rgb(236, 123, 0);
+            text-decoration: underline;
+        }
+        #listtype a.curr
+        {
+            color: rgb(236, 123, 0);
+        }
+    </style>
+}
+<!--搜索-->
+<div class="search_01">
+    <div class="search_02">
+        @Html.Partial("SearchControl")
+        <hr style="margin-bottom: 5px; margin-top: 5px;" />
+        <div id="navigation" class="search_05">
+            <a href="/">首页</a> <span class="mr10">></span> <a href="/Medical">医学库</a>
+            @{ 
+                foreach (var item in Sup)
+                {
+                <span class="mr10">></span>
+                <a href="/Medical/List/@item.Id?key=@Key">@item.Name</a>
+                }
+                 if (!string.IsNullOrEmpty(Key))
+                {
+                <span class="mr10">></span>
+                <a href="/Medical/List?key=@Key">"@Key"</a>
+                }
+            }
+        </div>
+        <div id="subject" class="search_06">
+            SYNC正在努力检索中...
+        </div>
+    </div>
+</div>
+<input id="hdId" type="hidden" name="hdId" value="@(ViewContext.RouteData.Values["Id"])"/>
+<input id="hdUrl" type="hidden" name="hdUrl" value="@(ViewBag.Url)"/>
+<input id="hdUrlM" type="hidden" name="hdUrl" value="@(ViewBag.UrlMedical)"/>
+<div style="width: 960px; margin: 0 auto;">
+    <div class="fl" id="listtype">
+        @{
+            var list0 = Model.Where(p => p.BaseType == 0);
+            var list1 = Model.Where(p => p.BaseType == 1);
+            int c0 = list0.Sum(p => p.Count);
+            int c1 = list1.Sum(p => p.Count);
+            <div class="pl10">
+                <a class="listtype" href="javascript:void(0);" basetype="-1" typecount="@(list0.Sum(p => p.PackCount) + c1)">
+                    全部（@(Model.Sum(p => p.Count))）</a></div>
+            <div class="pl10">
+                @{
+                    if (c0 > 0)
+                    {
+                    <a class="listtype cgreen" href="javascript:void(0);" basetype="0" typecount="@(list0.Sum(p => p.PackCount))">
+                        课件（@c0）</a>
+                        foreach (var item in list0)
+                        {
+                    <div class="pl10">
+                            <a class="listtype" href="javascript:void(0);" basetype="0" typeid="@item.Id" typecount="@item.PackCount">
+                                @item.Name（@item.Count）</a>
+                    </div>
+                        }
+                    }
+                }
+            </div>
+            <div class="pl10">
+                @{
+                    if (c1 > 0)
+                    {
+                    <a class="listtype cgreen" href="javascript:void(0);" basetype="1" typecount="@c1">素材（@c1）</a>
+                        foreach (var item in list1)
+                        {
+                    <div class="pl10">
+                            <a class="listtype" href="javascript:void(0);" basetype="1" typeid="@item.Id" typecount="@item.Count">
+                                @item.Name（@item.Count）</a>
+                    </div>
+                        }
+                    }
+                }
+            </div>
+        }
+    </div>
+    <div class="fl" style="width: 750px;">
+        <div id="resourcelist">
+        </div>
+        <br class="cb" />
+        <div id="divBar" class="tc">
+        </div>
+    </div>
+    <div class="cb">
+    </div>
+</div>
+@Html.Hidden("hdKey", Key)
+<script type="text/javascript">
+    var par = {};
+    par.id = $("#hdId").val();
+    par.key = $("#hdKey").val();
+    $("a.listtype").click(function () {
+        var $that = $(this);
+        $("a.listtype.curr").removeClass("curr");
+        $that.addClass("curr");
+        par.baseType = $that.attr("basetype");
+        par.typeId = $that.attr("typeid") || null;
+        $.cellpagebar.init({
+            total: $that.attr("typecount"),
+            pagesize: 10,
+            container: $("#divBar")
+        }, function (pageindex) {
+            par.pageIndex = pageindex;
+            $.sync.ajax.post("/Medical/List", par, function (data) {
+                if (data.State) {
+                    $("#resourcelist").setTemplateURL("/Scripts/template/Medical/listpage.htm");
+                    $("#resourcelist").processTemplate(data.Result);
+                }
+            }, true);
+        });
+    }).eq(0).click();
+    $('#subject').load('/Medical/ListSub?id=@(ViewContext.RouteData.Values["Id"])&isJX=@(ViewBag.IsJX)&key=@Key');
+</script>

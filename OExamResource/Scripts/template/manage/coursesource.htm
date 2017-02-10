@@ -1,0 +1,68 @@
+﻿{#template MAIN}
+<table cellspacing="0" cellpadding="0" border="1" style="border-collapse: collapse;"
+    width="100%">
+    <tr>
+        <th width="3%" style="height: 22px">
+        </th>
+         <th width="20%">
+            名称
+        </th>
+         <th width="7%">
+            大类
+        </th>
+        <th width="9%">
+            分类
+        </th>
+        <th width="11%">
+            专业
+        </th>       
+          <th width="15%">
+            包名称
+        </th>
+        <th width="8%">
+            类型
+        </th>
+        <th width="7%">
+            大小
+        </th>
+        <th colspan="9" width="10%">
+            操作
+        </th>
+    </tr>
+    {#foreach $T as t}
+    <tr align="center">
+        <td>
+            <input type="checkbox" id="cks{$T.t.Id}" name="ckResource" class="ckResource" value="{$T.t.Id}" />
+        </td>
+        <td>
+        <a href="/Resource/Preview/{$T.t.Packid}?t=0" target="_blank">{$T.t.Name}</a>
+           <!-- <a href="javascript:void(0);" id="{$T.t.Id}" class="preview" title="{$T.t.Title}">{$T.t.Name}</a>-->
+        </td>
+         <td>
+            {$T.t.CategoryName}
+        </td>
+        <td>
+            {$T.t.SubjectName}
+        </td>
+        <td>
+            {$T.t.SpecialityName}
+        </td>
+        <td>
+            {$T.t.Packname}
+        </td>
+        <td>
+            {$T.t.TypeName}
+        </td>
+        <td>
+            {$T.t.Size}
+        </td>
+        <td width="5%">
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" class="edit_Courselist">修改</a>
+        </td>
+        <td width="5%">
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" class="del_Courselist">删除</a>
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

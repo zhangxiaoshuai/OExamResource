@@ -1,0 +1,9 @@
+﻿{#template MAIN}
+<ul>
+    {#foreach $T.List as u}
+    <li>{$T.u.Title}[答对{$T.u.Num}题][得分：<span style="color: Red;">{$T.u.Num*$T.u.Single}</span>]
+    </li>
+    {#/for}
+    <li style="text-align: right;">总分：{$T.Total} &nbsp;得分：<span style="color: Red; font-size: 30px;">{$T.Score}</span></li>
+</ul>
+{#/template MAIN} 

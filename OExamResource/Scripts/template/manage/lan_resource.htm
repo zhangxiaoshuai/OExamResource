@@ -1,0 +1,82 @@
+﻿{#template MAIN} {#foreach $T as u}
+<input type="hidden" name="hdSchoolId" value="{$T.u.SchoolId}" id="hdSchoolId" />
+<input type="hidden" name="hdCount" id="hdCount" value="{$T.u.Count}" />
+<table class="mytable" width="99%">
+    <tr>
+        <td>
+            选择院系：
+            <select id="ddlSFD">
+            </select>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            选择分类：
+            <select id="ddlType">
+                <option value="00000000-0000-0000-0000-000000000000">请选择</option>
+                <optgroup id="opt0" label="基本资源">
+                </optgroup>
+                <optgroup id="opt1" label="扩展资源">
+                </optgroup>
+                <optgroup id="opt2" label="自定义资源">
+                </optgroup>
+            </select>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            选择教师：
+            <select id="ddlCourse" style="width: 150px; text-align: center">
+                {#foreach $T.u.Course as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            资源名称：
+            <input type="text" name="txtLanResource" value="" id="txtLanResource" />&nbsp;<input
+                type="button" name="btnSearchLanResource" id="btnSearchLanResource" value="搜索" class="btn"/>
+        </td>
+        <td>
+        </td>
+    </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="10" width="100%">
+    <tr>
+        <td valign="middle" align="left" style="height: 20px">
+            全部列表
+        </td>
+        <td valign="middle" align="right">
+            共搜索出<strong id="sCount">{$T.u.Count}</strong>条记录
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div id="divLanResourceList">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <div id="divBar">
+            </div>
+        </td>
+    </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <input type="checkbox" name="ckAll" id="ckAll" /><label for="ckAll">全选</label>
+            <input type="button" name="btnDelete" id="btnDelete" value="删除选中" class="btn"/>
+        </td>
+    </tr>
+</table>
+{#/for} {#/template MAIN} 

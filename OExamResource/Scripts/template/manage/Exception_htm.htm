@@ -1,0 +1,41 @@
+﻿{#template MAIN}
+<table cellspacing="0" border="1" style="width: 100%; border-collapse: collapse;"
+    width="100%" >
+    <tr align="center">
+        <th width="30%">
+            学校名称
+        </th>
+        <th width="9%">
+            下载总数量
+        </th>
+        <th width="20%">
+            日最高数量
+        </th> 
+        <th>
+            联系人信息
+        </th>
+        <th>
+            销售
+        </th>
+    </tr>
+    {#foreach $T as t}
+    <tr>
+        <td>
+            {$T.t.Name}({$T.t.TrialType})
+        </td>
+        <td align="center">
+            {$T.t.Count}
+        </td>
+        <td align="center">
+            {$T.t.Daycountnum}次（{$T.t.Datatime}）
+        </td>
+        <td>
+            {$T.t.StopRemind}
+        </td>
+        <td align="center">
+            {$T.t.SellName}
+        </td>
+    </tr>
+    {#/for}
+</table>
+{#/template MAIN} 

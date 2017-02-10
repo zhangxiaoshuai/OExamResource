@@ -1,0 +1,21 @@
+﻿{#template MAIN}
+<ol>
+    {#foreach $T as m}
+    <li>
+        <input  id="ck{$T.m.Id}" type="checkbox" value="{$T.m.Id}"{$T.m.Checked}
+           {$T.m.Disabled}  class="cktrial" name="schoolmodule"/><label for="ck{$T.m.Id}">{$T.m.Name}</label>
+            {#if $T.m.Checked=="checked"}
+
+              {#if $T.m.trialTag=="1"}
+               <input type="checkbox" name="ckTrialTag"  value="1" checked="checked" class="ck{$T.m.Id}" />
+               <label for="ckTrialTag" class="ck{$T.m.Id}">远程镜像</label>
+              {#else}
+               <input type="checkbox" name="ckTrialTag"  value="0"  class="ck{$T.m.Id}" />
+               <label for="ckTrialTag" class='ck{$T.m.Id}'>远程镜像</label>
+              {#/if}
+
+            {#/if}
+    </li>
+    {#/for}
+</ol>
+{#/template MAIN} 

@@ -1,0 +1,38 @@
+﻿{#template MAIN}
+<table class="mytable" width="100%">
+    <tr>
+        <th width="50%">
+            分类名称
+        </th>
+        <th width="25%">
+            资源数量
+        </th>
+        <th colspan="2" width="25%">
+            操作
+        </th>
+    </tr>
+    {#foreach $T as t}
+    <tr>
+        <td>
+            <p id="p{$T.t.Id}">
+                {$T.t.Name}</p>
+        </td>
+        <td>
+            {$T.t.Count}
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" class="edit">修改</a>
+        </td>
+        <td>
+            <a href="javascript:void(0);" dataid="{$T.t.Id}" class="dellan">删除</a>
+        </td>
+    </tr>
+    {#/for}
+    <tr>
+        <td colspan="4">
+            <input type="text" name="txtName" id="txtName" value=""  /> 
+            <input type="button" name="btnAddType" value="添加" class="btn" id="btnAddType" />
+        </td>
+    </tr>
+</table>
+{#/template MAIN} 

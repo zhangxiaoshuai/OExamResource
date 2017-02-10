@@ -1,0 +1,269 @@
+﻿<script src="/Scripts/plugin/jquery.form.js" type="text/javascript"></script>
+@model Sync.Models.LanCourse
+<fieldset style="padding: 10px; margin-bottom: 10px; line-height: 30px;">
+    <legend>课程信息</legend>
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="right">
+                我的课程：
+            </td>
+            <td width="150px">@Html.DropDownList("ddlCourse", ViewBag.slCourse as List<SelectListItem>)
+            </td>
+            <td>
+                <a id="btnAddCourse" href="javascript:void(0);">
+                    <img src="/Content/image/24-em-plus.png" class="btimg" /><span class="btimg">添加课程</span></a>
+                @if (Model.Id != Guid.Empty)
+                {
+                    <a id="btnEditCourse" href="javascript:void(0);">
+                        <img src="/Content/image/24-em-check.png" class="btimg" /><span class="btimg">修改课程</span></a>
+                    <a id="btnDelCourse" href="javascript:void(0);">
+                        <img src="/Content/image/24-em-cross.png" class="btimg" /><span class="btimg">删除课程</span></a>
+                }
+            </td>
+        </tr>
+        @if (ViewBag.HasTest)
+        {
+            <tr>
+                <td align="right">
+                    关联试题库课程：
+                </td>
+                <td>
+                    <label id="lblK4">@(Model.Tag1 ?? "无")</label>
+                </td>
+                <td>
+                    @if (Model.Id != Guid.Empty)
+                    {
+                        <a id="btnEditK4" href="javascript:void(0);">
+                            <img src="/Content/image/24-em-check.png" class="btimg" /><span class="btimg">修改关联</span></a>
+                        <a id="btnDelK4" href="javascript:void(0);">
+                            <img src="/Content/image/24-em-cross.png" class="btimg" /><span class="btimg">解除关联</span></a>
+                    }
+                </td>
+            </tr>
+        }
+        <tr>
+            <td align="right">
+                创建日期：
+            </td>
+            <td colspan="2">@(Model.Id == Guid.Empty ? "" : Model.CreateTime.ToShortDateString())
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                资源数量：
+            </td>
+            <td colspan="2">@(Model.ResourceCount ?? 0)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                点击次数：
+            </td>
+            <td colspan="2">@(Model.ClickCount ?? 0)
+            </td>
+        </tr>
+    </table>
+</fieldset>
+<fieldset style="padding: 10px; margin-bottom: 10px;">
+    <legend>课程简介</legend>
+    <textarea rows="5" style="width: 100%;" id="txtRemark">@Model.Remark</textarea>
+    @if (Model.Id != Guid.Empty)
+    {
+        <a id="btnEditRemark" href="javascript:void(0);">
+            <img src="/Content/image/24-em-check.png" class="btimg" /><span class="btimg">确认修改</span></a>
+    }
+</fieldset>
+<fieldset style="padding: 10px;">
+    <legend>课程展示图片<span style="color: Red;">（图片将以540*180比例存储）</span></legend>
+    <div id="divImgList">
+        @if (Model.Id != Guid.Empty)
+        {
+            <a id="btnUpload" href="javascript:void(0);">
+                <img src="/Content/image/24-em-up.png" class="btimg" /><span class="btimg">上传图片</span></a>
+        }
+        @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+        {
+            var urls = Model.ImageUrl.Split(',');
+            for (int i = 0; i < urls.Length; i++)
+            { 
+            <div style="margin: 10px;">
+                <img src="@urls[i]" width="520px" height="160px"/><br />
+                <a class="btnDelImg" href="javascript:void(0);"  dataUrl="@urls[i]">
+                    <img src="/Content/image/24-em-cross.png" class="btimg" /><span class="btimg">删除图片</span></a>
+            </div>
+            }
+        }
+    </div>
+</fieldset>
+<div id="divupload" style="display: none;">
+    <form id="fmupload" style="padding: 20px; display: block;" action="/Account/Upload"
+    method="post" enctype="multipart/form-data">
+    <input type="hidden" id="hdId" name="hdId" value="@Model.Id"/>
+    <input name="upImg" id="upImg" type="file" />
+    </form>
+</div>
+@if (ViewBag.HasTest)
+{
+    <div id="divK4" style="display: none;">
+        @Html.DropDownList("ddlTest0", ViewBag.ddlTest as List<SelectListItem>)&nbsp;&nbsp;
+        <select id="ddlTest1">
+        </select>&nbsp;&nbsp;
+        <select id="ddlTest2">
+        </select>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnDelCourse").unbind().click(function () {
+            $.artDialog.confirm("确定删除吗？", function () {
+                layoutparm = {};
+                layoutparm.id = $("#ddlCourse").val();
+                $.sync.ajax.post("/Account/DelCourse", layoutparm, function (data) {
+                    $.artDialog.tips(data.Msg);
+                    if (data.State) {
+                        setTimeout(function () { $("#divload").load("/Account/Course/"); }, 1000);
+                    }
+                });
+            });
+        });
+        $("#btnEditCourse").unbind().click(function () {
+            $.artDialog.prompt("请输入课程名称", function (val) {
+                if (val.trim() == "") {
+                    $.artDialog.tips("课程名称不能为空");
+                    return false;
+                }
+                layoutparm = {};
+                layoutparm.id = $("#ddlCourse").val();
+                layoutparm.txt = val.trim();
+                $.sync.ajax.post("/Account/EditCourse", layoutparm, function (data) {
+                    $.artDialog.tips(data.Msg);
+                    if (data.State) {
+                        $("#ddlCourse option:selected").text(data.Result);
+                    }
+                });
+            }, $("#ddlCourse option:selected").text()).title("修改课程名称");
+        });
+        $("#btnAddCourse").unbind().click(function () {
+            $.artDialog.prompt("请输入课程名称", function (val) {
+                if (val.trim() == "") {
+                    $.artDialog.tips("课程名称不能为空");
+                    return false;
+                }
+                layoutparm = {};
+                layoutparm.txt = val.trim();
+                $.sync.ajax.post("/Account/AddCourse", layoutparm, function (data) {
+                    if (data.State) {
+                        $.artDialog.tips(data.Msg);
+                        setTimeout(function () { $("#divload").load("/Account/Course/" + data.Result); }, 1000);
+                    }else{
+                        $.dialog.alert(data.Msg);
+                    }
+                });
+            }).title("添加课程");
+        });
+        $("#btnUpload").unbind().click(function () {
+            $.artDialog.confirm(document.getElementById('divupload'), function () {
+                $("#fmupload").submit();
+            }).title("上传图片");
+            var options = {
+                success: function (data, statusText, xhr, $form) {
+                    data = JSON.parse(data);
+                    $.dialog.tips(data.Msg);
+                    if (data.State) {
+                        $("#divImgList").append('<div style="margin:10px;"><img src="' + data.Result
+                    + '" width="520px" height="160px"/><br /><a class="btnDelImg" href="javascript:void(0);"  dataUrl="' + data.Result
+                        + '"><img src="/Content/image/24-em-cross.png" class="btimg" /><span class="btimg">删除图片</span></a>');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    document.write(XMLHttpRequest.responseText);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            };
+            $("#fmupload").ajaxForm(options);
+        });
+ @if (ViewBag.HasTest)
+ {
+ <text>
+        $("#btnEditK4").unbind().click(function () {
+            $("#ddlTest0").change();
+            $.artDialog.confirm(document.getElementById('divK4'), function () {
+                layoutparm = {};
+                layoutparm.courseId = $("#ddlCourse").val();
+                layoutparm.testId = $("#ddlTest2").val() || $("#ddlTest1").val();
+                $.sync.ajax.post("/Account/EditForTest", layoutparm, function (data) {
+                    $.artDialog.tips(data.Msg);
+                    $("#lblK4").text(data.Result);
+                });
+            }).title("请选择要关联的试题库课程");
+        });
+        $("#btnDelK4").unbind().click(function () {
+            $.artDialog.confirm("确定解除关联吗？", function () {
+                layoutparm = {};
+                layoutparm.id = $("#ddlCourse").val();
+                $.sync.ajax.post("/Account/DelForTest", layoutparm, function (data) {
+                    $.artDialog.tips(data.Msg);
+                    $("#lblK4").text("无");
+                });
+            });
+        });
+        $("#ddlTest0").unbind().change(function () {
+            layoutparm = {};
+            layoutparm.parentId = $(this).val();
+            $.sync.ajax.post("/Account/GetTest", layoutparm, function (data) {
+                if (data.State == 1) {
+                    $("#ddlTest1").empty().data("tier", data.Result.Tier);
+                    for (var i = 0; i < data.Result.List.length; i++) {
+                        $("#ddlTest1").append($("<option>").val(data.Result.List[i].Id).text(data.Result.List[i].Name));
+                    }
+                    $("#ddlTest1").change();
+                }
+            });
+        });
+        $("#ddlTest1").unbind().change(function () {
+            $("#ddlTest2").empty();
+            if ($(this).data("tier") != 1) {
+                $("#ddlTest2").hide();
+                return false;
+            }
+            layoutparm = {};
+            layoutparm.parentId = $(this).val();
+            $.sync.ajax.post("/Account/GetTest", layoutparm, function (data) {
+                $("#ddlTest2").show();
+                for (var i = 0; i < data.Result.List.length; i++) {
+                    $("#ddlTest2").append($("<option>").val(data.Result.List[i].Id).text(data.Result.List[i].Name));
+                }
+            });
+        });
+        </text>
+ }
+        $("#ddlCourse").unbind().change(function () {
+            $("#divload").load("/Account/Course/" + $(this).val());
+        });
+        $("#btnEditRemark").unbind().click(function () {
+            $.dialog.confirm("您确定要修改课程简介吗？",function(){
+                layoutparm = {};
+                layoutparm.id = $("#ddlCourse").val();
+                layoutparm.txt = $("#txtRemark").val().trim();
+                $.sync.ajax.post("/Account/EditRemark", layoutparm, function (data) {
+                    $.artDialog.tips(data.Msg);
+                });
+            }).title("修改");
+        });
+        $(".btnDelImg").die().live("click", function () {
+            var $that = $(this);
+            $.artDialog.confirm("确定删除图片？", function () {
+                layoutparm = {};
+                layoutparm.url = $that.attr("dataUrl");
+                layoutparm.id = $("#ddlCourse").val();
+                $.sync.ajax.post("/Account/DelImg", layoutparm, function (data) {
+                    $.artDialog.tips(data.Msg);
+                    if (data.State) {
+                        $that.parent().remove();
+                    }
+                });
+            });
+        });
+    });
+</script>

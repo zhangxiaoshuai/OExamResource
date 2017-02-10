@@ -1,0 +1,73 @@
+﻿{#template MAIN}
+<div style="margin-top: 20px;">
+    <table width="100%">
+        <tr>
+            <th>
+                序号
+            </th>
+            <th>
+                资源名称
+            </th>
+            <th>
+                所属分类
+            </th>
+            <th>
+                所属课程
+            </th>
+            <th>
+                收藏时间
+            </th>
+            <th>
+                取消收藏
+            </th>
+            <th width="100px">
+                预览
+            </th>
+        </tr>
+        <tr>
+            <td colspan="7">
+                <hr />
+            </td>
+        </tr>
+        {#foreach $T.List as u}
+        <tr align="center" class="trResource">
+            <td>
+                {$T.u$index+1+($T.PageCount*($T.PageIndex-1))}
+            </td>
+            <td style="text-align:left;padding-left: 20px;">
+                <a href="/Lan/Detail/{$T.SchoolId}?rid={$T.u.ResourceId}" target="_blank" style="color: Blue;
+                    text-decoration: underline;">{$T.u.ResourceName}</a>
+            </td>
+            <td>
+                <a href="/Lan/Dict/{$T.SchoolId}?tid={$T.u.TypeId}" target="_blank" style="color: Blue;
+                    text-decoration: underline;">{$T.u.TypeName}</a>
+            </td>
+            <td>
+                <a href="/Lan/Single/{$T.SchoolId}?cid={$T.u.CourseId}" target="_blank" style="color: Blue;
+                    text-decoration: underline;">{$T.u.CourseName}</a>
+            </td>
+            <td>
+                {$T.u.CreateTime.toDate("yyyy-MM-dd")}
+            </td>
+            <td>
+                <a href="javascript:void();" dataid="{$T.u.Id}" style="color: Blue; text-decoration: underline;"
+                    class="k5Del">取消收藏</a>
+            </td>
+            <td style="cursor: pointer;" title="查看详细" valign="bottom">
+                <a href="/Lan/Detail/{$T.SchoolId}?rid={$T.u.ResourceId}" target="_blank" style="width: 130px;
+                    height: 100px; display: block;">
+                    <img src="{$T.u.ImageUrl}" height="100px" width="130px" class="k5Img" dataurl="{$T.u.ViewUrl}"
+                        style="display: block; border: none;" /><img src="/Content/image/24-zoom.png" title="预览"
+                            class="imgZoom" dataurl="{$T.u.ViewUrl}" style="position: relative; width: 20px;
+                            bottom: 20px; left: 55px; border: none;"></a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7">
+                <hr />
+            </td>
+        </tr>
+        {#/for}
+    </table>
+</div>
+{#/template MAIN}

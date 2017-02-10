@@ -1,0 +1,127 @@
+﻿{#template MAIN} {#foreach $T as u}
+<input type="hidden" name="hdId" id="hdId" value="{$T.u.Id}" />
+<table border="0" cellpadding="0" cellspacing="10" width="100%">
+    <tr>
+        <td width="30%" align="right" style="height: 22px">
+            课程名称：
+        </td>
+        <td>
+            <input type="text" name="txtCourseName" id="txtCourseName" value="{$T.u.Name}" />
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            负责人：
+        </td>
+        <td>
+            <input type="text" name="txtCourseAuthor" id="txtCourseAuthor" value="{$T.u.Author}" />
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            所在省份：
+        </td>
+        <td>
+            <input type="text" name="txtCourseProvince" id="txtCourseProvince" value="{$T.u.Province}" />
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            所属学校：
+        </td>
+        <td>
+            <input type="text" name="txtCourseSchool" id="txtCourseSchool" value="{$T.u.SchoolName}" />
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            获奖年份：
+        </td>
+        <td>
+            <select id="ddlYears" style="width: 150px; text-align: center">
+                {#foreach $T.u.Years as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            课程级别：
+        </td>
+        <td>
+            <select id="ddlSort" style="width: 150px; text-align: center">
+                {#foreach $T.u.Sort as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            一级学科：
+        </td>
+        <td>
+            <select id="ddlSub1" style="width: 150px; text-align: center">
+                {#foreach $T.u.Sub1 as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            二级学科：
+        </td>
+        <td id="tdSub2">
+            <select id="ddlSub2" style="width: 150px; text-align: center">
+                {#foreach $T.u.Sub2 as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            课程层次：
+        </td>
+        <td>
+            <select id="ddlHie" style="width: 150px; text-align: center">
+                {#foreach $T.u.Hie as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            连通状态：
+        </td>
+        <td>
+            <select id="ddlConn" style="width: 150px; text-align: center">
+                {#foreach $T.u.Conn as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="right" style="height: 22px">
+            课程主页：
+        </td>
+        <td>
+            <input type="text" name="txtCourseAddress" id="txtCourseAddress" value="{$T.u.Address}"
+                style="width: 300px" />
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="btnTest" value="测试一下" id="btnTest" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td style="height: 22px">
+            <input type="button" name="btnSure" value="确认修改" id="btnSure" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
+                type="button" name="btnEsc" value="返回" id="btnEsc" />
+        </td>
+    </tr>
+</table>
+{#/for} {#/template MAIN} 

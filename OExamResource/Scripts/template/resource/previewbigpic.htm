@@ -1,0 +1,100 @@
+﻿{#template MAIN}
+<table border="0" width="100%" hight="100%">
+    <tr>
+        <td style="padding-top: 2px; padding-left: 140px; text-align: left" width="100%"
+            colspan="3">
+            <h3>
+                <b class="ic ic-{$T[0].FileExt}"></b><span style="margin-left: 5px !important;">{$T[0].Title}</span>
+            </h3>
+        </td>
+    </tr>
+    <tr style="height: 320px" id="bigpicheight">
+        <td align="right" class="yulan_02">
+            {#if $T[0].FileExt=="jpg" ||$T[0].FileExt=="gif" ||$T[0].FileExt=="bmp"||$T[0].FileExt=="png"||$T[0].FileExt=="wmf"}
+            <img src="{$T[0].PreviewFilepath}" width="400px" height="300px" style="margin-left:130px;"/>
+            {#elseif $T[0].FileExt=="pdf"}
+            <a id="viewerPlaceHolder" previewfilepath="{$T[0].PreviewFilepath}" style="margin-left:130px;width: 400px;
+                height: 300px; display: block"></a>
+            {#elseif $T[0].FileExt=="swf" ||$T[0].FileExt=="doc" ||$T[0].FileExt=="ppt"||$T[0].FileExt=="pps"}
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="margin-left:130px;" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0"
+                width="400px" height="300px">
+                <param name="movie" value="{$T[0].PreviewFilepath}" />
+                <param name="quality" value="high" />
+                <param name="wmode" value="transparent" />
+                <embed src="{$T[0].PreviewFilepath}" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"
+                    type="application/x-shockwave-flash" width="400px" height="300px">
+        </embed></object>
+            {#elseif $T[0].FileExt=="flv"}
+            <object type="application/x-shockwave-flash" width="400" height="300"  style="margin-left:130px;" wmode="transparent"
+                data='../../../Images/source/flvplayer.swf?file={$T[0].PreviewFilepath}'>
+                <param name="movie" value='../../../Images/source/flvplayer.swf?file={$T[0].PreviewFilepath}' />
+                <param name="wmode" value="transparent" />
+            </object>
+            {#elseif $T[0].FileExt=="mp3"}
+            
+<object width="420"height="360"  style="margin-left:130px;" classid="CLSID:22D6F312-B0F6-11D0-94AB-0080C74C7E95">
+   <param name="filename"value="{$T[0].PreviewFilepath}"/>
+   <embed width="420"height="360"type="application/x-mplayer2"src="{$T[0].PreviewFilepath}"></embed>
+</object>
+
+           <!-- <object id="Player" width="400" height="300" classid="CLSID:6BF52A52-394A-11D3-B153-00C04F79FAA6">
+                <param name="URL" value="{$T[0].PreviewFilepath}">
+                <param name="autoStart" value="1">
+                <param name="balance" value="0">
+                <param name="baseURL" value>
+                <param name="captioningID" value>
+                <param name="currentPosition" value="0">
+                <param name="currentMarker" value="0">
+                <param name="defaultFrame" value>
+                <param name="enabled" value="1">
+                <param name="enableErrorDialogs" value="0">
+                <param name="enableContextMenu" value="1">
+                <param name="fullScreen" value="0">
+                <param name="invokeURLs" value="1">
+                <param name="mute" value="0">
+                <param name="playCount" value="1">
+                <param name="rate" value="1">
+                <param name="SAMIStyle" value>
+                <param name="SAMILang" value>
+                <param name="SAMIFilename" value>
+                <param name="stretchToFit" value="0">
+                <param name="uiMode" value="full">
+                <param name="volume" value="100">
+                <param name="VideoBorder3D" value="0">
+                <param name="windowlessVideo" value="5">
+                <param name="wmode" value="transparent" />
+            </object>-->
+            {#/if}
+        </td>
+        <td style="width: 110px">
+        </td>
+        <td style="width: 20px">
+            {#if _isShare} <a id="lkShare" href="javascript:void(0);" style="color: Red; margin-right: 10px;">
+                共享到我的校内资源库</a> {#/if}
+        </td>
+    </tr>
+    <tr>
+        <td class="yulan_03" height="40" style="border-right-color: #B9C6EB" colspan="3">
+            <div style="text-align:left;margin-left: 130px;">
+                {#if $T[0].IsTop} <a href="/Download/FileStreamDownload1/{$T[0].Id}?ku=0" id="download_big_a"
+                    target="_blank">
+                    <img src="../../../images/source/button/download.png" ww="{$T[0].IsTop}" border="0" title="{$T[0].IsTop}" /></a>
+              {#else}
+                <img src="../../../images/source/button/download_hui.png" border="0" title="正式版开放下载"
+                    ww="{$T[0].IsTop}" /><font color="red" style="padding-bottom: 17px; vertical-align: super">(正式版开放下载)</font>
+                {#/if}<label style="padding-bottom: 17px; vertical-align: super">
+                    大小：{$T[0].SizeStr}  </label>  <a href="javascript:void();" id="jiucuo_big_a" resourceid="{$T[0].Id}">
+                        <img src="../../../images/source/jiucuo.png" border="0" /></a> <a href="javascript:void();"
+                            id="shoucang_big_a" resourceid="{$T[0].Id}">
+                            <img src="../../../images/source/shoucang.png" border="0" /></a>
+            </div>
+        </td>
+        <!-- <td class="yulan_03" style="border-left-color: #B9C6EB" >
+            <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare" style="float: left">
+                <span class="bds_more">分享到：</span> <a class="bds_tqq"></a><a class="bds_renren">
+                </a><a class="bds_t163"></a><a class="shareCount"></a>
+            </div>
+        </td>-->
+    </tr>
+</table>
+{#/template MAIN} 

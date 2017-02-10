@@ -1,0 +1,173 @@
+﻿{#template MAIN} {#foreach $T as u}
+<div class="mydiv" align="center">
+<input type="hidden" name="hdCount" id="hdCount" value="{$T.u.count}" />
+<table width="99%" class="mytable">
+    <tr>
+        <td align="center" style="width: 150px;height: 20px">
+            销售人员： 
+               <select id="sellID" style="width: 80px; text-align: center">
+                {#foreach $T.u.Sell as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+               </select>
+        </td>
+         <td align="center" style="width: 150px;height: 20px">
+            省份： 
+               <select id="PrivinceID" style="width: 80px; text-align: center">
+                 {#foreach $T.u.Privince as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                 {#/for}
+               </select>
+        </td>
+        <td style="width: 300px;">
+         起始时间:<input type="text" onclick="WdatePicker()" name="txt_startme" id="txt_startime" value="" style="width: 80px;"/>
+         结束时间:<input type="text" onclick="WdatePicker()" name="txt_endtime" id="txt_endtime" value="" style="width: 80px;"/>
+        </td>
+        <td style="width: 150px;">
+        用户类型;<select id="Select_trialTag">
+                    <option value="" selected="selected">-全部-</option>
+                    <option value="0">试用用户</option>
+                    <option value="1">镜像用户</option> 
+                </select>
+        </td>
+        <td align="center" style="width: 170px;;height: 20px;">
+            学校名称:<input type="text" name="txtName" id="txtName" value="" style="width: 100px;" />
+        </td>
+        <td >
+            <input type="button" name="btnSearchSchool" id="btnSearchSchool" value="搜索" class="btn" />
+            <input type="button" name="btnAdd" id="btnAdd_school" value="添加" class="btn"/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6" style="vertical-align: top">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="yan" valign="middle" align="left" style="height: 20px" colspan="2" width="960px">
+                        全部列表
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="divSchoolList">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="5" align="center">
+            <div id="divBar">
+            </div>
+        </td>
+    </tr>
+</table>
+<div id="divAddSchool" style="display: none">
+    <form id="form1" action="">
+    <table border="0" cellpadding="0" cellspacing="5">
+        <tr>
+            <td>
+                院校类型：
+            </td>
+            <td>
+                <select id="ddlTier">
+                    <option value="0" selected="selected">学校</option>
+                    <option value="1">学院</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                名称：
+            </td>
+            <td>
+                <input type="text" name="txtSchoolName" id="txtSchoolName" value="" /><strong id="sSchoolName"></strong>
+            </td>
+        </tr>
+                <tr>
+            <td>
+               省份：
+            </td>
+            <td>
+                <select id="SelectProvince" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Privince as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                试用类型：
+            </td>
+            <td>
+                <select id="ddlTrial_schoollist" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Trial as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                选择模块：
+            </td>
+            <td>
+                <div style="margin-left: 20px" id="divModules">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                IP地址：
+            </td>
+            <td>
+                <textarea rows="4" cols="32" id="txtIP" style="resize: none" wrap="physical"></textarea>
+                <br />
+                多个IP地址请用 <strong style="color: Red">半角</strong> 逗号“ <strong style="color: Red">,</strong>
+                ”分隔，如果是<br />
+                连续的IP地址段请用“ <strong style="color: Red">-</strong> ”连接<br />
+                （如192.168.0.0-192.168.0.100）。
+            </td>
+        </tr>
+        <tr>
+            <td>
+                销售人员：
+            </td>
+            <td>
+                <select id="ddlSeller_schoollist" style="width: 150px; text-align: center">
+                    {#foreach $T.u.Sell as t}
+                    <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                    {#/for}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                到期时间：
+            </td>
+            <td>
+                <input onclick="WdatePicker()" type="text" name="txtEndTime" id="txtEndTime" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                到期提醒：
+            </td>
+            <td>
+                <input type="text" name="txtRemind" id="txtRemind" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="button" name="btnAddSchool" id="btnAddSchool" value="确定" />
+            </td>
+        </tr>
+    </table>
+    <input type="reset" name="res" id="res" style="display: none" value="" />
+    </form>
+</div></div>
+{#/for} {#/template MAIN} 

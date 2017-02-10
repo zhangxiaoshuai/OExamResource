@@ -1,0 +1,7 @@
+﻿{#template MAIN} 
+    <a href="/Resource/Index">首页</a> > <a href="/Resource/Index">资源库</a> {#foreach $T
+    as u} > {#if $T.u.Type>4} <a href="/Resource/List/{$T.u.Id}?type={$T.u.Type}&&searchname={$T.u.searchname}">
+        "{$T.u.Name}"<font style="color: #555">({$T.u.Count})</font></a> {#else} <a href="/Resource/List/{$T.u.Id}?type={$T.u.Type}&&searchname={$T.u.searchname}">
+            {$T.u.Name}<font style="color: #555">({$T.u.Count})</font></a> {#/if} {#/for}
+ 
+{#/template MAIN}

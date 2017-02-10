@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "模考库";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/exam/index.js")" type="text/javascript"></script>
+}
+<div id="fudong">
+    <div id="fudong_01">
+    </div>
+    <br style="clear: both;" />
+</div>
+<div id="change">
+    <div class="search_01">
+        <div class="search_02">
+            @Html.Action("SearchControl")
+        </div>
+    </div>
+    <div id="full">
+    </div>
+</div>

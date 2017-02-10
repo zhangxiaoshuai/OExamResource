@@ -1,0 +1,30 @@
+﻿.pagecell, #pagefirst, #pagelast, #pageprev, #pagenext, #pagego
+{
+    cursor: pointer;
+}
+#pagefirst, #pagelast, #pageprev, #pagenext, #pagego
+{
+    border: 1px dotted #333;
+    margin: auto 2px auto 2px;
+    display: -moz-inline-box;
+    display: inline-block;
+    width: auto;
+    text-align: center;
+}
+.pagecell
+{
+    border: 1px dotted #333;
+    margin: auto 2px auto 2px;
+    display: -moz-inline-box;
+    display: inline-block;
+    width: 25px;
+    text-align: center;    
+}
+.pagecurrent
+{
+    background-color: #9BADE2;
+}
+#pageindex
+{
+    width: 30px;
+}

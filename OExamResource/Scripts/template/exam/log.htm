@@ -1,0 +1,10 @@
+﻿{#template MAIN} {#foreach $T as u}
+<tr>
+    <td width="50%" align="center">
+        {$T.u.CreateTime.toDate("yyyy-MM-dd")}
+    </td>
+    <td>
+        得分：{$T.u.Score}
+    </td>
+</tr>
+{#/for} {#/template MAIN} 

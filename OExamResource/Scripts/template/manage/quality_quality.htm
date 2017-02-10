@@ -1,0 +1,80 @@
+﻿{#template MAIN} {#foreach $T as u}
+<input type="hidden" name="hdCount" id="hdCount" value="{$T.u.count}" />
+<table class="mytable" width="99%">
+    <tr>
+        <td width="30%">课程级别：
+            <select id="ddlSort_quality" style="width: 150px; text-align: center">
+                {#foreach $T.u.ddlSort as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td width="30%">连接状态：
+            <select id="ddlConn_quality" style="width: 150px; text-align: center">
+                {#foreach $T.u.ddlConn as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td width="30%">课程年份：
+            <select id="ddlYears_quality" style="width: 150px; text-align: center">
+                {#foreach $T.u.ddlYears as t}
+                <option selected="{$T.t.Selected}" value="{$T.t.Value}">{$T.t.Text}</option>
+                {#/for}
+            </select>
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            课程名称：
+            <input type="text" name="txtCourseName" value="" id="txtCourseName" />&nbsp;
+            <input type="button" name="btnSearchCourse" id="btnSearchCourse_quality" value="搜索"class="btn" />
+        </td>
+        <td>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center" style="vertical-align: top">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td class="yan" valign="middle" align="left" style="height: 20px">
+                        全部列表
+                    </td>
+                    <td class="yan" valign="middle" align="right">
+                        共搜索出<strong id="sCount">{$T.u.count}</strong>条记录
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="divCrouseList">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <div id="divBar">
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2">
+            <input type="checkbox" name="ckAll" id="ckAll_quality" /><label for="ckAll">全选</label>
+        
+            <input type="button" name="btnDelete" id="btnDelete_quality" value="删除选中" class="btn"/>
+        </td>
+    </tr>
+</table>
+{#/for} {#/template MAIN} 

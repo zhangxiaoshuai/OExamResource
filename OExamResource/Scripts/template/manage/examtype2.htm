@@ -1,0 +1,7 @@
+﻿{#template MAIN}
+<ul class="MMM">
+    {#foreach $T as p}
+    <li><a title="{$T.p.Title}" class="typeA" id="{$T.p.Id}" href="javascript:void(0);">{$T.p.Name}({$T.p.Count})</a></li>
+    {#/for}
+</ul>
+{#/template MAIN} 
