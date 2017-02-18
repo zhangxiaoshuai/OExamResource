@@ -16,6 +16,7 @@
             $.sync.ajax.post("/Medical/SetError", par, function (data) {
                 if (data.State == 1) {
                     $.dialog.tips(data.Msg);
+                    
                 }
             });
         }, "此资源有错误");

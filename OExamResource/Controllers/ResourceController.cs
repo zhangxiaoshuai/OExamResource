@@ -470,8 +470,8 @@ namespace Controllers
             SqlHelper.ExecuteNonQuery(sql, new SqlParameter[0]);
             string name = Path.GetFileName(path1);
             byte[] buffer = null;
-            buffer = (new ZipFileClass()).UnZipFile(path1, "syncpack");
-            return this.File(buffer, "application/x-zip-compressed", name);
+            buffer = (new ZipFileClass()).UnZipFile(path1, "filepack");
+            return File(buffer, "application/x-zip-compressed", name);
         }
 
         public PartialViewResult ListSub(bool isJX, Guid? id, string key = "")
@@ -480,6 +480,353 @@ namespace Controllers
             List<ResourceCategory> listSub = ResourceCategoryProvider.Instance.GetSubList(id, key, isJX, true);
             DB.GetInstance().CloseSharedConnection();
             return base.PartialView(listSub);
+        }
+
+        [HttpPost]
+        public JsonResult shoucang(Guid id)
+        {
+            string message = "";
+            string ip = HttpContext.Request.UserHostAddress;
+            Guid teachid = new Guid();
+            if (!base.IsLoginWeb())
+            {
+                message = "请登录！";
+            }
+            else
+            {
+                teachid = base.CurrentUser.Id;
+                message = Resource_SubjectProvider.Instance.Getshoucang(id, teachid, base.CurrentUser.SchoolId, ip, 0);
+            }
+            JsonResult jsonResult = base.Json(new { State = 1, Msg = "收藏成功", Result = message });
+            return jsonResult;
+        }
+
+        public JsonResult SetError(Guid id, int code, string remark)
+        {
+            ResourceError model = new ResourceError()
+            {
+                Id = Guid.NewGuid(),
+                CreatedTime = DateTime.Now,
+                IsDeleted = false,
+                Code = code,
+                ResourceId = id,
+                Remark = remark
+            };
+            ResourceErrorProvider.Instance.Create(model);
+            JsonResult jsonResult = base.Json(new { State = 1, Msg = "已提交" });
+            return jsonResult;
+        }
+
+
+        public ViewResult Upload(string name, Guid? cateId, Guid? typeId, string course, string keyWord, string remark)
+        {
+            Guid? nullable;
+            Guid? nullable1;
+            if (Request.Files == null ? false : Request.Files.Count > 0)
+            {
+                int size = Request.Files[0].ContentLength;
+                if (size > 0)
+                {
+                    ResourceUpload resourceUpload = new ResourceUpload()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = name
+                    };
+                    ResourceUpload resourceUpload1 = resourceUpload;
+                    if (base.IsLoginWeb())
+                    {
+                        nullable1 = new Guid?(base.CurrentUser.Id);
+                    }
+                    else
+                    {
+                        nullable = null;
+                        nullable1 = nullable;
+                    }
+                    resourceUpload1.UserId = nullable1;
+                    resourceUpload.CategoryId = cateId;
+                    resourceUpload.TypeId = typeId;
+                    resourceUpload.Size = new int?(size);
+                    resourceUpload.Course = course;
+                    resourceUpload.KeyWord = keyWord;
+                    resourceUpload.Remark = remark;
+                    resourceUpload.CreatedTime = DateTime.Now;
+                    resourceUpload.IsDeleted = false;
+                    ResourceUploadProvider.Instance.Create(resourceUpload);
+                    ViewBag.Msg = "上传成功";
+                }
+            }
+            nullable = null;
+            List<ResourceCategory> cates = ResourceCategoryProvider.Instance.GetSubList(nullable, null, false, true);
+            IOrderedEnumerable<ResourceType> types =
+                from p in ResourceTypeProvider.Instance.GetList()
+                orderby p.SortId
+                select p;
+            ViewBag.Cate = cates;
+            ViewBag.Type = types;
+            return base.View();
+        }
+
+        public JsonResult GetSubCate(Guid? id)
+        {
+            JsonResult jsonResult;
+            if (id.HasValue)
+            {
+                List<ResourceCategory> list = ResourceCategoryProvider.Instance.GetSubList(id, null, false, true);
+                jsonResult = base.Json(new { State = 1, Result = list });
+            }
+            else
+            {
+                jsonResult = base.Json(new { State = 0 });
+            }
+            return jsonResult;
+        }
+
+        ///////////////////////////////////////
+        [HttpPost]
+        public JsonResult GetShangchuan(string source_name, Guid slcategory, Guid slsubject, Guid slspeciality, string KeyWords, HttpPostedFileBase uploadfile, Guid sltype, string Coursename, string Fescribe)
+        {
+            JsonResult jsonResult;
+            if (string.IsNullOrEmpty(source_name.Trim()))
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "no", Result = "请填写资源名称!" });
+            }
+            else if (slcategory == Guid.Empty)
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "no", Result = "请选择资源大类!" });
+            }
+            else if (slsubject == Guid.Empty)
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "no", Result = "请选择资源学科!" });
+            }
+            else if (slspeciality == Guid.Empty)
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "no", Result = "请选择资源专业!" });
+            }
+            else if (uploadfile == null)
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "no", Result = "请选择资源文件!" });
+            }
+            else if (sltype == Guid.Empty)
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "no", Result = "请选择资源类型!" });
+            }
+            else if (string.IsNullOrEmpty(Fescribe.Trim()))
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "no", Result = "请填写资源描述信息!" });
+            }
+            else if (!base.IsTeacher())
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "no", Result = "请先登录！" });
+            }
+            else
+            {
+                Resource res = new Resource()
+                {
+                    Id = Guid.NewGuid(),
+                    Title = source_name,
+                    Size = new int?(uploadfile.ContentLength),
+                    Author = base.CurrentUser.Id.ToString(),
+                    CategoryId = new Guid?(slcategory),
+                    SpecialityId = new Guid?(slspeciality),
+                    SubjectId = new Guid?(slsubject),
+                    KeyWords = KeyWords,
+                    TypeId = new Guid?(sltype),
+                    CourseId = new Guid?(Resource_SubjectProvider.Instance.GetCourseId(Coursename, slspeciality)),
+                    Fescribe = Fescribe,
+                    SchoolId = new Guid?(base.CurrentUser.SchoolId),
+                    FileExt = Path.GetExtension(uploadfile.FileName).Replace(".", "")
+                };
+                object[] id = new object[] { "/Images/source/file/", res.Id, ".", res.FileExt };
+                res.Filepath = string.Concat(id);
+                if (!Resource_SubjectProvider.Instance.GetShangchuan(res))
+                {
+                    jsonResult = base.Json(new { State = 0, Msg = "no", Result = "上传失败!" });
+                }
+                else
+                {
+                    FileHelper.UploadFile(uploadfile, Server.MapPath("/Images/source/file"), string.Concat(res.Id, ".", res.FileExt));
+                    jsonResult = base.Json(new { State = 1, Msg = "ok", Result = "上传成功！" }, "text/html");
+                }
+            }
+            return jsonResult;
+        }
+
+        [HttpPost]
+        public JsonResult Getslsub(Guid cateid)
+        {
+            JsonResult jsonResult;
+            if (!(cateid != Guid.Empty))
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "ok", Result = "" });
+            }
+            else
+            {
+                List<Subject> subject = Resource_SubjectProvider.Instance.Getsub(cateid);
+                jsonResult = base.Json(new { State = 1, Msg = "ok", Result = subject });
+            }
+            return jsonResult;
+        }
+
+        [HttpPost]
+        public JsonResult GetSourceDetall(Guid resourceid, bool istop)
+        {
+            List<Resourcelist> list = PreviewProvider.Instance.GetResourceEntity(resourceid);
+            WriteSize ws = new WriteSize();
+            Resourcelist item = list[0];
+            int size = list[0].Size;
+            item.SizeStr = ws.WriteResourceSize(size.ToString());
+            list[0].PreviewFilepath = this.Ex(list[0].PreviewFilepath);
+            list[0].IsTop = istop;
+            JsonResult jsonResult = base.Json(new { State = 1, Msg = "ok", Result = list });
+            return jsonResult;
+        }
+
+        [HttpPost]
+        public JsonResult Getspe(Guid subid)
+        {
+            JsonResult jsonResult;
+            if (!(subid != Guid.Empty))
+            {
+                jsonResult = base.Json(new { State = 0, Msg = "ok", Result = "" });
+            }
+            else
+            {
+                List<Subject> spe = Resource_SubjectProvider.Instance.Getspe(subid);
+                jsonResult = base.Json(new { State = 1, Msg = "ok", Result = spe });
+            }
+            return jsonResult;
+        }
+
+
+
+        [HttpPost]
+        public JsonResult Gettypelist()
+        {
+            List<ResourceType> typelist = ResourceTypeProvider.Instance.GetList();
+            JsonResult jsonResult = base.Json(new { State = 1, Msg = "ok", Result = typelist });
+            return jsonResult;
+        }
+
+
+
+        [HttpPost]
+        public JsonResult jiucuo(Guid id)
+        {
+            string message = "";
+            Guid Gid = new Guid();
+            Gid = (!base.IsLoginWeb() ? base.CurrentUser.SchoolId : base.CurrentUser.Id);
+            message = (!Resource_SubjectProvider.Instance.Getjiucuo(id, Gid, 1) ? "系统错误请联系管理员！" : "感谢您提出宝贵的意见！");
+            JsonResult jsonResult = base.Json(new { State = 1, Msg = "ok", Result = message });
+            return jsonResult;
+        }
+
+
+
+        [HttpPost]
+        public JsonResult Typepic(Guid typeid)
+        {
+            JsonResult jsonResult;
+            if (!(typeid == Guid.Empty))
+            {
+                string typename = ResourceTypeProvider.Instance.GetEntity(typeid).Name;
+                string resultstr = "";
+                string str = typename;
+                if (str != null)
+                {
+                    switch (str)
+                    {
+                        case "课件":
+                            {
+                                resultstr = "doc或ppt";
+                                break;
+                            }
+                        case "图片":
+                            {
+                                resultstr = "Gif或jpg";
+                                break;
+                            }
+                        case "动画":
+                            {
+                                resultstr = "swf";
+                                break;
+                            }
+                        case "音频":
+                            {
+                                resultstr = "mp3";
+                                break;
+                            }
+                        case "文档":
+                            {
+                                resultstr = "pdf";
+                                break;
+                            }
+                        case "视频":
+                            {
+                                resultstr = "flv";
+                                break;
+                            }
+                        default:
+                            {
+                                goto Label1;
+                            }
+                    }
+                }
+                else
+                {
+                }
+                Label1:
+                jsonResult = base.Json(new { State = 1, Msg = "ok", Result = string.Concat("(", resultstr, ")") });
+            }
+            else
+            {
+                jsonResult = base.Json(new { State = 1, Msg = "ok", Result = "*" });
+            }
+            return jsonResult;
+        }
+
+
+
+        [HttpGet]
+        public ViewResult Uploading(Guid Id, int type, string guidlist, string searchname)
+        {
+            ViewBag.Id = Id;
+            ViewBag.type = type;
+            ViewBag.guidlist = guidlist;
+            ViewBag.searchname = searchname;
+            return base.View();
+        }
+
+
+        public string Ex(string filename)
+        {
+            if (!string.IsNullOrEmpty(filename))
+            {
+                string url = ConfigurationManager.AppSettings["K1kejian"];
+                string filepath = string.Concat(url, filename);
+                try
+                {
+                    HttpWebRequest req = (HttpWebRequest)WebRequest.CreateDefault(new Uri(filepath));
+                    req.Method = "HEAD";
+                    req.Timeout = 5000;
+                    if (!(((HttpWebResponse)req.GetResponse()).StatusCode.ToString() == "OK"))
+                    {
+                        filename = "../../../images/source/file_zanwu_big.jpg";
+                    }
+                    else
+                    {
+                        filename = filepath;
+                    }
+                }
+                catch (WebException webException)
+                {
+                    filename = "../../../images/source/file_zanwu_big.jpg";
+                }
+            }
+            else
+            {
+                filename = "../../../images/source/file_zanwu_big.jpg";
+            }
+            return filename;
         }
     }
 }

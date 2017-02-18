@@ -1,0 +1,329 @@
+﻿@{
+    ViewBag.Title = "试用记录";
+    Layout = "~/Views/Shared/_Back.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/manage/schoollog.js")" type="text/javascript"></script>
+    <style type="text/css">
+        fieldset
+        {
+            padding: 10px;
+        }
+        #divLog
+        {
+            margin-left: 50px;
+        }
+        #divLog ul
+        {
+            width: 1020px;
+            list-style-type: none;
+            float: left;
+        }
+        
+        .ul0 li
+        {
+            float: left;
+            margin-left: 10px;
+            width: 150px;
+            padding: 10px;
+        }
+        .ulR .ulE
+        {
+            margin-left: 10px;
+        }
+        .ulR li
+        {
+            float: left;
+            margin-left: 10px;
+            width: 200px;
+            padding: 10px;
+        }
+        .ulE li
+        {
+            float: left;
+            margin-left: 10px;
+            width: 300px;
+            padding: 10px;
+        }
+    </style>
+}
+@model Sync.Models.School
+<h2>
+    使用记录</h2>
+<input type="hidden" name="hdId" value="@Model.Id" id="hdId" />
+<div id="divLog">
+    <strong>
+        <label id="lbSchoolName">
+            @Model.Name
+        </label>
+    </strong>从<strong>
+        <label id="lbStartTime">
+            @Model.CreateTime.ToString("yyyy-MM-dd")
+        </label>
+    </strong>到<strong>
+        @ViewBag.Now
+    </strong>使用信息<br />
+    <br />
+    <div id="divResource" flag="@ViewBag.RFlag" style="@ViewBag.Resource">
+        <fieldset>
+            <legend>
+                <h3>
+                    素材库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/@Model.Id?tag=0">查看素材库详细记录</a>
+            <br />
+            <br />
+            <br />
+            下载素材<strong>
+                @ViewBag.DownloadCountR
+            </strong>条，收藏素材<strong>
+                @ViewBag.CollectCountR
+            </strong>条，浏览素材<strong>
+                @ViewBag.BrowseCountR
+            </strong>次；<br />
+            素材下载次数最多的一天是<strong>
+                @ViewBag.DayR
+            </strong>，下载<strong>
+                @ViewBag.DCountR
+            </strong>次;<br />
+            下载次数最多的素材是 <strong>
+                @ViewBag.ResourceR
+            </strong>，下载 <strong>
+                @ViewBag.RCount
+            </strong>次；
+            <br />
+            <br />
+            Ip段下载详情：<br />
+            <div id="lbRIp">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            学科下载详情：<br />
+            <div id="lbRSub">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            素材按月统计汇总：<br />
+            <div id="lbRMonthCount">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+        </fieldset>
+    </div>
+    <br />
+    <br />
+    <div id="divMedicine" flag="@ViewBag.MFlag" style="@ViewBag.Medicine">
+        <fieldset>
+            <legend>
+                <h3>
+                    医学库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/@Model.Id?tag=1">查看医学库详细记录</a>
+            <br />
+            <br />
+            <br />
+            下载资源<strong>
+                @ViewBag.DownloadCountM
+            </strong>条，收藏资源<strong>
+                @ViewBag.CollectCountM
+            </strong>条，浏览资源<strong>
+                @ViewBag.BrowseCountM
+            </strong>次；<br />
+            资源下载次数最多的一天是<strong>
+                @ViewBag.DayM
+            </strong>，下载<strong>
+                @ViewBag.DCountM
+            </strong>次;<br />
+            下载次数最多的资源是 <strong>
+                @ViewBag.ResourceM
+            </strong>，下载 <strong>
+                @ViewBag.MCount
+            </strong>次；
+            <br />
+            <br />
+            Ip段下载详情：<br />
+            <div id="lbMIp">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            学科下载详情：<br />
+            <div id="lbMSub">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            资源按月统计汇总：<br />
+            <div id="lbMMonthCount">
+                <strong>暂无</strong>
+            </div>
+            <br />
+        </fieldset>
+    </div>
+    <br />
+    <br />
+    <div id="divTest" flag="@ViewBag.TFlag" style="@ViewBag.Test">
+        <fieldset>
+            <legend>
+                <h3>
+                    试题库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/@Model.Id?tag=3">查看试题库详细记录</a>
+            <br />
+            <br />
+            <br />
+            下载组卷<strong>
+                @ViewBag.DownloadCountT
+            </strong>次，<br />
+            下载组卷次数最多的一天是<strong>
+                @ViewBag.DayTD
+            </strong>，下载<strong>
+                @ViewBag.DCountTD
+            </strong>次;<br />
+            下载次数最多的是 <strong>
+                @ViewBag.ResourceTD
+            </strong>，下载 <strong>
+                @ViewBag.CountTD
+            </strong>次；<br />
+            在线训练<strong>
+                @ViewBag.BrowseCountT
+            </strong>次；<br />
+            在线训练次数最多的一天是<strong>
+                @ViewBag.DayT
+            </strong>，训练<strong>
+                @ViewBag.CountT
+            </strong>次;<br />
+            在线训练次数最多的是 <strong>
+                @ViewBag.ResourceT
+            </strong>，训练 <strong>
+                @ViewBag.TCount
+            </strong>次；
+            <br />
+            <br />
+            Ip段下载详情：<br />
+            <div id="lbTIp">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            试题按月统计汇总：<br />
+            <div id="lbTMonthCount">
+                <strong>暂无</strong>
+            </div>
+            <br />
+        </fieldset>
+    </div>
+    <br />
+    <br />
+    <div id="divExam" flag="@ViewBag.EFlag" style="@ViewBag.Exam">
+        <fieldset>
+            <legend>
+                <h3>
+                    模考库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/@Model.Id?tag=4">查看模考库详细记录</a>
+            <br />
+            <br />
+            <br />
+            模考<strong>
+                @ViewBag.DownloadCountE
+            </strong>次；<br />
+            模考次数最多的一天是<strong>
+                @ViewBag.DayED
+            </strong>，模考<strong>
+                @ViewBag.CountED
+            </strong>次;<br />
+            模考次数最多的是 <strong>
+                @ViewBag.ResourceED
+            </strong>，模考 <strong>
+                @ViewBag.EDCount
+            </strong>次；<br />
+            学习试卷<strong>
+                @ViewBag.BrowseCountE
+            </strong>次，<br />
+            学习次数最多的一天是<strong>
+                @ViewBag.DayE
+            </strong>，学习<strong>
+                @ViewBag.CountE
+            </strong>次;<br />
+            学习次数最多的是 <strong>
+                @ViewBag.ResourceE
+            </strong>，学习<strong>
+                @ViewBag.ECount
+            </strong>次；
+            <br />
+            <br />
+            Ip段模考详情：<br />
+            <div id="lbEIp">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            学科模考详情：<br />
+            <div id="lbESub">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            模考按月统计汇总：<br />
+            <div id="lbEMonthCount">
+                <strong>暂无</strong>
+            </div>
+            <br />
+        </fieldset>
+    </div>
+    <br />
+    <br />
+    <div id="divQualityCourse" flag="@ViewBag.QFlag" style="@ViewBag.QualityCourse">
+        <fieldset>
+            <legend>
+                <h3>
+                    精品课程库：</h3>
+            </legend>
+            <br />
+            <a href="/SystemManage/LogDetails/@Model.Id?tag=2">查看精品课程库详细记录</a>
+            <br />
+            <br />
+            <br />
+            浏览课程<strong>
+                @ViewBag.BrowseCountQ
+            </strong>次，<br />
+            浏览次数最多的一天是<strong>
+                @ViewBag.DayQ
+            </strong>，浏览<strong>
+                @ViewBag.CountQ
+            </strong>次;<br />
+            浏览次数最多的是 <strong>
+                @ViewBag.ResourceQ
+            </strong>，浏览<strong>
+                @ViewBag.QCount
+            </strong>次；
+            <br />
+            <br />
+            Ip段浏览详情：<br />
+            <div id="lbQIp">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            学科浏览详情：<br />
+            <div id="lbQSub">
+                <strong>暂无</strong>
+            </div>
+            <br />
+            <br />
+            精品课程按月统计汇总：<br />
+            <div id="lbQMonthCount">
+                <strong>暂无</strong>
+            </div>
+            <br />
+        </fieldset>
+    </div>
+</div>

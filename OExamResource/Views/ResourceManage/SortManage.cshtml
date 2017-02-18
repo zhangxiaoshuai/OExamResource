@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "素材分类管理";
+    Layout = "~/Views/Shared/_Back.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/scripts/views/manage/sortmanage.js")" type="text/javascript"></script>
+}
+<h2>
+    素材分类管理</h2>
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="vertical-align: top">
+    <tr>
+        <th width="25%">
+            素材大类
+        </th>
+        <th width="25%">
+            素材分类
+        </th>
+        <th width="25%">
+            素材专业
+        </th>
+        <th>
+            知识点
+        </th>
+    </tr>
+    <tr>
+        <td align="center" style="height: 20px">
+        </td>
+        <td align="center">
+            <label id="lbCategory">
+            </label>
+            <input type="hidden" name="hdCategory" id="hdCategory" value="" />
+        </td>
+        <td align="center">
+            <label id="lbSubject">
+            </label>
+            <input type="hidden" name="hdSubject" id="hdSubject" value="" />
+        </td>
+        <td align="center">
+            <label id="lbSpeciality">
+            </label>
+            <input type="hidden" name="hdSpeciality" id="hdSpeciality" value="" />
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <select id="ddlCategory" size="17" style="width: 150px; height: 250px">
+            </select>
+        </td>
+        <td align="center">
+            <select id="ddlSubject" size="17" style="width: 150px; height: 250px">
+            </select>
+        </td>
+        <td align="center">
+            <select id="ddlSpeciality" size="17" style="width: 150px; height: 250px">
+            </select>
+        </td>
+        <td align="center">
+            <select id="ddlKnowledge" size="17" style="width: 150px; height: 250px">
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <input type="button" name="btnAddCategory" id="btnAddCategory" value="添加" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnEditCategory" id="btnEditCategory" value="修改" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnDelCategory" id="btnDelCategory" value="删除" />
+        </td>
+        <td align="center">
+            <input type="button" name="btnAddSubject" id="btnAddSubject" value="添加" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnEditSubject" id="btnEditSubject" value="修改" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnDelSubject" id="btnDelSubject" value="删除" />
+        </td>
+        <td align="center">
+            <input type="button" name="btnAddSpeciality" id="btnAddSpeciality" value="添加" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnEditSpeciality" id="btnEditSpeciality" value="修改" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnDelSpeciality" id="btnDelSpeciality" value="删除" />
+        </td>
+        <td align="center">
+            <input type="button" name="btnAddKnowledge" id="btnAddKnowledge" value="添加" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnEditKnowledge" id="btnEditKnowledge" value="修改" />
+            &nbsp;&nbsp;
+            <input type="button" name="btnDelKnowledge" id="btnDelKnowledge" value="删除" />
+        </td>
+    </tr>
+    <tr>
+        <td align="center">
+            <input type="text" name="txtCategory" id="txtCategory" value="" style="display: none" />
+            <input type="button" name="btnCategory" id="btnCategory" style="display: none" value="" />
+            <input type="button" name="btnEscCategory" id="btnEscCategory" style="display: none"
+                value="取消" />
+        </td>
+        <td align="center">
+            <input type="text" name="txtSubject" id="txtSubject" value="" style="display: none" />
+            <input type="button" name="btnSubject" id="btnSubject" style="display: none" value="" />
+            <input type="button" name="btnEscSubject" id="btnEscSubject" style="display: none"
+                value="取消" />
+        </td>
+        <td align="center">
+            <input type="text" name="txtSpeciality" id="txtSpeciality" value="" style="display: none" />
+            <input type="button" name="btnSpeciality" id="btnSpeciality" style="display: none"
+                value="" />
+            <input type="button" name="btnEscSpeciality" id="btnEscSpeciality" style="display: none"
+                value="取消" />
+        </td>
+        <td align="center">
+            <input type="text" name="txtKnowledge" id="txtKnowledge" value="" style="display: none" />
+            <input type="button" name="btnKnowledge" id="btnKnowledge" style="display: none"
+                value="" />
+            <input type="button" name="btnEscKnowledge" id="btnEscKnowledge" style="display: none"
+                value="取消" />
+        </td>
+    </tr>
+</table>

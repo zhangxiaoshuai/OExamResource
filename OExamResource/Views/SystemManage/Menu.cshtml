@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "菜单管理";
+    Layout = "~/Views/Shared/_Back.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/manage/menu.js")" type="text/javascript"></script>
+    <style type="text/css">
+        .ul
+        {
+            font: 12px 宋体;
+            margin-left: 10px;
+            margin-bottom: 5px;
+        }
+        #ulMenuList a
+        {
+            float: right;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+        
+        .uli
+        {
+            list-style-type: decimal;
+            cursor: default;
+            width: 300px;
+            margin-bottom: 5px;
+        }
+        .uliuli
+        {
+            cursor: default;
+            width: 300px;
+        }
+    </style>
+}
+<h2>
+    菜单管理</h2>
+<table border="0" cellpadding="0" cellspacing="10" width="100%">
+    <tr>
+        <td width="10%" valign="top">
+            菜单列表<br />
+            <br />
+            <a id="addRoot" href="javascript:void(0);">添加根节点</a>
+        </td>
+        <td style="vertical-align: top" width="50%">
+            <ul id="ulMenuList" class="ul">
+            </ul>
+        </td>
+        <td id="tdMenuInfo" style="vertical-align: top" width="40%">
+            <input type="hidden" name="hdRCId" id="hdRCId" value="" />
+            <div id="divRoot" style="display: none">
+                <table style="border: 1px solid black" cellpadding="0" cellspacing="10" width="100%">
+                    <tr>
+                        <td width="30%">
+                            级别：
+                        </td>
+                        <td>
+                            根节点
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            标题：
+                        </td>
+                        <td>
+                            <input type="text" name="txtRoot" id="txtRoot" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            显示级别：
+                        </td>
+                        <td>
+                            <select id="ddlLevel">
+                                <option value="-1">对外可见</option>
+                                <option value="0">绑定模块</option>
+                                <option value="1">公司可见</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr style="display: none" id="trModules">
+                        <td>
+                            绑定模块:
+                        </td>
+                        <td>
+                            @Html.DropDownList("ddlModule", ViewBag.Modules as List<SelectListItem>)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input type="button" flag="root" name="btnSureRoot" id="btnSureRoot" value="确定" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="divChild" style="display: none">
+                <table style="border: 1px solid black" cellpadding="0" cellspacing="10" width="100%">
+                    <tr>
+                        <td width="30%">
+                            级别：
+                        </td>
+                        <td>
+                            子节点
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            标题：
+                        </td>
+                        <td>
+                            <input type="text" name="txtChild" id="txtChild" value="" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            地址：
+                        </td>
+                        <td>
+                            <input type="text" name="txtUrl" value="" id="txtUrl" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <input type="button" flag="child" name="btnSureChild" id="btnSureChild" value="确定" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </td>
+    </tr>
+</table>
+<div id="divAddRoot" style="display: none">
+    <table border="0" cellpadding="0" cellspacing="10">
+        <tr>
+            <td>
+                显示级别：
+            </td>
+            <td>
+                <select id="ddlNewLevel">
+                    <option value="-1">对外可见</option>
+                    <option value="0">绑定模块</option>
+                    <option value="1">公司可见</option>
+                </select>
+            </td>
+        </tr>
+        <tr style="display: none" id="trNewModules">
+            <td>
+                绑定模块:
+            </td>
+            <td>
+                @Html.DropDownList("ddlNewModule", ViewBag.Modules as List<SelectListItem>)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                节点标题：
+            </td>
+            <td>
+                <input type="text" name="txtRootTitle" value="" id="txtRootTitle" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="button" name="btnAddRoot" flag="root" id="btnAddRoot" value="确定" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="divAddchild" style="display: none">
+    <input type="hidden" name="hdParentId" value="" id="hdParentId" />
+    <input type="hidden" name="hdFlag" value="" id="hdFlag" />
+    <table border="0" cellpadding="0" cellspacing="10">
+        <tr>
+            <td>
+                节点标题：
+            </td>
+            <td>
+                <input type="text" name="txtChildTitle" value="" id="txtChildTitle" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                页面地址：
+            </td>
+            <td>
+                <input type="text" id="txtNewUrl" name="txtNewUrl" value="" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <input type="button" name="btnAddChild" flag="child" id="btnAddChild" value="确定" />
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,48 @@
+﻿@charset "gb2312";
+body, div, iframe, ul, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, pre, table, th, td, 
+form, input, button, select, textarea {margin: 0;padding: 0;font-weight: normal;font-style: normal;font-size: 100%;font-family:inherit;list-style:none;}
+body{ font-size:12px;}
+div,p,td{overflow:hidden;}
+img {border: 0;  float:left;}
+span{float:left}
+a{ color:#000;text-decoration:none;}
+a:hover{ color:#0066CC; text-decoration:none;}
+h2{ float:left; border:1px solid #fff;height:30px; background-color:#e5f1f1; line-height:33px; color:#00376a;font-weight:bold;}
+.main{ width:960px; margin:0 auto}
+
+/*top*/
+.top{ width:920px; background:url(/Content/image/Default/top_center.jpg) repeat-x; height:37px; text-align:left; text-indent:5px; line-height:37px; }
+.top_span{ background:none; padding-right:25px; display:inline; float:right}
+.logo{ float:left; width:785px; margin-top:10px; height:93px;}
+.on{ float:right; color:#FF0000; font-size:16px; font-weight:bold;margin-top:10px;width:174px; text-align:center}
+.on img{ margin-top:10px; }
+font{color:#0066CC;text-decoration:underline; font-size:12px;}
+font a{color:#666;text-decoration:underline;}
+
+/*var*/
+.var_a{ background:url(/Content/image/Default/var_in.jpg) no-repeat; width:82px; height:27px; float:left; font-size:14px; line-height:30px; margin-left:5px;}
+ul.var{ float:left; width:665px; margin-top:15px; color:#00376a}
+ul.var li{ background:url(/Content/image/Default/var.jpg) no-repeat; width:82px; height:27px; float:left; font-size:14px; line-height:30px; margin-left:5px;}
+ul.var li a{ color:#00376a; text-decoration:none; }
+ul.var li a:hover{  color:#00376a; text-decoration:underline; font-weight:bold;}
+
+/*banner*/
+.banner{ width:960px; margin:0 auto; height:56px; background-color:#6a98ca; color:#FFFFFF; text-align:left; line-height:25px; padding-top:10px; margin-bottom:8px; position:relative}
+.banner a{ color:#FFf;  text-decoration:none;}
+.banner a:hover{ color:#FFf; text-decoration:underline;}
+.list{float:left; height:16px; line-height:16px; width:770px; margin-top:6px;}
+.list_left{float:left; width:645px; padding-left:50px; line-height:20px;}
+.list_right{float:left; width:55px;}
+.list_point{position:absolute; left: 806px; top: 32px; font-size:24px; color:#FFFF00; font-weight:bold; height: 30px; width:150px;line-height:30px;}
+
+.list_left2{float:left; width:70px; padding-left:50px; line-height:20px;}
+.list_right2{float:left; width:645px;}
+
+/*down*/
+.down{ width:960px; margin:0 auto; border-top:1px solid #CCCCCC; margin-top:8px; padding-top:10px; line-height:25px;color:#666}
+.down img{ float:none}
+
+/*2012年3月28日 16:53:07*/
+.denglu{padding:4px 5px;border:1px solid #dcdcdc;color: #666;width:80px;height:10px;}
+.intxt{padding:4px 5px;border:1px solid #9e9e9e;color: #666;}
+.intxt1{padding:2px 2px;border:1px solid #9e9e9e;color: #666; height:23px;}

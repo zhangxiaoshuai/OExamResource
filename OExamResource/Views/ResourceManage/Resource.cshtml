@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "资源管理";
+    Layout = "~/Views/Shared/_Back.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/manage/resource.js")" type="text/javascript"></script>
+    <style type="text/css">
+        #divResourceList td
+        {
+            height: 20px;
+        }
+    </style>
+}
+ 
+<input type="hidden" name="hdCount" id="hdCount" value="@ViewBag.Count" />
+<div align="left">
+    <table width="100%" border="0" cellpadding="0" cellspacing="10">
+        <tr>
+            <td style="width: 30%">
+                素材分类：
+                <select id="ddlcs">
+                    <option value="00000000-0000-0000-0000-000000000000" selected="selected">请选择</option>
+                </select>
+            </td>
+            <td>
+                所属专业：
+                @Html.DropDownList("ddlSpe", ViewBag.Spe as List<SelectListItem>)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                素材类型：-
+                @Html.DropDownList("ddlType", ViewBag.Type as List<SelectListItem>)
+            </td>
+            <td>
+                素材名称：
+                <input type="text" name="txtName" id="txtName" value="" />&nbsp;<input type="button"
+                    name="btnSearchResource" id="btnSearchResource" value="搜索" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" style="vertical-align: top">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td class="yan" valign="middle" align="left" style="height: 20px">
+                            全部列表
+                        </td>
+                        <td class="yan" valign="middle" align="right">
+                            共搜索出<strong id="sCount">@ViewBag.Count</strong>条记录
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div id="divResourceList">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">
+                <div id="divBar">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" align="center">
+                <input type="checkbox" name="ckAll" id="ckAll" /><label for="ckAll">全选</label>
+                <input type="checkbox" name="ckReverse" id="ckReverse" /><label for="ckReverse">反选</label>
+                <input type="button" name="btnEditSelected" id="btnEditSelected" value="修改选中" />
+            </td>
+            <td>
+                <input type="button" name="btnDelete" id="btnDelete" value="删除选中" />
+            </td>
+        </tr>
+    </table>
+</div>
+<form action="/ResourceManage/MassEdit" method="post" id="form1">
+<input type="hidden" id="hdData" name="hdData" value="" />
+</form>
+<form action="/Resource/Preview" target="_blank" method="post" id="form2">
+<input type="hidden" id="hdData2" name="hdData" value="" />
+<input id="hdId" type="hidden" name="hdId" value="@Guid.Empty" />
+<input id="hdType" type="hidden" name="hdType" value="-1" />
+<input id="hdsearchname" type="hidden" name="hdsearchname" value="" />
+</form>

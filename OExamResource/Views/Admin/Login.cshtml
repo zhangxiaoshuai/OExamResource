@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>管理员登录</title>
+    <script src="@Url.Content("~/Scripts/jquery/jquery.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/json2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/common.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/common/sync.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/artDialog/jquery.artDialog.js?skin=idialog")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/artDialog/artDialogExt.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/views/manage/login.js")" type="text/javascript"></script>
+    <style type="text/css">
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        BODY
+        {
+            background: URL(/Content/image/back_1.jpg) repeat-x scroll;
+        }
+        .head
+        {
+            height: 235px;
+            background: URL(/Content/image/back_2.jpg) no-repeat center bottom;
+            font: 24px 宋体;
+            font-style: oblique;
+            white-space: nowrap;
+            text-align: center;
+        }
+        .head div
+        {
+            height: 190px;
+        }
+        .left
+        {
+            width: 219px;
+            height: 158px;
+            background: URL(/Content/image/back_4.jpg) no-repeat scroll right;
+        }
+        .center
+        {
+            width: 482px;
+            margin: 0px auto;
+            height: 158px;
+            font: 12px 宋体;
+            background-color: #d0d9f4;
+        }
+        .right
+        {
+            width: 49px;
+            height: 158px;
+            background: URL(/Content/image/back_5.jpg) no-repeat scroll left;
+        }
+        .foot
+        {
+            background: URL(/Content/image/back_3.jpg) no-repeat scroll center;
+            height: 201px;
+        }
+        #divLogin
+        {
+            text-align: center;
+            line-height:40px;
+        }
+        #divLogin div
+        {
+            height:40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <div>
+        </div>
+        Sync教学资源库后台管理系统
+    </div>
+    <table border="0" cellpadding="0" cellspacing="0" class="center">
+        <tr>
+            <td class="left">
+            </td>
+            <td valign="middle">
+                <div id="divLogin">
+                    <div>
+                        帐 号：
+                        <input class="txt" type="text" tabindex="1" id="txtManagerName" name="txtManagerName" value="admin" />
+                    </div>
+                    <div>
+                        密 码：
+                        <input class="txt" tabindex="2" type="password" id="txtManagerPwd" name="txtManagerPwd" value="1" />
+                    </div>
+                    <div>
+                        <input type="image" src="/Content/image/back_6.jpg" name="btnManagerLogin" id="btnManagerLogin"
+                            value=" " />
+                    </div>
+                </div>
+            </td>
+            <td class="right">
+            </td>
+        </tr>
+    </table>
+    <div class="foot">
+    </div>
+</body>
+</html>

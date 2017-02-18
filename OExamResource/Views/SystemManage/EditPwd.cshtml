@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "修改用户密码";
+    Layout = "~/Views/Shared/_Back.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/manage/editpwd.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/plugin/My97DatePicker/WdatePicker.js")" type="text/javascript"></script>
+}
+<input type="hidden" name="hdId" id="hdId" value="@ViewBag.Id" />
+
+<table border="0" cellpadding="0" cellspacing="10" width="100%" class="tb_form">
+    <tr>
+        <td width="300px" align="right">
+            初始密码：
+        </td>
+        <td>
+            <input type="password" name="txtOldPwd" id="txtOldPwd" value="" /><label id="lb_old"
+                style="color: Red" class="lb"></label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            新密码：
+        </td>
+        <td>
+            <input type="password" name="txtNewPwd" id="txtNewPwd" value="" /><label id="lb_new"
+                class="lb" style="color: Red"></label>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            确认密码：
+        </td>
+        <td>
+            <input type="password" name="txtNewPwdSure" id="txtNewPwdSure" value="" /><label
+                id="lb_sure" class="lb" style="color: Red"></label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+        </td>
+        <td>
+            <input type="button" name="btnSure" id="btnPwdSure" value="修改" />
+        </td>
+    </tr>
+</table>

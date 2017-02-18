@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "资源库统计";
+    Layout = "~/Views/Shared/_Back.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/manage/stats.js")" type="text/javascript"></script>
+    <style type="text/css">
+        #stats
+        {
+            margin: 15px;
+            line-height: 20px;
+        }
+        .sa
+        {
+            font: 14px 宋体;
+        }
+        
+        #stats ul
+        {
+            list-style: none;
+            margin-left: 15px;
+        }
+        #stats ul li
+        {
+            display: inline-block;
+            width: 200px;
+            margin: 5px;
+        }
+    </style>
+}
+<h2>
+    资源库统计</h2>
+<div style="margin-left: 50px">
+    <strong>共有 @ViewBag.Count 个资源</strong>
+    <br />
+    <div id="stats">
+    </div>
+</div>

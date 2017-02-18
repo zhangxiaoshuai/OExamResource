@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "系统信息";
+    Layout = "~/Views/Shared/_Back.cshtml";
+}
+@section SubHead{
+    <script src="@Url.Content("~/Scripts/views/manage/system.js")" type="text/javascript"></script>
+}
+<input type="hidden" name="hdId" value="@ViewBag.Id"  id="hdId"/>
+<input type="hidden" name="hdSchoolId" value="@ViewBag.SchoolId"  id="hdSchoolId"/>
+<div id="divMenu" style="float: left; width: 158px">
+</div>
+<div id="divdata" style="margin-left: 160px">
+    <table class="mytable" width="99%">
+        <br />
+        <br />
+        <br />
+        <br />
+        <tr>
+            <td valign="middle" align="center">
+                <table width="450px">
+                    <tr>
+                        <td>
+                            <img src="/Content/image/sysbg.png" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
